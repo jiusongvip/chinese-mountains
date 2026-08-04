@@ -1,0 +1,43 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Mountain Collections — Browse Chinese Peaks by Theme" description="Browse Chinese mountains organized by cultural and historical themes: Five Great Mountains, Buddhist peaks, Daoist peaks, and more.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Mountain Collections</h1>
+<p class="mt-3 text-slate-500 max-w-[50ch]">Discover Chinese mountains organized by cultural themes, religious significance, and historical importance.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+<a href="/collections/five-great-mountains" class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
+<div class="aspect-[16/10] bg-gradient-to-br from-amber-500 to-orange-600 flex items-center justify-center">
+<span class="text-6xl">⛰️</span>
+</div>
+<div class="p-5">
+<h2 class="font-semibold text-slate-900 text-base group-hover:text-accent transition-colors">The Five Great Mountains</h2>
+<p class="text-sm text-slate-500 mt-2">Tai, Hua, Heng (Hunan & Shanxi), Song — the spiritual backbone of Chinese civilization for 4000 years.</p>
+<p class="text-xs text-accent mt-3 font-medium">5 mountains</p>
+</div>
+</a>
+<a href="/collections/buddhist-mountains" class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
+<div class="aspect-[16/10] bg-gradient-to-br from-red-600 to-amber-500 flex items-center justify-center">
+<span class="text-6xl">🛕</span>
+</div>
+<div class="p-5">
+<h2 class="font-semibold text-slate-900 text-base group-hover:text-accent transition-colors">Buddhist Mountains</h2>
+<p class="text-sm text-slate-500 mt-2">Sacred peaks where Buddhist monks built magnificent cliffside monasteries and pilgrimage routes.</p>
+<p class="text-xs text-accent mt-3 font-medium">9 mountains</p>
+</div>
+</a>
+<a href="/collections/daoist-mountains" class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
+<div class="aspect-[16/10] bg-gradient-to-br from-emerald-600 to-teal-500 flex items-center justify-center">
+<span class="text-6xl">☯️</span>
+</div>
+<div class="p-5">
+<h2 class="font-semibold text-slate-900 text-base group-hover:text-accent transition-colors">Daoist Mountains</h2>
+<p class="text-sm text-slate-500 mt-2">The birthplace of Tai Chi, home to immortals, and the landscape where Daoist philosophy was shaped.</p>
+<p class="text-xs text-accent mt-3 font-medium">7 mountains</p>
+</div>
+</a>
+</div>
+</div>
+</section>
+</BaseLayout>

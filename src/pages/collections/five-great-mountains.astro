@@ -1,0 +1,64 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MountainCard from "../../components/MountainCard.astro";
+import { mountains } from "../../data/mountains";
+
+const fiveGreatSlugs = ["taishan", "huashan", "hengshan-hunan", "hengshan-shanxi", "songshan"];
+const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).filter(Boolean);
+---
+<BaseLayout title="The Five Great Mountains of China (Wuyue)" description="The Five Great Mountains (Wuyue) have shaped Chinese civilization for 4000 years. Compare Mount Tai, Hua, Heng (Hunan & Shanxi), and Song with our interactive guides.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">The Five Great Mountains (Wuyue)</h1>
+<p class="mt-3 text-slate-500 max-w-[55ch]">For over 4000 years, emperors made pilgrimages to these five peaks, poets composed verses about them, and ordinary people climbed their steps seeking blessing and perspective. They are the spiritual backbone of Chinese civilization.</p>
+
+<div class="mt-12">
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">Meet the Five</h2>
+<div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+{fiveGreat.map(m => (
+<div class="flex flex-col sm:flex-row gap-6 bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-accent hover:shadow-md transition-all">
+<a href={"/mountains/" + m.slug} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
+<img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</a>
+<div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
+<div>
+<a href={"/mountains/" + m.slug} class="no-underline"><h3 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h3></a>
+<p class="text-sm text-slate-500 mt-2 line-clamp-3">{m.tagline}</p>
+</div>
+<div class="flex flex-wrap items-center gap-2 mt-3">
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.location.province}</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.physical.elevation.toLocaleString()}m</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Score {m.rating.overall}/5</span>
+</div>
+</div>
+</div>
+))}
+</div>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-16 mb-6">Why These Five? The History</h2>
+<div class="prose prose-slate max-w-none">
+<p class="text-slate-600 leading-relaxed">The concept of the Five Great Mountains (Wuyue) dates back to the Warring States period (475-221 BC). Ancient Chinese cosmology assigned each mountain a cardinal direction — east, west, south, north, and center — and believed they were pillars holding up the heavens. Emperors would travel to each mountain to perform the Fengshan sacrifice, the most sacred ritual in Chinese state religion, to legitimize their rule and communicate with heaven.</p>
+
+<h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">The Five Mountains by Direction</h3>
+<ul class="space-y-4 text-slate-600">
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">East</span><span><strong class="text-slate-800">Mount Tai</strong> — The most revered. "If Mount Tai is stable, so is the entire country." 72 emperors climbed its 6,600+ steps. First among equals.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">West</span><span><strong class="text-slate-800">Mount Hua</strong> — The most dramatic. Five granite peaks connected by narrow ridges. Famous for the heart-stopping Plank Walk bolted to a vertical cliff face.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">South</span><span><strong class="text-slate-800">Mount Heng (Hunan)</strong> — The most serene. Over 200 temples and shrines scatter its slopes. A center of both Buddhist and Daoist practice for 1,500+ years.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">North</span><span><strong class="text-slate-800">Mount Heng (Shanxi)</strong> — Home to the 1,500-year-old Hanging Temple, a monastery literally suspended from a cliff face. A geological oddity with dramatic horizontal rock strata.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Center</span><span><strong class="text-slate-800">Mount Song</strong> — The birthplace of Shaolin kung fu and Zen (Chan) Buddhism. The Shaolin Temple at its base is one of the world's most famous monasteries.</span></li>
+</ul>
+
+<h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">Which One Should You Visit?</h3>
+<p class="text-slate-600 leading-relaxed">If you want history, choose Tai. If you want adrenaline, choose Hua. If you want serenity, choose Heng (Hunan). If you want architecture, choose Heng (Shanxi). If you want martial arts and Zen, choose Song. Or do what the ancient emperors did: visit all five.</p>
+</div>
+</div>
+</div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+"@context": "https://schema.org",
+"@type": "CollectionPage",
+"name": "The Five Great Mountains of China",
+"description": "Comprehensive guide to the Five Great Mountains (Wuyue) of China: Mount Tai, Mount Hua, Mount Heng (Hunan), Mount Heng (Shanxi), and Mount Song."
+})} />
+</BaseLayout>

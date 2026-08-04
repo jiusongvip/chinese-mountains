@@ -1,0 +1,189 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MountainQuiz from "../components/MountainQuiz.tsx";
+import HeroSearch from "../components/HeroSearch.tsx";
+import SeasonalCalendar from "../components/SeasonalCalendar.tsx";
+import InteractiveMap from "../components/InteractiveMap.tsx";
+import MountainCard from "../components/MountainCard.astro";
+import { mountains, vibeGroups } from "../data/mountains";
+
+const featured = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
+const topSix = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
+const unescoCount = mountains.filter(m => m.culture.unescoSite).length;
+
+const diffColor = (d: string) => ({
+  easy: "bg-emerald-100 text-emerald-700",
+  moderate: "bg-amber-100 text-amber-700",
+  hard: "bg-orange-100 text-orange-700",
+  extreme: "bg-red-100 text-red-700",
+}[d] || "bg-slate-100 text-slate-600");
+
+function suitsTags(m: typeof mountains[0]): string {
+  const tags: string[] = [];
+  if (m.rating.scenery >= 5) tags.push("Photographers");
+  if (m.culture.type.some((t: string) => t === "Buddhist" || t === "Daoist")) tags.push("Culture lovers");
+  if (m.tourism.difficulty === "easy" || m.tourism.difficulty === "moderate") tags.push("Families");
+  if (m.tourism.difficulty === "hard" || m.tourism.difficulty === "extreme") tags.push("Adventurers");
+  if (m.culture.unescoSite) tags.push("Heritage seekers");
+  return tags.slice(0, 2).join(", ");
+}
+---
+
+<BaseLayout
+  title="Chinese Mountains - Explore Every Famous Peak in China"
+  description="Discover China\'s most breathtaking mountains. Interactive map, search by name, detailed guides, photos, and rankings for every famous peak."
+>
+  <section class="min-h-[calc(100dvh-4rem)] flex items-center">
+    <div class="max-w-[1400px] mx-auto px-6 w-full grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+      <div class="max-w-[32rem]">
+        <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold tracking-tighter leading-tight text-slate-900 text-balance">
+          Discover Your Perfect <span class="text-accent">Chinese Mountain</span>
+        </h1>
+        <p class="mt-6 text-lg text-slate-500 leading-relaxed max-w-[46ch]">
+          The only site that helps you <em class="not-italic font-medium text-slate-700">choose</em> a mountain, not just list them. Search by name, explore the map, or answer 3 questions to find your match.
+        </p>
+        <div class="mt-8">
+          <HeroSearch client:load />
+        </div>
+        <div class="flex flex-wrap items-center gap-3 mt-6">
+          <a href="#quiz" class="inline-flex items-center gap-2 px-5 py-3 bg-accent text-white rounded-lg font-medium text-sm hover:bg-accent-dark transition-colors no-underline shadow-sm">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 1 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
+            Take the Quiz
+          </a>
+          <a href="/explore" class="inline-flex items-center gap-2 px-5 py-3 bg-slate-100 text-slate-700 rounded-lg font-medium text-sm hover:bg-slate-200 transition-colors no-underline">
+            <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+            Explore Map
+          </a>
+        </div>
+        <div class="flex flex-wrap items-center gap-2 mt-6 text-xs text-slate-400">
+          <span class="inline-flex items-center gap-1"><span class="font-semibold text-slate-600">{mountains.length}</span> peaks</span>
+          <span class="text-slate-300">-</span>
+          <span class="inline-flex items-center gap-1"><span class="font-semibold text-slate-600">7</span> regions</span>
+          <span class="text-slate-300">-</span>
+          <span class="inline-flex items-center gap-1"><span class="font-semibold text-slate-600">{unescoCount}</span> UNESCO sites</span>
+          <span class="text-slate-300">-</span>
+          <span>Free. No bookings, no sales pitches.</span>
+        </div>
+      </div>
+      <div class="relative lg:h-[600px] h-[400px] shadow-2xl rounded-2xl">
+        <InteractiveMap client:load className="h-full" />
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="max-w-[48rem] mx-auto">
+        <div class="text-center mb-10">
+          <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900">Which Mountain Is Right for You?</h2>
+          <p class="mt-3 text-slate-500 text-base">Answer 3 questions. Get 3 personalized recommendations. No endless lists.</p>
+        </div>
+        <MountainQuiz client:load />
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Browse by Vibe</h2>
+      <p class="mt-2 text-slate-500">Choose your mountain mood, not your province.</p>
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-8">
+        {vibeGroups.map((vibe) => {
+          const img = mountains.find(m => m.id === vibe.mountainIds[0])?.images[0]?.src;
+          const count = vibe.mountainIds.length;
+          return {
+            vibe, img, count
+          };
+        }).map(({ vibe, img, count }) => (
+          <a href={"/explore?vibe=" + vibe.id} class="group relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-200 no-underline">
+            {img && <img src={img} alt={vibe.label} loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />}
+            <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
+            <div class="absolute top-3 right-3 bg-black/30 backdrop-blur-sm text-white text-xs px-2 py-0.5 rounded-full">{count}</div>
+            <div class="absolute bottom-0 left-0 right-0 p-4">
+              <h3 class="text-white font-semibold text-sm">{vibe.label}</h3>
+              <p class="text-white/70 text-xs mt-1">{vibe.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">At a Glance</h2>
+      <p class="mt-2 text-slate-500 mb-8">Compare the heavyweights. Click any row to dive deeper.</p>
+      <div class="hidden lg:block overflow-x-auto">
+        <table class="w-full text-sm">
+          <thead><tr class="border-b border-slate-200 text-left text-xs text-slate-400 uppercase tracking-wider">
+            <th class="pb-3 font-medium pr-4">Mountain</th>
+            <th class="pb-3 font-medium px-2">Elevation</th>
+            <th class="pb-3 font-medium px-2">Difficulty</th>
+            <th class="pb-3 font-medium px-2">Season</th>
+            <th class="pb-3 font-medium px-2">UNESCO</th>
+            <th class="pb-3 font-medium px-2">Best for</th>
+            <th class="pb-3 font-medium px-2">Score</th>
+          </tr></thead>
+          <tbody class="divide-y divide-slate-100">
+            {topSix.map(m => (
+              <tr class="hover:bg-slate-50">
+                <td class="py-3 pr-4"><a href={"/mountains/" + m.slug} class="font-medium text-slate-900 hover:text-accent no-underline whitespace-nowrap">{m.name.en}</a></td>
+                <td class="py-3 px-2 text-slate-600">{m.physical.elevation.toLocaleString()}m</td>
+                <td class="py-3 px-2"><span class={"text-xs px-2 py-0.5 rounded-full " + diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span></td>
+                <td class="py-3 px-2 text-slate-500 text-xs whitespace-nowrap">{m.tourism.bestSeason.slice(0,2).join(", ")}</td>
+                <td class="py-3 px-2">{m.culture.unescoSite ? <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">{m.culture.yearDesignated}</span> : <span class="text-slate-300">-</span>}</td>
+                <td class="py-3 px-2 text-slate-500 text-xs max-w-[160px] leading-relaxed">{suitsTags(m)}</td>
+                <td class="py-3 px-2 font-semibold text-accent">{m.rating.overall}</td>
+              </tr>
+            ))}
+          </tbody>
+        </table>
+      </div>
+      <div class="grid grid-cols-2 lg:hidden gap-3 mb-4">
+        {topSix.map(m => (
+          <a href={"/mountains/" + m.slug} class="flex flex-col bg-white border border-slate-200 rounded-xl p-4 hover:border-accent hover:shadow-sm transition-all no-underline">
+            <span class="font-semibold text-slate-900 text-sm">{m.name.en}</span>
+            <span class="text-xs text-slate-400 mt-0.5">{m.physical.elevation.toLocaleString()}m - <span class={diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span></span>
+            {m.culture.unescoSite && <span class="text-xs text-amber-600 mt-1">UNESCO {m.culture.yearDesignated}</span>}
+            <span class="text-lg font-bold text-accent mt-2">{m.rating.overall}</span>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Best Time to Visit</h2>
+      <p class="mt-2 text-slate-500 mb-8">Each month reveals a different side of the mountains.</p>
+      <SeasonalCalendar client:load />
+    </div>
+  </section>
+
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900 mb-8">Start Exploring</h2>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        {featured.map(m => (
+          <MountainCard
+            name={m.name.en} zhName={m.name.zh} tagline={m.tagline}
+            imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"}
+            imageAlt={m.images[0]?.alt ?? m.name.en}
+            elevation={m.physical.elevation} province={m.location.province}
+            difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://chinesemountains.org","potentialAction":{"@type":"SearchAction","target":"https://chinesemountains.org/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": [
+      { "@type": "Question", "name": "What is the best mountain to visit in China?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your season, interests, and fitness level. For iconic scenery, choose Huangshan or Zhangjiajie. For cultural significance, Mount Tai or Wudang. For adventure, Mount Hua or Siguniang. Use our 3-step quiz on this page to find your perfect match." } },
+      { "@type": "Question", "name": "Which Chinese mountains are best for hiking?", "acceptedAnswer": { "@type": "Answer", "text": "Top hiking destinations include Mount Hua (extreme cliff trails), Mount Siguniang (alpine trekking), Zhangjiajie (diverse trails with cable car options), Mount Emei (50km pilgrimage route), and Tiger Leaping Gorge near Jade Dragon Snow Mountain." } },
+      { "@type": "Question", "name": "When is the best time to visit Chinese mountains?", "acceptedAnswer": { "@type": "Answer", "text": "Spring (March-May) and autumn (September-November) offer the best weather and scenery for most mountains. Summer is hot but ideal for high-altitude destinations like Tianshan. Winter offers stunning snow scenery and zero crowds at most locations." } }
+    ]
+  })} />
+</BaseLayout>

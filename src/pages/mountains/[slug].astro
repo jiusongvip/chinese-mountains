@@ -1,0 +1,181 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MountainCard from "../../components/MountainCard.astro";
+import { mountains, getMountain, getMountainsByRegion } from "../../data/mountains";
+
+export function getStaticPaths() {
+  return mountains.map((m) => ({ params: { slug: m.slug } }));
+}
+
+const { slug } = Astro.params;
+const mountain = getMountain(slug!);
+if (!mountain) return Astro.redirect("/404");
+
+const related = getMountainsByRegion(mountain.location.region)
+  .filter((m) => m.id !== mountain.id)
+  .sort((a, b) => b.rating.overall - a.rating.overall)
+  .slice(0, 3);
+
+const title = mountain!.name.en + " (" + mountain!.name.zh + ") - Complete Guide";
+const desc = mountain!.metaDescription || mountain!.description.slice(0, 160).trimEnd().replace(/\s+\S+$/, '');
+---
+
+<BaseLayout title={title} description={desc}>
+  <section class="pt-8 pb-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="max-w-[56rem] mx-auto">
+        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
+          <a href="/" class="hover:text-slate-600 no-underline">Home</a>
+          <span>/</span>
+          <a href="/explore" class="hover:text-slate-600 no-underline">Mountains</a>
+          <span>/</span>
+          <span class="text-slate-600">{mountain.name.en}</span>
+        </nav>
+
+        <div class="grid lg:grid-cols-3 gap-8 mb-12">
+          <div class="lg:col-span-2">
+            <div class="aspect-[16/9] rounded-2xl overflow-hidden bg-slate-200 mb-6">
+              <img
+                src={mountain.images[0]?.src ?? "/images/placeholder.jpg"}
+                alt={mountain.images[0]?.alt ?? mountain.name.en}
+                class="w-full h-full object-cover"
+              />
+            </div>
+          </div>
+          <div class="lg:col-span-1">
+            <div class="bg-white border border-slate-200 rounded-xl p-6 sticky top-24">
+              <h1 class="text-2xl font-bold tracking-tighter text-slate-900 leading-tight">{mountain.name.en}</h1>
+              <p class="text-sm text-slate-400 mt-1">{mountain.name.zh}</p>
+              <p class="text-sm text-slate-500 mt-3 leading-relaxed">{mountain.tagline}</p>
+
+              <div class="mt-6 space-y-3">
+                {[
+                  { label: "Elevation", value: mountain.physical.elevation.toLocaleString() + "m" },
+                  { label: "Province", value: mountain.location.province },
+                  { label: "Difficulty", value: mountain.tourism.difficulty.charAt(0).toUpperCase() + mountain.tourism.difficulty.slice(1) },
+                  { label: "Best Season", value: mountain.tourism.bestSeason.join(", ") },
+                  { label: "Duration", value: mountain.tourism.avgVisitDuration },
+                ].map((row) => (
+                  <div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
+                    <span class="text-xs text-slate-400 uppercase tracking-wider">{row.label}</span>
+                    <span class="text-sm font-medium text-slate-700">{row.value}</span>
+                  </div>
+                ))}
+              </div>
+
+              <div class="mt-6 flex gap-2">
+                <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
+                  Scenery {mountain.rating.scenery}/5
+                </span>
+                <span class="text-xs px-2 py-0.5 rounded-full bg-blue-100 text-blue-700">
+                  Hiking {mountain.rating.hikingExperience}/5
+                </span>
+                {mountain.culture.unescoSite && (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>
+                )}
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="max-w-[48rem] mx-auto">
+          <div class="prose prose-slate max-w-none">
+            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">About {mountain.name.en}</h2>
+            <p class="text-slate-600 leading-relaxed">{mountain.description}</p>
+
+            {mountain.culture.significance && (
+              <>
+                <h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">Cultural Significance</h3>
+                <p class="text-slate-600 leading-relaxed">{mountain.culture.significance}</p>
+              </>
+            )}
+
+            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Highlights</h2>
+            <ul class="space-y-2">
+              {mountain.highlights.map((h) => (
+                <li class="flex items-start gap-2 text-slate-600">
+                  <span class="text-accent mt-1 shrink-0">&#8226;</span>
+                  {h}
+                </li>
+              ))}
+            </ul>
+
+            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">When to Go</h2>
+            <p class="text-slate-600 leading-relaxed">{mountain.whenToGo}</p>
+
+            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">How to Get There</h2>
+            <p class="text-slate-600 leading-relaxed">{mountain.howToGetThere}</p>
+
+            {mountain.faqs.length > 0 && (
+              <>
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
+                <div class="space-y-4">
+                  {mountain.faqs.map((faq, i) => (
+                    <details class="group border border-slate-200 rounded-xl overflow-hidden" open={i === 0}>
+                      <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors list-none">
+                        <span class="font-medium text-slate-900 text-sm">{faq.q}</span>
+                        <span class="text-slate-400 group-open:rotate-180 transition-transform text-lg">+</span>
+                      </summary>
+                      <div class="px-4 pb-4 text-slate-600 text-sm leading-relaxed">{faq.a}</div>
+                    </details>
+                  ))}
+                </div>
+              </>
+            )}
+          </div>
+
+          {related.length > 0 && (
+            <div class="mt-16 pt-12 border-t border-slate-200">
+              <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">You May Also Like</h2>
+              <div class="grid grid-cols-1 sm:grid-cols-3 gap-6">
+                {related.map((m) => (
+                  <MountainCard
+                    name={m.name.en}
+                    zhName={m.name.zh}
+                    tagline={m.tagline}
+                    imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"}
+                    imageAlt={m.images[0]?.alt ?? m.name.en}
+                    elevation={m.physical.elevation}
+                    province={m.location.province}
+                    difficulty={m.tourism.difficulty}
+                    overall={m.rating.overall}
+                    slug={m.slug}
+                  />
+                ))}
+              </div>
+            </div>
+          )}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://chinesemountains.org/" },
+      { "@type": "ListItem", "position": 2, "name": "Mountains", "item": "https://chinesemountains.org/explore" },
+      { "@type": "ListItem", "position": 3, "name": mountain.name.en }
+    ]
+  })} />
+
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "TouristAttraction",
+    name: mountain.name.en,
+    description: mountain.description,
+    image: mountain.images[0]?.src,
+    geo: {
+      "@type": "GeoCoordinates",
+      latitude: mountain.location.coordinates.lat,
+      longitude: mountain.location.coordinates.lng,
+    },
+    address: {
+      "@type": "PostalAddress",
+      addressRegion: mountain.location.province,
+      addressCountry: "CN",
+    },
+    ...(mountain.culture.unescoSite ? { additionalProperty: { "@type": "PropertyValue", name: "UNESCO World Heritage", value: String(mountain.culture.yearDesignated) } } : {}),
+  })} />
+</BaseLayout>

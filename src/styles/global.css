@@ -1,0 +1,79 @@
+@import "tailwindcss";
+
+@theme {
+  --color-accent: #059669;
+  --color-accent-light: #10b981;
+  --color-accent-dark: #047857;
+  --color-accent-50: #ecfdf5;
+  --color-accent-100: #d1fae5;
+  --font-sans: "Geist", ui-sans-serif, system-ui, sans-serif;
+  --font-mono: "Geist Mono", ui-monospace, monospace;
+}
+
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+body {
+  font-family: var(--font-sans);
+  background-color: #f8fafb;
+  color: var(--color-slate-900);
+}
+
+::selection {
+  background-color: var(--color-accent-100);
+  color: var(--color-accent-dark);
+}
+
+/* Leaflet map overrides */
+.mountain-marker {
+  background: transparent !important;
+  border: none !important;
+}
+
+.mountain-tooltip {
+  font-family: var(--font-sans) !important;
+  font-size: 12px !important;
+  font-weight: 600 !important;
+  color: var(--color-slate-900) !important;
+  background: white !important;
+  border: none !important;
+  border-radius: 6px !important;
+  box-shadow: 0 2px 8px rgba(0,0,0,0.12) !important;
+  padding: 4px 8px !important;
+}
+
+.mountain-tooltip::before {
+  display: none !important;
+}
+
+.leaflet-popup-content-wrapper {
+  border-radius: 12px !important;
+  box-shadow: 0 4px 20px rgba(0,0,0,0.15) !important;
+  overflow: hidden;
+}
+
+.leaflet-popup-content {
+  margin: 12px !important;
+}
+
+.leaflet-container {
+  border-radius: 16px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+}

@@ -1,0 +1,75 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import { mountains } from "../data/mountains";
+---
+<BaseLayout title="Compare Mountains" description="Select and compare Chinese mountains side by side. Elevation, difficulty, season, ratings at a glance.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Compare Mountains</h1>
+<p class="mt-3 text-slate-500 max-w-[55ch]">Select 2 to 4 mountains below to see a side-by-side comparison. Best values in each category are highlighted with green bars.</p>
+
+<div class="flex flex-wrap gap-2 mt-8" id="compare-selector">
+{mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => (
+<button class="compare-chip text-xs px-3 py-1.5 rounded-full transition-colors border cursor-pointer bg-slate-100 text-slate-600 border-slate-200 hover:border-accent" data-id={m.id}>{m.name.en}</button>
+))}
+</div>
+
+<div id="compare-panel" class="mt-10">
+<div id="compare-empty" class="text-center py-16 text-slate-400">
+<p class="text-lg font-medium">Select mountains above to compare them</p>
+<p class="text-sm mt-2">You can compare up to 4 mountains side by side</p>
+</div>
+<div id="compare-results" class="hidden">
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4" id="compare-cards"></div>
+</div>
+</div>
+</div>
+</section>
+</BaseLayout>
+
+<script type="application/json" id="mountains-data" set:html={JSON.stringify(mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => ({
+  id: m.id, slug: m.slug, name: m.name.en, zh: m.name.zh,
+  img: m.images[0]?.src ?? '', alt: m.images[0]?.alt ?? m.name.en,
+  province: m.location.province, elevation: m.physical.elevation,
+  diff: m.tourism.difficulty, season: m.tourism.bestSeason.slice(0,3).join(', '),
+  unesco: m.culture.unescoSite, scenery: m.rating.scenery,
+  hiking: m.rating.hikingExperience, culture_v: m.rating.cultureValue,
+  overall: m.rating.overall, access: m.tourism.accessibility
+})))}></script>
+
+<script>
+  const ALL = JSON.parse(document.getElementById('mountains-data').textContent);
+  let selected = [];
+  const MAX = 4;
+
+  document.querySelectorAll(".compare-chip").forEach(c => c.addEventListener("click", () => {
+    const id = c.getAttribute("data-id");
+    if (selected.includes(id)) {
+      selected = selected.filter(s => s !== id);
+      c.classList.remove("bg-accent","text-white","border-accent");
+      c.classList.add("bg-slate-100","text-slate-600","border-slate-200");
+    } else if (selected.length < MAX) {
+      selected.push(id);
+      c.classList.add("bg-accent","text-white","border-accent");
+      c.classList.remove("bg-slate-100","text-slate-600","border-slate-200");
+    }
+    render();
+  }));
+
+  function render() {
+    const empty = document.getElementById("compare-empty");
+    const results = document.getElementById("compare-results");
+    const cards = document.getElementById("compare-cards");
+    if (selected.length === 0) { empty.classList.remove("hidden"); results.classList.add("hidden"); return; }
+    empty.classList.add("hidden"); results.classList.remove("hidden");
+
+    const items = selected.map(id => ALL.find(m => m.id === id)).filter(Boolean);
+    const max = { elevation: 0, scenery: 0, hiking: 0, culture_v: 0, overall: 0, access: 0 };
+    items.forEach(m => { max.elevation = Math.max(max.elevation, m.elevation); max.scenery = Math.max(max.scenery, m.scenery); max.hiking = Math.max(max.hiking, m.hiking); max.culture_v = Math.max(max.culture_v, m.culture_v); max.overall = Math.max(max.overall, m.overall); max.access = Math.max(max.access, m.access); });
+    cards.innerHTML = items.map(m => {
+      const best = (val, key) => val === max[key] ? "font-semibold text-accent" : "text-slate-600";
+      const bar = (val, key) => `<div class="w-full bg-slate-100 rounded-full h-1.5 mt-1"><div class="bg-accent h-1.5 rounded-full transition-all duration-500" style="width:${(val/max[key]*100).toFixed(0)}%"></div></div>`;
+      return `<a href="/mountains/${m.slug}/" class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group"><div class="aspect-[3/2] overflow-hidden bg-slate-100"><img src="${m.img}" alt="${m.alt}" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" /></div><div class="p-4"><div class="flex items-start justify-between gap-2"><div><h3 class="font-semibold text-slate-900 text-sm">${m.name}</h3><p class="text-xs text-slate-400">${m.zh} - ${m.province}</p></div><span class="text-lg font-bold text-accent shrink-0">${m.overall}</span></div><div class="mt-4 space-y-2 text-xs"><div><div class="flex justify-between"><span class="text-slate-500">Elevation</span><span class="${best(m.elevation,'elevation')}">${m.elevation.toLocaleString()}m</span></div>${bar(m.elevation,'elevation')}</div><div><div class="flex justify-between"><span class="text-slate-500">Scenery</span><span class="${best(m.scenery,'scenery')}">${m.scenery}/5</span></div>${bar(m.scenery,'scenery')}</div><div><div class="flex justify-between"><span class="text-slate-500">Hiking</span><span class="${best(m.hiking,'hiking')}">${m.hiking}/5</span></div>${bar(m.hiking,'hiking')}</div><div><div class="flex justify-between"><span class="text-slate-500">Culture</span><span class="${best(m.culture_v,'culture_v')}">${m.culture_v}/5</span></div>${bar(m.culture_v,'culture_v')}</div></div><div class="flex flex-wrap gap-1.5 mt-3"><span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">${m.diff}</span><span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">${m.season}</span></div></div></a>`;
+    }).join("");
+  }
+</script>

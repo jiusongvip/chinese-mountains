@@ -1,0 +1,41 @@
+---
+const navLinks = [
+  { href: "/explore", label: "Explore" },
+  { href: "/best", label: "Best" },
+  { href: "/compare", label: "Compare" },
+  { href: "/guides", label: "Guides" },
+  { href: "/blog", label: "Blog" },
+  { href: "/gallery", label: "Gallery" },
+  { href: "/collections", label: "Collections" },
+];
+---
+<nav class="fixed top-0 inset-x-0 z-50 bg-white/80 backdrop-blur-md border-b border-slate-200/60">
+  <div class="max-w-[1400px] mx-auto px-6 h-16 flex items-center justify-between">
+    <a href="/" class="flex items-center gap-2 text-slate-900 font-semibold text-lg tracking-tight no-underline">
+      <span class="w-7 h-7 rounded-md bg-accent flex items-center justify-center">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2L2 22h20L12 2z"/></svg>
+      </span>
+      Chinese Mountains
+    </a>
+    <div class="hidden md:flex items-center gap-1">
+      {navLinks.map(link => (
+        <a href={link.href} class="px-3 py-2 text-sm text-slate-600 hover:text-slate-900 rounded-md hover:bg-slate-100 transition-colors no-underline">{link.label}</a>
+      ))}
+    </div>
+    <button class="md:hidden p-2 text-slate-600" aria-label="Menu" id="menu-btn">
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><line x1="4" y1="6" x2="20" y2="6"/><line x1="4" y1="12" x2="20" y2="12"/><line x1="4" y1="18" x2="20" y2="18"/></svg>
+    </button>
+  </div>
+  <div id="mobile-menu" class="hidden border-t border-slate-200 bg-white">
+    <div class="px-4 py-3 space-y-1">
+      {navLinks.map(link => (
+        <a href={link.href} class="block px-3 py-2.5 text-sm text-slate-600 hover:text-slate-900 rounded-lg hover:bg-slate-100 transition-colors no-underline">{link.label}</a>
+      ))}
+    </div>
+  </div>
+</nav>
+<script>
+  document.getElementById("menu-btn")?.addEventListener("click", () => {
+    document.getElementById("mobile-menu")?.classList.toggle("hidden");
+  });
+</script>

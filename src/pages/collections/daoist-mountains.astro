@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MountainCard from "../../components/MountainCard.astro";
+import { mountains } from "../../data/mountains";
+
+const daoist = mountains.filter(m => m.culture.type.includes("Daoist"));
+---
+<BaseLayout title="Daoist Mountains of China — Sacred Taoist Peaks & Temples" description="Explore China's most sacred Daoist mountains: Wudang, Qingcheng, Hua, Sanqing, Huangshan. Temple architecture, martial arts heritage, and travel guides for every Taoist peak.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Daoist Mountains of China</h1>
+<p class="mt-3 text-slate-500 max-w-[55ch]">Daoism, China's indigenous philosophy-turned-religion, has always been drawn to mountains. The Daoist ideal of harmony with nature — 天人合一 (tian ren he yi, "heaven and humanity as one") — finds its purest expression among peaks, where practitioners built temples that seem to grow from the rock itself.</p>
+{daoist.map(m => (
+<div class="flex flex-col sm:flex-row gap-6 bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-accent hover:shadow-md transition-all mt-6">
+<a href={"/mountains/" + m.slug} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
+<img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</a>
+<div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
+<div>
+<a href={"/mountains/" + m.slug} class="no-underline"><h2 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h2></a>
+<p class="text-sm text-slate-500 mt-2 line-clamp-3">{m.tagline}</p>
+</div>
+<div class="flex flex-wrap items-center gap-2 mt-3">
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.location.province}</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.physical.elevation.toLocaleString()}m</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">{m.rating.overall}/5</span>
+{m.culture.unescoSite && <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>}
+</div>
+</div>
+</div>
+))}
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-16 mb-6">The Daoist Mountain Tradition</h2>
+<div class="prose prose-slate max-w-none text-slate-600 leading-relaxed">
+<p>Daoist mountains are not just scenic backdrops for temples — they are central to Daoist cosmology. Mountains are believed to be the dwelling places of immortals (xian), and their caves and peaks are gateways between the earthly and celestial realms. Daoist temples on mountains are designed to follow the natural contours of the land, embodying the principle of wu wei — effortless action in harmony with nature.</p>
+
+<h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">The Most Significant Daoist Mountains</h3>
+<ul class="space-y-4">
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Wudang</span><span><strong class="text-slate-800">Wudang Mountains</strong> — The undisputed center of Daoist martial arts. Birthplace of Tai Chi (Taijiquan). Over 72 peaks with Daoist temples, many built during the Ming dynasty under imperial patronage. UNESCO World Heritage site.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Qingcheng</span><span><strong class="text-slate-800">Mount Qingcheng</strong> — One of the birthplaces of Daoism itself. The philosopher Zhang Daoling founded the Way of the Celestial Masters here in 142 AD. Dense forests, winding paths, and ancient pavilions create an atmosphere of profound tranquility.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Hua</span><span><strong class="text-slate-800">Mount Hua</strong> — One of the Five Great Mountains with deep Daoist roots. Its five peaks are named after Daoist deities, and cliff-side temples seem to defy gravity. The ultimate test of a Daoist's detachment from fear.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Sanqing</span><span><strong class="text-slate-800">Mount Sanqing</strong> — Named after the Three Pure Ones, the highest deities in the Daoist pantheon. Granite pillars, twisted pines, and mist-shrouded temples create a landscape that looks exactly like classical Daoist paintings.</span></li>
+<li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Huangshan</span><span><strong class="text-slate-800">Mount Huangshan</strong> — While mainly known for scenery, Huangshan has been a Daoist retreat since the Tang dynasty. The mountain's legendary "sea of clouds" embodies the Daoist ideal of form emerging from formlessness.</span></li>
+</ul>
+</div>
+</div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+"@context": "https://schema.org",
+"@type": "CollectionPage",
+"name": "Daoist Mountains of China",
+"description": "Guide to China's sacred Daoist (Taoist) mountains including Wudang, Qingcheng, Mount Hua, Sanqing, and Huangshan."
+})} />
+</BaseLayout>

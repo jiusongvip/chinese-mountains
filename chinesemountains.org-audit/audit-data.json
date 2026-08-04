@@ -1,0 +1,310 @@
+{
+  "summary": {
+    "health_score": 65,
+    "business_type": "Travel / informational content site about Chinese mountain destinations",
+    "top_findings": [
+      "No robots.txt — search engines have no crawling instructions",
+      "Homepage missing H1 tag — primary heading absent from the most important page",
+      "No Open Graph or Twitter Card tags on any page — social sharing renders blank",
+      "Blog posts lack BlogPosting schema — missed rich-result opportunities",
+      "Sitemap missing lastmod/changefreq/priority — poor crawl optimization signals"
+    ],
+    "quick_wins": [
+      "Add robots.txt with sitemap reference (5 min)",
+      "Wrap homepage hero text in <h1> (15 min)",
+      "Add OG + Twitter Card meta tags to base layout (30 min)",
+      "Remove WebSite schema from non-homepage layouts (15 min)",
+      "Add noindex to 404 page (5 min)"
+    ]
+  },
+  "categories": [
+    {
+      "name": "Technical SEO",
+      "score": 65,
+      "what_works": [
+        "All 43 pages have correct canonical URLs",
+        "Sitemap covers 42 indexable URLs",
+        "Valid HTML5 across all pages",
+        "lang='en' consistently declared",
+        "No HTTP mixed content detected"
+      ],
+      "findings": [
+        {
+          "title": "No robots.txt file",
+          "severity": "Critical",
+          "description": "No robots.txt exists in public/ or dist/. Every site needs one even if it allows all crawling. Without it, search engines have no crawl guidance.",
+          "recommendation": "Create public/robots.txt with User-agent: *, Allow: /, Sitemap: https://chinesemountains.org/sitemap-index.xml"
+        },
+        {
+          "title": "Sitemap missing lastmod/changefreq/priority",
+          "severity": "High",
+          "description": "All 42 sitemap entries lack lastmod, changefreq, and priority fields. These help engines prioritize crawl budget.",
+          "recommendation": "Configure @astrojs/sitemap to include lastmod based on content dates. Add changefreq and priority for key pages."
+        },
+        {
+          "title": "404 page has canonical URL and no noindex",
+          "severity": "Medium",
+          "description": "The 404 page includes a canonical to /404/ and has no meta robots noindex tag. Search engines may index it.",
+          "recommendation": "Add <meta name='robots' content='noindex'> to 404.astro and remove the canonical link."
+        },
+        {
+          "title": "No security headers (deployment concern)",
+          "severity": "Medium",
+          "description": "As a static site, security headers depend on the CDN/host. Verify HSTS, X-Content-Type-Options, and X-Frame-Options are set.",
+          "recommendation": "Configure CDN to add Strict-Transport-Security, X-Content-Type-Options: nosniff, X-Frame-Options: DENY."
+        }
+      ]
+    },
+    {
+      "name": "Content Quality",
+      "score": 78,
+      "what_works": [
+        "Blog posts are well-researched, original, and practical (1,000-1,500 words)",
+        "Mountain detail pages are consistently thorough across all 25 peaks",
+        "Readability is excellent — short paragraphs, clear headings, bulleted lists",
+        "Domain expertise is evident — covers obscure peaks most travel sites miss",
+        "Guide pages are well-structured by season and target audience"
+      ],
+      "findings": [
+        {
+          "title": "About page is thin content (~200 words)",
+          "severity": "High",
+          "description": "The /about/ page has only two paragraphs. A thin About page undermines E-E-A-T signals for the entire site.",
+          "recommendation": "Expand to 500-800 words covering mission, team, editorial standards, and sources. Add Organization schema."
+        },
+        {
+          "title": "No author pages or individual bylines",
+          "severity": "Medium",
+          "description": "All content uses 'Chinese Mountains Team' as the byline with no individual attribution. This weakens authoritativeness.",
+          "recommendation": "Create individual author bios with real names and photos for blog posts."
+        },
+        {
+          "title": "No privacy policy or contact page",
+          "severity": "Medium",
+          "description": "No privacy policy, terms, or contact page exists. These are trust signals Google considers for YMYL-adjacent content.",
+          "recommendation": "Add privacy policy and contact pages."
+        },
+        {
+          "title": "Templated meta descriptions on mountain pages",
+          "severity": "Low",
+          "description": "All 25 mountain pages use the pattern 'Everything about [Name]: height, trails, weather, photos, history, travel tips.'",
+          "recommendation": "Write unique value-proposition descriptions for each mountain."
+        }
+      ]
+    },
+    {
+      "name": "On-Page SEO",
+      "score": 70,
+      "what_works": [
+        "All pages have descriptive meta descriptions",
+        "Internal linking is strong with contextual 'You May Also Like' sections",
+        "Navigation uses descriptive anchor text",
+        "Title tag pattern is clean and consistent",
+        "Comparison table on homepage provides deep internal links"
+      ],
+      "findings": [
+        {
+          "title": "Homepage has no H1 tag",
+          "severity": "Critical",
+          "description": "The homepage hero text 'Discover Every Famous Peak in China' is in a <div>, not an <h1>. This is the single strongest on-page signal and it is entirely absent.",
+          "recommendation": "Wrap the hero title in <h1> with the existing classes applied."
+        },
+        {
+          "title": "H1 text has leading/trailing whitespace on mountain pages",
+          "severity": "Low",
+          "description": "All 25 mountain page H1 tags contain extra whitespace (e.g., ' Mount Huangshan '). This won't affect ranking but indicates a template spacing issue.",
+          "recommendation": "Trim whitespace in the Astro template that renders the H1."
+        },
+        {
+          "title": "Redundant branding in title tags",
+          "severity": "Low",
+          "description": "Some pages have doubled brand suffix: 'About | Chinese Mountains | Chinese Mountains'. The homepage says 'Chinese Mountains - ... | Chinese Mountains'.",
+          "recommendation": "Fix the template logic that appends the site name to title tags."
+        }
+      ]
+    },
+    {
+      "name": "Schema & Structured Data",
+      "score": 60,
+      "what_works": [
+        "TouristAttraction schema on mountain detail pages with geo, address, UNESCO data",
+        "FAQPage schema on homepage with 3 relevant questions",
+        "All JSON-LD blocks parse correctly",
+        "SearchAction schema enables sitelinks search box"
+      ],
+      "findings": [
+        {
+          "title": "Blog posts lack BlogPosting schema",
+          "severity": "High",
+          "description": "All 3 blog posts only have the generic WebSite schema. No BlogPosting or Article schema is present, missing rich-result opportunities.",
+          "recommendation": "Add BlogPosting schema with headline, author, datePublished, dateModified, image, and description to each blog post template."
+        },
+        {
+          "title": "WebSite schema duplicated on every page",
+          "severity": "High",
+          "description": "The WebSite + SearchAction schema block is in the shared layout and appears on all 43 pages including /404/. It should only be on the homepage.",
+          "recommendation": "Move WebSite schema from the base layout to src/pages/index.astro only."
+        },
+        {
+          "title": "No BreadcrumbList schema",
+          "severity": "Medium",
+          "description": "Mountain and blog pages have visible breadcrumb navigation but no BreadcrumbList JSON-LD. This is a missed rich-result opportunity.",
+          "recommendation": "Add BreadcrumbList schema to all pages with visible breadcrumbs."
+        },
+        {
+          "title": "About page lacks Organization schema",
+          "severity": "Medium",
+          "description": "The About page has no structured data identifying the site as an Organization.",
+          "recommendation": "Add Organization schema to the About page with name, url, description, and sameAs links."
+        }
+      ]
+    },
+    {
+      "name": "Performance (CWV)",
+      "score": 68,
+      "what_works": [
+        "CSS is very lean at 33 KB",
+        "WebP format used for all mountain images",
+        "loading='lazy' applied to below-fold images",
+        "Astro static build produces efficient HTML output"
+      ],
+      "findings": [
+        {
+          "title": "JavaScript payload is heavy for a content site",
+          "severity": "Medium",
+          "description": "9 JS bundles total 403 KB for what is primarily a content and navigation site. The interactive map and quiz account for most of this.",
+          "recommendation": "Consider code-splitting or lazy-loading interactive components. The quiz and calendar don't need to load on every page."
+        },
+        {
+          "title": "External render-blocking resources",
+          "severity": "Medium",
+          "description": "Google Fonts and Leaflet CSS are loaded from external CDNs in <head>, blocking first paint.",
+          "recommendation": "Self-host Geist font (already in node_modules). Inline or defer Leaflet CSS."
+        },
+        {
+          "title": "hero-map-bg.png is PNG, not WebP",
+          "severity": "Low",
+          "description": "The hero map background image is PNG format. Converting to WebP would save ~50%.",
+          "recommendation": "Convert to WebP and update the image reference."
+        },
+        {
+          "title": "No responsive images (srcset)",
+          "severity": "Medium",
+          "description": "All images are served at a single resolution. Mobile users download the same 400+ KB images as desktop.",
+          "recommendation": "Add srcset with multiple resolutions or use Astro's built-in image optimization."
+        }
+      ]
+    },
+    {
+      "name": "AI Search Readiness",
+      "score": 52,
+      "what_works": [
+        "Content is structured and fact-dense, ideal for AI extraction",
+        "Schema markup helps AI understand entity relationships",
+        "Strong domain focus — clear what the site is about",
+        "Descriptive alt text feeds AI image understanding"
+      ],
+      "findings": [
+        {
+          "title": "No Open Graph tags means blank AI previews",
+          "severity": "Critical",
+          "description": "ChatGPT, Perplexity, and other AI platforms use OG tags to render shared link previews. Without them, all shares show blank cards.",
+          "recommendation": "Add full OG + Twitter Card tags to the base layout immediately."
+        },
+        {
+          "title": "No llms.txt file",
+          "severity": "Medium",
+          "description": "No llms.txt provides a structured site overview for LLM crawlers. This is increasingly important for AI citability.",
+          "recommendation": "Create public/llms.txt with site description and key page URLs."
+        },
+        {
+          "title": "Lack of author attribution hurts AI citation trust",
+          "severity": "Medium",
+          "description": "AI models weigh named authorship when deciding whether to cite content. 'Chinese Mountains Team' is anonymous.",
+          "recommendation": "Add named author bios with credentials to blog posts and key reference pages."
+        }
+      ]
+    },
+    {
+      "name": "Images",
+      "score": 75,
+      "what_works": [
+        "All images have descriptive, keyword-rich alt text",
+        "WebP format used throughout (except hero-map-bg.png)",
+        "Alt text is specific and contextual (not generic)"
+      ],
+      "findings": [
+        {
+          "title": "Total image payload is 8 MB",
+          "severity": "Medium",
+          "description": "26 images total 8.02 MB. Several mountain photos exceed 400 KB each.",
+          "recommendation": "Apply more aggressive WebP compression. Consider 250 KB as a ceiling for hero images."
+        },
+        {
+          "title": "Missing explicit width/height on img tags",
+          "severity": "Medium",
+          "description": "Many img tags lack explicit width and height attributes, relying only on CSS for sizing. This causes layout shift (CLS).",
+          "recommendation": "Add width and height attributes to all img tags, matching the aspect ratio."
+        },
+        {
+          "title": "No responsive image strategy",
+          "severity": "Medium",
+          "description": "No srcset, no picture elements, no multiple resolutions. Mobile users download full-size images.",
+          "recommendation": "Implement responsive images via Astro's Image component or manual srcset."
+        }
+      ]
+    }
+  ],
+  "action_plan": {
+    "phases": [
+      {
+        "name": "Phase 1: Critical Fixes",
+        "timeframe": "Week 1",
+        "items": [
+          "Create robots.txt with sitemap reference",
+          "Add H1 to homepage hero section",
+          "Add Open Graph and Twitter Card meta tags to base layout",
+          "Remove WebSite schema from non-homepage layouts",
+          "Generate default OG social share image"
+        ]
+      },
+      {
+        "name": "Phase 2: High-Impact Improvements",
+        "timeframe": "Weeks 2-3",
+        "items": [
+          "Add BlogPosting schema to all blog posts",
+          "Add BreadcrumbList schema to pages with breadcrumbs",
+          "Fix double-branded title tags",
+          "Fix H1 whitespace on mountain page templates",
+          "Add noindex to 404 page"
+        ]
+      },
+      {
+        "name": "Phase 3: Content & Authority",
+        "timeframe": "Month 2",
+        "items": [
+          "Expand About page to 500-800 words",
+          "Add individual author pages/bios",
+          "Create privacy policy page",
+          "Diversify mountain page meta descriptions",
+          "Add lastmod to sitemap entries"
+        ]
+      },
+      {
+        "name": "Phase 4: Monitoring & Iteration",
+        "timeframe": "Ongoing",
+        "items": [
+          "Convert hero-map-bg.png to WebP",
+          "Self-host Geist font",
+          "Add responsive images with srcset",
+          "Set up Google Search Console and submit sitemap",
+          "Create llms.txt for AI crawlers"
+        ]
+      }
+    ]
+  },
+  "artifacts": {
+    "findings_dir": "findings/",
+    "screenshots_dir": "screenshots/"
+  }
+}

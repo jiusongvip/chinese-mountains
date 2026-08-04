@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import { allPosts } from "../../data/blog";
+
+const sorted = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
+---
+
+<BaseLayout title="Blog — Mountain Travel Guides & Trip Reports" description="Travel guides, trip reports, and everything about visiting China's most spectacular peaks.">
+  <section class="pt-12 pb-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h1 class="text-4xl font-bold tracking-tighter text-slate-900">Blog</h1>
+      <p class="mt-3 text-slate-500 max-w-[50ch]">Travel guides, trip reports, and everything about visiting China's most spectacular peaks.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        {sorted.map((post) => (
+          <a href={`/blog/` + post.slug} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
+            <div class="aspect-[16/10] overflow-hidden bg-slate-100">
+              <img src={post.image} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-5">
+              <div class="flex flex-wrap gap-2 mb-3">
+                {post.tags.slice(0, 2).map((tag) => (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">{tag}</span>
+                ))}
+              </div>
+              <h2 class="font-semibold text-slate-900 text-base leading-snug">{post.title}</h2>
+              <p class="text-sm text-slate-500 mt-2 line-clamp-2">{post.excerpt}</p>
+              <div class="flex items-center gap-3 mt-4 text-xs text-slate-400">
+                <span>{post.author}</span>
+                <time datetime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,0 +1,37 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="Contact" description="Get in touch with the Chinese Mountains team — corrections, suggestions, and mountain stories welcome.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6" style="max-width:48rem">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Contact Us</h1>
+<p class="mt-6 text-slate-600 leading-relaxed text-lg">Have a question, a correction, or a mountain story of your own? We'd love to hear from you.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">What to Reach Out About</h2>
+<ul class="space-y-2 mt-3 text-slate-600">
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Corrections:</strong> Spotted an outdated ticket price, a wrong elevation, or a trail that's now closed? Tell us and we'll fix it.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Mountain suggestions:</strong> Is there a peak we're missing that deserves a page? Let us know — especially if you've been there yourself.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Contributions:</strong> If you're a photographer or writer with original Chinese mountain content, we're open to featuring it with full credit.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Press and partnerships:</strong> Media inquiries, collaboration ideas, or academic requests are all welcome.</li>
+</ul>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Email</h2>
+<p class="text-slate-600 leading-relaxed">The best way to reach us is by email at <a href="mailto:hello@chinesemountains.org" class="text-accent hover:underline font-medium">hello@chinesemountains.org</a>. We aim to respond within 2-3 business days.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Response Times</h2>
+<p class="text-slate-600 leading-relaxed">We read every message, but as a small independent team we may not be able to reply to every one. Corrections and factual errors get priority. If you're reporting a broken feature or bug, including a screenshot helps enormously.</p>
+</div>
+</section>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Chinese Mountains",
+    "url": "https://chinesemountains.org",
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "email": "hello@chinesemountains.org",
+      "contactType": "customer support",
+      "url": "https://chinesemountains.org/contact"
+    }
+  })} />
+</BaseLayout>

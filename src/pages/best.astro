@@ -1,0 +1,19 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MountainCard from "../components/MountainCard.astro";
+import { mountains } from "../data/mountains";
+const ranked = mountains.sort((a,b) => b.rating.overall - a.rating.overall);
+---
+<BaseLayout title="Best Mountains" description="The definitive ranking of China's best mountains.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Best Mountains in China</h1>
+<p class="mt-3 text-slate-500">The definitive ranking. Compare by scenery, hiking, culture, and overall experience.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+{ranked.map((m,i) => (
+<MountainCard name={m.name.en} zhName={"#"+(i+1)+" . "+m.name.zh} tagline={m.tagline} imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"} imageAlt={m.images[0]?.alt ?? m.name.en} elevation={m.physical.elevation} province={m.location.province} difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug} />
+))}
+</div>
+</div>
+</section>
+</BaseLayout>

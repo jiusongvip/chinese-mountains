@@ -1,0 +1,60 @@
+---
+import { mountains } from "../data/mountains";
+
+const now = new Date();
+const monthNames = ["January","February","March","April","May","June","July","August","September","October","November","December"];
+const currentMonth = monthNames[now.getMonth()];
+
+function seasonName(m: string): string {
+  if (m === "December" || m === "January" || m === "February") return "Winter";
+  if (m === "March" || m === "April" || m === "May") return "Spring";
+  if (m === "June" || m === "July" || m === "August") return "Summer";
+  return "Autumn";
+}
+
+const seasonalPicks = mountains
+  .filter(m => {
+    const seasonMonths: Record<string, string[]> = {
+      December: ["December","January","February"], January: ["December","January","February"], February: ["December","January","February"],
+      March: ["March","April","May"], April: ["March","April","May"], May: ["March","April","May"],
+      June: ["June","July","August"], July: ["June","July","August"], August: ["June","July","August"],
+      September: ["September","October","November"], October: ["September","October","November"], November: ["September","October","November"]
+    };
+    return m.tourism.bestSeason.some(s => (seasonMonths[currentMonth] || []).includes(s));
+  })
+  .sort((a, b) => b.rating.overall - a.rating.overall)
+  .slice(0, 3);
+
+if (seasonalPicks.length < 3) {
+  return new Response(null, { status: 200 });
+}
+---
+
+<section class="py-16 bg-accent-50 border-t border-accent-100">
+  <div class="max-w-[1400px] mx-auto px-6">
+    <div class="flex items-center gap-3 mb-6">
+      <span class="text-2xl">&amp;#127807;</span>
+      <div>
+        <h2 class="text-xl font-bold tracking-tighter text-slate-900">Best for {seasonName(currentMonth)} Travel</h2>
+        <p class="text-sm text-slate-500">These mountains are at their absolute peak right now.</p>
+      </div>
+    </div>
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+      {seasonalPicks.map(m => (
+        <a href={"/mountains/" + m.slug} class="group flex gap-4 bg-white rounded-xl border border-accent-100 hover:border-accent hover:shadow-md transition-all no-underline p-4">
+          <div class="w-24 h-24 rounded-lg overflow-hidden bg-slate-100 shrink-0">
+            <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.name.en} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          </div>
+          <div class="flex flex-col justify-center min-w-0">
+            <h3 class="font-semibold text-slate-900 text-sm">{m.name.en}</h3>
+            <p class="text-xs text-slate-400 mt-0.5">{m.name.zh} - {m.physical.elevation.toLocaleString()}m</p>
+            <div class="flex items-center gap-2 mt-2">
+              <span class={"text-xs px-1.5 py-0.5 rounded-full " + ({ easy: "bg-emerald-100 text-emerald-700", moderate: "bg-amber-100 text-amber-700", hard: "bg-orange-100 text-orange-700", extreme: "bg-red-100 text-red-700" }[m.tourism.difficulty] || "bg-slate-100 text-slate-600")}>{m.tourism.difficulty}</span>
+              <span class="text-xs font-semibold text-accent">{m.rating.overall}/5</span>
+            </div>
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>

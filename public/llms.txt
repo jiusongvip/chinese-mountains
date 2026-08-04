@@ -1,0 +1,32 @@
+# Chinese Mountains
+An independent guide to every famous peak in China. Interactive maps, detailed guides, comparison tools, and a 3-step quiz to help you find your perfect mountain.
+
+## Key Pages
+- Home (Decision Engine): https://chinesemountains.org/
+- Explore All Mountains: https://chinesemountains.org/explore
+- Best Mountains Ranking: https://chinesemountains.org/best
+- Compare Mountains Tool: https://chinesemountains.org/compare
+- Travel Guides: https://chinesemountains.org/guides
+- Photo Gallery: https://chinesemountains.org/gallery
+- About: https://chinesemountains.org/about
+
+## Mountain Detail Pages
+Each mountain has a dedicated page at /mountains/{slug}/ with elevation, difficulty, best season, highlights, cultural significance, how to get there, and FAQs.
+- Mount Huangshan (Yellow Mountain): https://chinesemountains.org/mountains/huangshan/
+- Zhangjiajie: https://chinesemountains.org/mountains/zhangjiajie/
+- Mount Tai (Taishan): https://chinesemountains.org/mountains/taishan/
+- Mount Hua (Huashan): https://chinesemountains.org/mountains/huashan/
+- Mount Emei (Emeishan): https://chinesemountains.org/mountains/emeishan/
+- Mount Everest (Qomolangma): https://chinesemountains.org/mountains/everest/
+- Jade Dragon Snow Mountain: https://chinesemountains.org/mountains/jade-dragon/
+
+## Blog
+- First-Timer's Guide: https://chinesemountains.org/blog/first-timer-guide-2026
+- The Five Great Mountains: https://chinesemountains.org/blog/5-great-mountains
+- Autumn Photography Guide: https://chinesemountains.org/blog/autumn-golden-season
+
+## Data Coverage
+25 mountains across 7 regions of China, including elevations, difficulty ratings, seasonal recommendations, UNESCO status, and cultural significance.
+
+## Contact
+hello@chinesemountains.org

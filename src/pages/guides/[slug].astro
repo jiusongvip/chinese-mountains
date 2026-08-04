@@ -1,0 +1,126 @@
+---
+import { defineGuide, allGuides } from "../../data/guides";
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MountainCard from "../../components/MountainCard.astro";
+import { mountains } from "../../data/mountains";
+
+export function getStaticPaths() {
+  return allGuides.map((g) => ({ params: { slug: g.slug } }));
+}
+
+const { slug } = Astro.params;
+const guide = defineGuide(slug!);
+
+function findMountains(months: string[], difficultyList: string[], excludeIds: string[]) {
+  let results = mountains;
+  if (months.length > 0) {
+    results = results.filter((m) => m.tourism.bestSeason.some((s) => months.includes(s)));
+  }
+  if (difficultyList.length > 0) {
+    results = results.filter((m) => difficultyList.includes(m.tourism.difficulty));
+  }
+  if (excludeIds.length > 0) {
+    results = results.filter((m) => !excludeIds.includes(m.id));
+  }
+  return results.sort((a, b) => b.rating.overall - a.rating.overall);
+}
+
+const matchedMountains = findMountains(guide.months, guide.difficulty, guide.excludeIds || []);
+const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
+---
+
+<BaseLayout title={`${guide.title} — Chinese Mountains Travel Guide`} description={guide.description}>
+  <section class="pt-8 pb-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
+        <a href="/" class="hover:text-slate-600 no-underline">Home</a>
+        <span>/</span>
+        <a href="/guides" class="hover:text-slate-600 no-underline">Guides</a>
+        <span>/</span>
+        <span class="text-slate-600">{guide.title}</span>
+      </nav>
+
+      <div class="max-w-[56rem] mx-auto">
+        <div class="aspect-[21/9] rounded-2xl overflow-hidden bg-slate-200 mb-8">
+          <img src={guide.image} alt={guide.title} class="w-full h-full object-cover" />
+        </div>
+
+        <h1 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900">{guide.title}</h1>
+        <p class="mt-4 text-lg text-slate-500 leading-relaxed max-w-[50ch]">{guide.description}</p>
+
+        <div class="mt-8 max-w-none">
+          {guide.content.map((block: any) => {
+            if (block.type === "p") {
+              return <p class="text-slate-600 leading-relaxed mb-4">{block.text}</p>;
+            }
+            if (block.type === "h2") {
+              return <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-10 mb-4">{block.text}</h2>;
+            }
+            if (block.type === "h3") {
+              return <h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">{block.text}</h3>;
+            }
+            if (block.type === "ul") {
+              return (
+                <ul class="space-y-2 mb-4">
+                  {(block.items || []).map((item: string) => (
+                    <li class="flex items-start gap-2 text-slate-600">
+                      <span class="text-accent mt-1 shrink-0">&bull;</span>
+                      {item}
+                    </li>
+                  ))}
+                </ul>
+              );
+            }
+            return null;
+          })}
+        </div>
+
+        {matchedMountains.length > 0 && (
+          <div class="mt-12 pt-10 border-t border-slate-200">
+            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">Mountains for This Trip ({matchedMountains.length})</h2>
+            <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {matchedMountains.slice(0, 6).map((m) => (
+                <MountainCard
+                  name={m.name.en} zhName={m.name.zh} tagline={m.tagline}
+                  imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"}
+                  imageAlt={m.images[0]?.alt ?? m.name.en}
+                  elevation={m.physical.elevation} province={m.location.province}
+                  difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug}
+                />
+              ))}
+            </div>
+            {matchedMountains.length > 6 && (
+              <p class="mt-4 text-sm text-slate-400">+{matchedMountains.length - 6} more mountains match this guide. <a href="/explore" class="text-accent hover:underline">Explore all</a></p>
+            )}
+          </div>
+        )}
+
+        <div class="mt-16 pt-10 border-t border-slate-200">
+          <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">More Travel Guides</h2>
+          <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
+            {otherGuides.map((g) => (
+              <a href={`/guides/${g.slug}`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
+                <div class="aspect-[16/10] overflow-hidden bg-slate-100">
+                  <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                </div>
+                <div class="p-4">
+                  <h3 class="font-semibold text-slate-900 text-sm">{g.title}</h3>
+                  <p class="text-xs text-slate-500 mt-1 line-clamp-2">{g.description}</p>
+                </div>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Article",
+    "headline": guide.title,
+    "description": guide.description,
+    "image": guide.image,
+    "author": { "@type": "Organization", "name": "Chinese Mountains" },
+    "dateModified": "2026-08-04"
+  })} />
+</BaseLayout>

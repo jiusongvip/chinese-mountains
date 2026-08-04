@@ -1,0 +1,83 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+import MountainCard from "../components/MountainCard.astro";
+import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mountains";
+---
+<BaseLayout title="Explore Every Mountain in China" description="Browse all 25 famous Chinese mountains with interactive filters by region, difficulty, and vibe. Compare elevation, UNESCO status, and hiking details to find your perfect peak.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6" id="explore-root">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900" id="explore-heading">Explore All Mountains</h1>
+<p class="mt-3 text-slate-500 max-w-[50ch]" id="explore-desc">Browse all mountains. Use the filters to narrow down your options.</p>
+<a href="/explore" id="clear-filters" class="hidden inline-flex items-center gap-1 mt-4 text-sm text-slate-500 hover:text-slate-700 no-underline">Clear filters</a>
+
+<div class="flex flex-wrap gap-2 mt-8 mb-6" id="region-filters">
+{allRegions.map((r) => (
+<a href={"/explore?region="+r} class="region-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-region={r}>{r.charAt(0).toUpperCase() + r.slice(1)}</a>
+))}
+</div>
+
+<div class="flex flex-wrap gap-2 mb-8" id="difficulty-filters">
+{difficultyLevels.map((d) => (
+<a href={"/explore?difficulty="+d} class="diff-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-diff={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</a>
+))}
+</div>
+
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="mountain-grid">
+{mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => {
+  const vibes = vibeGroups.filter(v => v.mountainIds.includes(m.id)).map(v => v.id);
+  return (
+    <div class="mountain-card" data-vibes={JSON.stringify(vibes)} data-region={m.location.region} data-difficulty={m.tourism.difficulty}>
+      <MountainCard name={m.name.en} zhName={m.name.zh} tagline={m.tagline} imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"} imageAlt={m.images[0]?.alt ?? m.name.en} elevation={m.physical.elevation} province={m.location.province} difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug} />
+    </div>
+  );
+})}
+</div>
+</div>
+</section>
+</BaseLayout>
+
+<script>
+  const VIBE_LABELS = {"mist-mystery": "Mist & Mystery", "sacred-summits": "Sacred Summits", "adrenaline-peaks": "Adrenaline Peaks", "karst-wonders": "Karst Wonders", "snow-sky": "Snow & Sky", "hidden-gems": "Hidden Gems"};
+  const params = new URLSearchParams(window.location.search);
+  const vibe = params.get("vibe");
+  const region = params.get("region");
+  const diff = params.get("difficulty");
+
+  if (vibe || region || diff) {
+    const heading = document.getElementById("explore-heading");
+    const desc = document.getElementById("explore-desc");
+    const clearBtn = document.getElementById("clear-filters");
+    const cards = document.querySelectorAll(".mountain-card");
+    let count = 0;
+    const parts = [];
+    if (vibe) parts.push(VIBE_LABELS[vibe] || vibe);
+    if (region) parts.push(region.charAt(0).toUpperCase() + region.slice(1));
+    if (diff) parts.push(diff.charAt(0).toUpperCase() + diff.slice(1));
+
+    cards.forEach(card => {
+      const cardVibes = JSON.parse(card.getAttribute("data-vibes") || "[]");
+      const cardRegion = card.getAttribute("data-region");
+      const cardDiff = card.getAttribute("data-difficulty");
+      const match = (!vibe || cardVibes.includes(vibe)) && (!region || cardRegion === region) && (!diff || cardDiff === diff);
+      if (!match) card.style.display = "none";
+      else count++;
+    });
+
+    if (heading) heading.textContent = parts.join(" · ");
+    if (desc) desc.textContent = "Showing " + count + " of " + cards.length + " mountains" + (vibe ? " in “" + (VIBE_LABELS[vibe] || vibe) + "”" : "") + ".";
+    if (clearBtn) clearBtn.classList.remove("hidden");
+  }
+
+  document.querySelectorAll(".region-btn").forEach(btn => {
+    if (btn.getAttribute("data-region") === region) {
+      btn.classList.remove("bg-slate-100","text-slate-600","hover:bg-slate-200");
+      btn.classList.add("bg-accent","text-white");
+    }
+  });
+  document.querySelectorAll(".diff-btn").forEach(btn => {
+    if (btn.getAttribute("data-diff") === diff) {
+      btn.classList.remove("bg-slate-100","text-slate-600","hover:bg-slate-200");
+      btn.classList.add("bg-accent","text-white");
+    }
+  });
+</script>

@@ -1,0 +1,58 @@
+---
+import BaseLayout from "../../layouts/BaseLayout.astro";
+import MountainCard from "../../components/MountainCard.astro";
+import { mountains } from "../../data/mountains";
+
+const buddhistType = ["Buddhist", "Tibetan Buddhist"];
+const buddhist = mountains.filter(m => m.culture.type.some(t => buddhistType.includes(t)));
+---
+<BaseLayout title="Buddhist Mountains of China — Sacred Peaks & Pilgrimage Sites" description="Discover China's most sacred Buddhist mountains: Emei, Wutai, Jiuhua, Putuo, and more. Pilgrimage routes, temple highlights, and travel guides for every Buddhist peak.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Buddhist Mountains of China</h1>
+<p class="mt-3 text-slate-500 max-w-[55ch]">Since Buddhism arrived in China 2000 years ago, its monks and pilgrims have sought the solitude of mountains. These peaks became home to some of the world's most magnificent monasteries, built into cliffsides and perched on summits.</p>
+{buddhist.map(m => (
+<div class="flex flex-col sm:flex-row gap-6 bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-accent hover:shadow-md transition-all mt-6">
+<a href={"/mountains/" + m.slug} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
+<img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+</a>
+<div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
+<div>
+<a href={"/mountains/" + m.slug} class="no-underline"><h2 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h2></a>
+<p class="text-sm text-slate-500 mt-2 line-clamp-3">{m.tagline}</p>
+</div>
+<div class="flex flex-wrap items-center gap-2 mt-3">
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.location.province}</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.physical.elevation.toLocaleString()}m</span>
+<span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">{m.rating.overall}/5</span>
+{m.culture.unescoSite && <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>}
+</div>
+</div>
+</div>
+))}
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-16 mb-6">The Four Sacred Buddhist Mountains</h2>
+<div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+{[
+{en:"Mount Emei",zh:"峨眉山",p:"Sichuan",b:"Bodhisattva Samantabhadra (Puxian). The highest of the four sacred mountains, with a 50km pilgrimage trail through subtropical forest to the Golden Summit at 3099m. Sunrise over a sea of clouds is a spiritual experience even for non-Buddhists."},
+{en:"Mount Wutai",zh:"五台山",p:"Shanxi",b:"Bodhisattva Manjusri (Wenshu), the bodhisattva of wisdom. The oldest Buddhist sacred mountain, with temples dating to the 1st century AD. Five flat-topped peaks surround a valley of monasteries."},
+{en:"Mount Jiuhua",zh:"九华山",p:"Anhui",b:"Bodhisattva Ksitigarbha (Dizang), protector of souls in the afterlife. Known for its 99 peaks and the mummified body of a Tang-dynasty monk preserved in a temple."},
+{en:"Mount Putuo",zh:"普陀山",p:"Zhejiang",b:"Bodhisattva Avalokitesvara (Guanyin), the goddess of mercy. The only sacred mountain on an island, surrounded by the East China Sea. A place of pilgrimage for sailors and fishermen for 1,000+ years."}
+].map(s => (
+<div class="bg-white border border-slate-200 rounded-xl p-6">
+<h3 class="font-semibold text-slate-900">{s.en} <span class="text-sm text-slate-400">{s.zh}</span></h3>
+<p class="text-xs text-slate-400 mt-0.5">{s.p}</p>
+<p class="text-sm text-slate-600 mt-3 leading-relaxed">{s.b}</p>
+</div>
+))}
+</div>
+</div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+"@context": "https://schema.org",
+"@type": "CollectionPage",
+"name": "Buddhist Mountains of China",
+"description": "Guide to China's sacred Buddhist mountains including Mount Emei, Wutai, Jiuhua, Putuo, and other peaks with significant Buddhist heritage."
+})} />
+</BaseLayout>

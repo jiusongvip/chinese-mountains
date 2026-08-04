@@ -1,0 +1,55 @@
+---
+import BaseLayout from "../layouts/BaseLayout.astro";
+---
+<BaseLayout title="About Chinese Mountains — Our Mission, Team & Editorial Standards" description="Learn about the Chinese Mountains team — who we are, how we research every peak, and our editorial standards. An independent guide to every famous peak in China.">
+<section class="pt-12 pb-20">
+<div class="max-w-[1400px] mx-auto px-6" style="max-width:48rem">
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900">About Chinese Mountains</h1>
+<p class="mt-6 text-slate-600 leading-relaxed text-lg">An independent guide to every famous peak in China. No bookings, no sales pitches — just honest, carefully researched information to help you discover the right mountain for your journey.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Our Mission</h2>
+<p class="text-slate-600 leading-relaxed">Most websites that cover Chinese mountains fall into two camps: dry encyclopedia entries that tell you a peak exists but nothing about what it feels like to be there, or travel agencies whose every sentence ends with a booking link. We built Chinese Mountains to fill the gap between them — a site that gives you the depth of a field guide with the usability of a modern web app.</p>
+<p class="mt-4 text-slate-600 leading-relaxed">We cover 37 mountains and counting, from tourist icons like Huangshan and Zhangjiajie to remote giants like Namcha Barwa and Mount Gongga that most travel sites ignore. Every page includes practical details you actually need: ticket prices, cable car times, altitude sickness warnings, and how to get there by public transport.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Who We Are</h2>
+<p class="text-slate-600 leading-relaxed">The Chinese Mountains team is a small group of hikers, photographers, and writers who have collectively spent years exploring China's mountain regions. We've climbed the 6,666 steps of Mount Tai at 3 AM for sunrise, gripped the chains on Mount Hua's Plank Walk, and sat in silence at Feilai Temple watching Kawagarbo emerge from the clouds.</p>
+<p class="mt-4 text-slate-600 leading-relaxed">We're not a travel agency. We don't take commissions on bookings. We make no money from this site — it exists because we believe China's mountains deserve a guide as extraordinary as they are.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">How We Research</h2>
+<p class="text-slate-600 leading-relaxed"><strong>Every mountain on this site has either been visited by a team member or researched through a combination of:</strong></p>
+<ul class="space-y-2 mt-3 text-slate-600">
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span>On-the-ground visits with documented trips, photos, and notes</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span>Official park websites, UNESCO documentation, and provincial tourism boards</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span>Academic sources on Chinese geography, geology, and cultural history</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span>Recent traveler reports and reviews to verify current conditions (ticket prices, trail status, construction)</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span>Chinese-language primary sources for cultural and historical context not available in English</li>
+</ul>
+<p class="mt-4 text-slate-600 leading-relaxed">We update ticket prices, opening hours, and seasonal recommendations at least twice a year. If you spot outdated information, please <a href="/contact" class="text-accent hover:underline">let us know</a>.</p>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Editorial Standards</h2>
+<p class="text-slate-600 leading-relaxed"><strong>Every page on this site follows the same principles:</strong></p>
+<ul class="space-y-2 mt-3 text-slate-600">
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>No AI-generated filler.</strong> Every paragraph is written by a human who understands the mountain being described.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Facts over flattery.</strong> We tell you when a mountain is crowded, when the cable car is overpriced, and when the "famous sunrise" is actually just a 5 AM queue in the cold.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Practical first.</strong> Directions, costs, timing, and safety come before poetic descriptions.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>No affiliate-driven recommendations.</strong> We don't rank mountains based on which one pays higher commissions.</li>
+</ul>
+
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Contact Us</h2>
+<p class="text-slate-600 leading-relaxed">Questions, corrections, or just want to share your own mountain story? Visit our <a href="/contact" class="text-accent hover:underline">contact page</a>. We read every message.</p>
+</div>
+</section>
+
+<script type="application/ld+json" set:html={JSON.stringify({
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "name": "Chinese Mountains",
+  "url": "https://chinesemountains.org",
+  "description": "An independent guide to every famous peak in China with interactive maps, detailed guides, and comparison tools.",
+  "foundingDate": "2026",
+  "contactPoint": {
+    "@type": "ContactPoint",
+    "url": "https://chinesemountains.org/contact"
+  }
+})} />
+</BaseLayout>
