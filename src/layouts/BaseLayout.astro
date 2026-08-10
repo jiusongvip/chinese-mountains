@@ -22,6 +22,14 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <!-- Google tag (gtag.js) -->
+  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-Q12K3L5SQW"></script>
+  <script is:inline>
+    window.dataLayer = window.dataLayer || [];
+    function gtag(){dataLayer.push(arguments);}
+    gtag('js', new Date());
+    gtag('config', 'G-Q12K3L5SQW');
+  </script>
   <title>{fullTitle}</title>
   {description && <meta name="description" content={description} />}
   {noindex && <meta name="robots" content="noindex, follow" />}
