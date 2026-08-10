@@ -14,12 +14,11 @@ import BaseLayout from "../layouts/BaseLayout.astro";
 </ul>
 
 <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-10 mb-4">Third-Party Services</h2>
-<p class="text-slate-600 leading-relaxed">We load two third-party resources on our pages:</p>
+<p class="text-slate-600 leading-relaxed">We load one third-party resource on our pages:</p>
 <ul class="space-y-2 mt-3 text-slate-600">
-<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Geist font (via jsDelivr CDN):</strong> For typography. jsDelivr may log your IP address and browser information as part of standard CDN operation.</li>
-<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Leaflet (via cdnjs):</strong> For our interactive maps. cdnjs may log standard request data in server logs.</li>
+<li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><strong>Map tiles (via CartoDB):</strong> Our interactive maps fetch background tiles from CartoDB, which may log standard request data in server logs.</li>
 </ul>
-<p class="mt-4 text-slate-600 leading-relaxed">We do not use Google Analytics, Facebook Pixel, or any other tracking scripts. We have no idea who you are unless you tell us.</p>
+<p class="mt-4 text-slate-600 leading-relaxed">Fonts and map styles are served directly from our own domain, and we do not use Google Analytics, Facebook Pixel, or any other tracking scripts. We have no idea who you are unless you tell us.</p>
 
 <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-10 mb-4">Your Rights</h2>
 <p class="text-slate-600 leading-relaxed">Since we store no personal data (except emails you voluntarily send us), there's not much to exercise rights over. If you've emailed us and want your correspondence deleted, just reply and ask — we'll delete it immediately.</p>

@@ -29,7 +29,8 @@ export default defineConfig({
     react(),
     sitemap({
       serialize(item) {
-        item.lastmod = new Date().toISOString();
+        // No content-level modified dates in the data layer; omit lastmod to
+        // avoid emitting a fake "everything changed" signal on every build.
         item.changefreq = changefreq(new URL(item.url).pathname);
         item.priority = priority(new URL(item.url).pathname);
         return item;

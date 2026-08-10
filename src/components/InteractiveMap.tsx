@@ -29,6 +29,7 @@ export default function InteractiveMap({ className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
   const [loaded, setLoaded] = useState(false);
+  const [tileError, setTileError] = useState(false);
 
   useEffect(() => {
     const el = ref.current;
@@ -48,7 +49,9 @@ export default function InteractiveMap({ className = "" }: Props) {
       if (cancelled || !ref.current) return;
 
       const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
-      L.tileLayer(TILE_URL, { maxZoom: 13 }).addTo(map);
+      const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
+      tiles.on("tileerror", () => setTileError(true));
+      tiles.addTo(map);
 
       const icon = L.divIcon({ className: "mountain-marker", html: '<div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div>', iconSize: [12, 12], iconAnchor: [6, 6] });
 
@@ -68,11 +71,24 @@ export default function InteractiveMap({ className = "" }: Props) {
   return (
     <div ref={ref} className={"relative w-full h-full min-h-[400px] bg-slate-100 rounded-2xl overflow-hidden " + className}>
       {!loaded && (
-        <div className="absolute inset-0 flex items-center justify-center bg-slate-100">
-          <img src="/images/hero-map-bg.webp" alt="Topographic map of China" className="w-full h-full object-cover opacity-50" />
-          <div className="absolute inset-0 flex items-center justify-center">
-            <div className="text-slate-400 text-sm">Loading map...</div>
+        <div className="absolute inset-0">
+          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} className="w-full h-full object-cover" />
+          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
+          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
+            Interactive map — {mountains.length} peaks
           </div>
+          <noscript>
+            <div className="absolute inset-0 flex items-center justify-center">
+              <a href="/explore" className="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">
+                Browse all {mountains.length} mountains instead →
+              </a>
+            </div>
+          </noscript>
+        </div>
+      )}
+      {tileError && (
+        <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
+          Map tiles unavailable — <a href="/explore" className="text-accent font-medium hover:underline">browse the list instead</a>
         </div>
       )}
     </div>
