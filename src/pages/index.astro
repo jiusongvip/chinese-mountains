@@ -5,11 +5,37 @@ import HeroSearch from "../components/HeroSearch.tsx";
 import SeasonalCalendar from "../components/SeasonalCalendar.tsx";
 import InteractiveMap from "../components/InteractiveMap.tsx";
 import MountainCard from "../components/MountainCard.astro";
-import { mountains, vibeGroups } from "../data/mountains";
+import { mountains, vibeGroups, allRegions } from "../data/mountains";
+import { allPosts } from "../data/blog";
+import { allGuides } from "../data/guides";
 
 const featured = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
 const topSix = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
+const topTen = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 10);
 const unescoCount = mountains.filter(m => m.culture.unescoSite).length;
+const provinceCount = new Set(mountains.map(m => m.location.province)).size;
+
+// Photo strip: mountains with real multi-photo galleries
+const galleryMountains = mountains
+  .filter(m => m.images.length > 1)
+  .sort((a, b) => b.rating.overall - a.rating.overall)
+  .slice(0, 10);
+
+// Records & leaderboards
+const byElevation = [...mountains].sort((a, b) => b.physical.elevation - a.physical.elevation);
+const highest = byElevation[0];
+const topElevations = byElevation.slice(0, 5);
+const bestSceneryPeak = [...mountains].sort((a, b) => (b.rating.scenery - a.rating.scenery) || (b.rating.overall - a.rating.overall))[0];
+const extremePeaks = mountains.filter(m => m.tourism.difficulty === "extreme").sort((a, b) => b.rating.overall - a.rating.overall);
+const unescoPeaks = mountains.filter(m => m.culture.unescoSite);
+const oldestUnesco = [...unescoPeaks].sort((a, b) => (a.culture.yearDesignated ?? 9999) - (b.culture.yearDesignated ?? 9999))[0];
+const buddhistCount = mountains.filter(m => m.culture.type.some(t => t === "Buddhist" || t === "Tibetan Buddhist")).length;
+const daoistCount = mountains.filter(m => m.culture.type.includes("Daoist")).length;
+const easyCount = mountains.filter(m => m.tourism.difficulty === "easy").length;
+
+// Latest editorial content
+const latestPosts = [...allPosts].sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()).slice(0, 3);
+const homeGuides = allGuides.slice(0, 3);
 
 const diffColor = (d: string) => ({
   easy: "bg-emerald-100 text-emerald-700",
@@ -71,7 +97,122 @@ function suitsTags(m: typeof mountains[0]): string {
     </div>
   </section>
 
-  <section id="quiz" class="py-20 bg-white border-t border-slate-100">
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Photos of China's Mountains</h2>
+          <p class="mt-2 text-slate-500 max-w-[62ch]">Real photography from Huangshan's sea of clouds to the Himalaya's 8,000-meter giants — every picture links to a complete guide.</p>
+        </div>
+        <a href="/gallery" class="text-sm font-medium text-accent hover:underline no-underline">View the full gallery →</a>
+      </div>
+      <div class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x">
+        {galleryMountains.map((m) => (
+          <a href={"/mountains/" + m.slug} class="group shrink-0 w-[280px] snap-start no-underline">
+            <div class="rounded-xl overflow-hidden bg-slate-200 aspect-[4/3]">
+              <img src={m.images[1]?.src ?? m.images[0]?.src} alt={m.images[1]?.alt ?? m.images[0]?.alt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="mt-2 flex items-center justify-between">
+              <span class="text-sm font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en}</span>
+              <span class="text-xs text-slate-400">{m.images.length} photos</span>
+            </div>
+            <p class="text-xs text-slate-500 mt-0.5 truncate">{m.location.province} · {m.physical.elevation.toLocaleString()}m</p>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="max-w-[52rem]">
+        <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900">What Are Chinese Mountains?</h2>
+        <p class="mt-4 text-lg text-slate-600 leading-relaxed">China is the most mountainous country on Earth. Roughly two-thirds of its territory is covered by mountains, plateaus, and hills, and its famous peaks have shaped Chinese civilization for over 5,000 years. Unlike the wilderness ranges of North America or Europe, most Chinese mountains are <strong class="text-slate-800">living cultural landscapes</strong> — sacred sites where emperors performed rituals, where Buddhist and Daoist monasteries cling to cliffs, and where poets and painters found their greatest muse.</p>
+        <p class="mt-4 text-slate-600 leading-relaxed">This guide covers <strong class="text-slate-800">{mountains.length} famous mountains of China</strong> across {provinceCount} provinces and {allRegions.length} geographic regions — from the granite spires of Huangshan to the 8,000-meter giants of the Himalaya, from the karst pillars of Zhangjiajie to the rainbow strata of Zhangye. Every entry includes elevation, difficulty, best season, ticket prices, transport routes, and cultural context, so you can plan a visit with confidence.</p>
+        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <div class="text-2xl font-bold text-accent">{mountains.length}</div>
+            <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Famous Peaks</div>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <div class="text-2xl font-bold text-accent">{provinceCount}</div>
+            <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Provinces</div>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <div class="text-2xl font-bold text-accent">{unescoCount}</div>
+            <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">UNESCO Sites</div>
+          </div>
+          <div class="bg-white rounded-xl border border-slate-200 p-4">
+            <div class="text-2xl font-bold text-accent">7</div>
+            <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Regions</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">China's Mountain Records</h2>
+      <p class="mt-2 text-slate-500 max-w-[62ch]">The statistics behind the legends — highest peaks, best scenery, toughest trails, and oldest heritage, computed from our database of {mountains.length} mountains.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
+        <a href={"/mountains/" + highest.slug} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Highest Peak</div>
+          <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{highest.physical.elevation.toLocaleString()}m</div>
+          <div class="mt-1 font-semibold text-slate-700">{highest.name.en}</div>
+          <p class="mt-1 text-xs text-slate-500">{highest.location.province} · {highest.location.region} region</p>
+        </a>
+        <a href={"/mountains/" + bestSceneryPeak.slug} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Best Scenery</div>
+          <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{bestSceneryPeak.rating.scenery}/5</div>
+          <div class="mt-1 font-semibold text-slate-700">{bestSceneryPeak.name.en}</div>
+          <p class="mt-1 text-xs text-slate-500">Rated on our scenery scale across all {mountains.length} peaks</p>
+        </a>
+        <a href={"/mountains/" + extremePeaks[0].slug} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Most Extreme</div>
+          <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{extremePeaks[0].name.en}</div>
+          <div class="mt-1 font-semibold text-slate-700">{extremePeaks.length} extreme peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Cliff planks, glacier routes & 8,000m ridges</p>
+        </a>
+        <a href={"/mountains/" + oldestUnesco.slug} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Oldest Heritage Site</div>
+          <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{oldestUnesco.culture.yearDesignated}</div>
+          <div class="mt-1 font-semibold text-slate-700">{oldestUnesco.name.en}</div>
+          <p class="mt-1 text-xs text-slate-500">UNESCO World Heritage · {unescoPeaks.length} sites covered</p>
+        </a>
+      </div>
+      <div class="mt-10 grid lg:grid-cols-2 gap-8">
+        <div>
+          <h3 class="text-lg font-bold tracking-tighter text-slate-900">Highest Mountains in China</h3>
+          <div class="mt-4 bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+            {topElevations.map((m, i) => (
+              <a href={"/mountains/" + m.slug} class="flex items-center gap-4 px-5 py-3 hover:bg-slate-50 transition-colors no-underline">
+                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+                <span class="flex-1 font-medium text-slate-800">{m.name.en}</span>
+                <span class="text-xs text-slate-400 hidden sm:block">{m.location.province}</span>
+                <span class="font-bold text-slate-700 text-sm">{m.physical.elevation.toLocaleString()}m</span>
+              </a>
+            ))}
+          </div>
+        </div>
+        <div>
+          <h3 class="text-lg font-bold tracking-tighter text-slate-900">Toughest Mountains in China</h3>
+          <div class="mt-4 bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+            {extremePeaks.map((m, i) => (
+              <a href={"/mountains/" + m.slug} class="flex items-center gap-4 px-5 py-3 hover:bg-slate-50 transition-colors no-underline">
+                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+                <span class="flex-1 font-medium text-slate-800">{m.name.en}</span>
+                <span class="text-xs text-slate-400 hidden sm:block">{m.tourism.difficulty}</span>
+                <span class="font-bold text-slate-700 text-sm">{m.physical.elevation.toLocaleString()}m</span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="quiz" class="py-20 bg-slate-50 border-t border-slate-100">
     <div class="max-w-[1400px] mx-auto px-6">
       <div class="max-w-[48rem] mx-auto">
         <div class="text-center mb-10">
@@ -152,6 +293,80 @@ function suitsTags(m: typeof mountains[0]): string {
     </div>
   </section>
 
+  <section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Sacred &amp; Cultural Mountains of China</h2>
+      <p class="mt-2 text-slate-500 max-w-[60ch]">For most of Chinese history, mountains were not scenery — they were deities, pilgrimage routes, and places of imperial power. These four traditions explain why.</p>
+      <div class="grid md:grid-cols-2 gap-6 mt-10">
+        <a href="/collections/five-great-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+          <h3 class="font-bold text-slate-900 text-lg">The Five Great Mountains (Wuyue)</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">For 4,000 years, Chinese emperors climbed these five peaks — Mount Tai, Mount Hua, Mount Heng (Hunan), Mount Heng (Shanxi), and Mount Song — to perform the Fengshan sacrifice to heaven and earth. Mount Tai is the most storied, with 72 emperors and 12 emperors&rsquo; inscriptions among its 2,000+ stone tablets. Mount Hua adds adrenaline, with its famous cliff-face Plank Walk.</p>
+        </a>
+        <a href="/collections/buddhist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+          <h3 class="font-bold text-slate-900 text-lg">The Four Sacred Buddhist Mountains</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are the bodhisattva seats of Chinese Buddhism. Mount Wutai&rsquo;s five terraced peaks hosted 360+ temples at its peak; Mount Emei holds the world&rsquo;s tallest bronze Buddha statue. Pilgrims have walked these stone paths for over 1,500 years.</p>
+        </a>
+        <a href="/collections/daoist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+          <h3 class="font-bold text-slate-900 text-lg">Daoist Sacred Mountains</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">Daoism was born among these peaks: Mount Qingcheng, where Zhang Daoling founded the Celestial Masters school in 142 AD; Mount Wudang, the 72-peak complex of martial-arts temples; and Mount Lao, where the legendary Mount Kunlun myths converge with the famous Yin-Yang symbol from the Book of Changes.</p>
+        </a>
+        <a href="/collections" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+          <h3 class="font-bold text-slate-900 text-lg">Sacred High-Altitude Peaks of the West</h3>
+          <p class="mt-2 text-sm text-slate-600 leading-relaxed">In Tibet and the western ranges, mountains are gods. Mount Kailash, the axis mundi of four religions, is circumnavigated by pilgrims in a 52-km kora. Meili Snow Mountain&rsquo;s Kawagarbo — unclimbed by choice — is the most sacred peak in Tibetan Buddhism, its golden sunrise visible from Feilai Temple.</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Explore by Type</h2>
+      <p class="mt-2 text-slate-500 max-w-[62ch]">Jump straight to the peaks that fit your trip — filtered by heritage status, faith, difficulty, or photography appeal.</p>
+      <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
+        <a href="/explore?unesco=1" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">UNESCO World Heritage</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{unescoPeaks.length} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Globally protected landscapes & culture</p>
+        </a>
+        <a href="/collections/buddhist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Buddhist Sacred Peaks</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{buddhistCount} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Wutai, Emei, Putuo, Jiuhua & more</p>
+        </a>
+        <a href="/collections/daoist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Daoist Sacred Peaks</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{daoistCount} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Wudang, Qingcheng, Laojun, Sanqing</p>
+        </a>
+        <a href="/collections/five-great-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">The Five Great Mountains</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">5 peaks</div>
+          <p class="mt-1 text-xs text-slate-500">The imperial Wuyue — 4,000 years old</p>
+        </a>
+        <a href="/explore?difficulty=extreme" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Extreme Adventures</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{extremePeaks.length} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Plank walks, glaciers & 8,000m ridges</p>
+        </a>
+        <a href="/explore?difficulty=easy" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Family-Friendly</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{easyCount} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Cable cars, paved paths & gentle trails</p>
+        </a>
+        <a href="/gallery" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Photography Favorites</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">View gallery</div>
+          <p class="mt-1 text-xs text-slate-500">The most photogenic peaks in China</p>
+        </a>
+        <a href="/explore" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">All Mountains</div>
+          <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{mountains.length} peaks</div>
+          <p class="mt-1 text-xs text-slate-500">Filter by region, difficulty & vibe</p>
+        </a>
+      </div>
+    </div>
+  </section>
+
   <section class="py-20">
     <div class="max-w-[1400px] mx-auto px-6">
       <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Best Time to Visit</h2>
@@ -160,7 +375,85 @@ function suitsTags(m: typeof mountains[0]): string {
     </div>
   </section>
 
+  <section class="py-20 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Top 10 Chinese Mountains to Visit</h2>
+          <p class="mt-2 text-slate-500 max-w-[60ch]">Ranked by our composite score of scenery, hiking experience, cultural significance, and accessibility. Click any entry for the full guide.</p>
+        </div>
+        <a href="/best" class="text-sm font-medium text-accent hover:underline no-underline">View the full ranking of all {mountains.length} mountains →</a>
+      </div>
+      <div class="bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
+        {topTen.map((m, i) => (
+          <a href={"/mountains/" + m.slug} class="flex items-center gap-4 sm:gap-6 px-5 sm:px-6 py-4 hover:bg-slate-50 transition-colors no-underline group">
+            <span class={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center text-sm font-bold " + (i < 3 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+            <div class="min-w-0 flex-1">
+              <h3 class="font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en} <span class="text-xs font-normal text-slate-400">({m.location.province})</span></h3>
+              <p class="text-sm text-slate-500 mt-0.5 leading-relaxed truncate sm:whitespace-normal">{m.tagline}</p>
+            </div>
+            <div class="hidden sm:block text-right shrink-0">
+              <div class="text-sm font-bold text-accent">{m.rating.overall}</div>
+              <div class="text-xs text-slate-400">{m.physical.elevation.toLocaleString()}m</div>
+            </div>
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
   <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="flex flex-wrap items-end justify-between gap-4 mb-8">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Guides & Articles</h2>
+          <p class="mt-2 text-slate-500 max-w-[62ch]">In-depth trip reports, seasonal planning guides, and expert advice — written by people who have actually been there.</p>
+        </div>
+        <a href="/blog" class="text-sm font-medium text-accent hover:underline no-underline">All articles →</a>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        {latestPosts.map((post) => (
+          <a href={"/blog/" + post.slug} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
+            <div class="aspect-[16/10] overflow-hidden bg-slate-100">
+              <img src={post.image} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-5">
+              <div class="flex flex-wrap gap-2 mb-2">
+                {post.tags.slice(0, 2).map((tag) => (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">{tag}</span>
+                ))}
+              </div>
+              <h3 class="font-semibold text-slate-900 text-base leading-snug group-hover:text-accent transition-colors">{post.title}</h3>
+              <p class="text-sm text-slate-500 mt-2 line-clamp-2">{post.excerpt}</p>
+              <div class="flex items-center gap-2 mt-3 text-xs text-slate-400">
+                <span>{post.author}</span>
+                <span>·</span>
+                <time datetime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mt-6">
+        {homeGuides.map((g) => (
+          <a href={"/guides/" + g.slug} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
+            <div class="aspect-[16/8] overflow-hidden bg-slate-100">
+              <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+            </div>
+            <div class="p-4">
+              <h3 class="font-semibold text-slate-900 text-sm group-hover:text-accent transition-colors">{g.title}</h3>
+              <p class="text-xs text-slate-500 mt-1 line-clamp-2">{g.description}</p>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div class="mt-6 text-center">
+        <a href="/guides" class="text-sm font-medium text-accent hover:underline no-underline">Browse all seasonal & travel guides →</a>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-20 bg-slate-50 border-t border-slate-100">
     <div class="max-w-[1400px] mx-auto px-6">
       <h2 class="text-3xl font-bold tracking-tighter text-slate-900 mb-8">Start Exploring</h2>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
@@ -176,14 +469,19 @@ function suitsTags(m: typeof mountains[0]): string {
       </div>
     </div>
   </section>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://chinesemountains.org","potentialAction":{"@type":"SearchAction","target":"https://chinesemountains.org/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://chinese-mountains.com","potentialAction":{"@type":"SearchAction","target":"https://chinese-mountains.com/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
     "mainEntity": [
       { "@type": "Question", "name": "What is the best mountain to visit in China?", "acceptedAnswer": { "@type": "Answer", "text": "It depends on your season, interests, and fitness level. For iconic scenery, choose Huangshan or Zhangjiajie. For cultural significance, Mount Tai or Wudang. For adventure, Mount Hua or Siguniang. Use our 3-step quiz on this page to find your perfect match." } },
       { "@type": "Question", "name": "Which Chinese mountains are best for hiking?", "acceptedAnswer": { "@type": "Answer", "text": "Top hiking destinations include Mount Hua (extreme cliff trails), Mount Siguniang (alpine trekking), Zhangjiajie (diverse trails with cable car options), Mount Emei (50km pilgrimage route), and Tiger Leaping Gorge near Jade Dragon Snow Mountain." } },
-      { "@type": "Question", "name": "When is the best time to visit Chinese mountains?", "acceptedAnswer": { "@type": "Answer", "text": "Spring (March-May) and autumn (September-November) offer the best weather and scenery for most mountains. Summer is hot but ideal for high-altitude destinations like Tianshan. Winter offers stunning snow scenery and zero crowds at most locations." } }
+      { "@type": "Question", "name": "When is the best time to visit Chinese mountains?", "acceptedAnswer": { "@type": "Answer", "text": "Spring (March-May) and autumn (September-November) offer the best weather and scenery for most mountains. Summer is hot but ideal for high-altitude destinations like Tianshan. Winter offers stunning snow scenery and zero crowds at most locations." } },
+      { "@type": "Question", "name": "What are the Five Great Mountains of China?", "acceptedAnswer": { "@type": "Answer", "text": "The Wuyue are Mount Tai (east, Shandong), Mount Hua (west, Shaanxi), Mount Heng (south, Hunan), Mount Heng (north, Shanxi), and Mount Song (center, Henan). For 4,000 years emperors climbed them to perform the Fengshan sacrifice; today they remain China's most historically significant peaks." } },
+      { "@type": "Question", "name": "Which Chinese mountains are sacred or religious?", "acceptedAnswer": { "@type": "Answer", "text": "The four sacred Buddhist mountains are Wutai, Emei, Putuo, and Jiuhua. Major Daoist peaks include Qingcheng, Wudang, Laojun, and Sanqing. In the west, Mount Kailash and Meili Snow Mountain are sacred to Tibetan Buddhism and other faiths." } },
+      { "@type": "Question", "name": "Are Chinese mountains suitable for families?", "acceptedAnswer": { "@type": "Answer", "text": "Yes — most famous peaks have cable cars, paved paths, and rest stops. Tianmen, Jade Dragon Snow Mountain, and Huangshan are among the most family-friendly, with cable cars delivering you near the summits. Avoid Chinese national holidays (especially Golden Week, Oct 1-7) when trails are extremely crowded." } },
+      { "@type": "Question", "name": "What is the highest mountain in China?", "acceptedAnswer": { "@type": "Answer", "text": "Mount Everest (8,848.86m) is the highest mountain in China and the world; its north face lies in Tibet and can be viewed from the Rongbuk area without climbing. The highest peaks fully inside our guide beyond Everest are Namcha Barwa (7,782m) in Tibet and Mount Gongga (7,556m) in Sichuan." } },
+      { "@type": "Question", "name": "Which Chinese mountains are the most dangerous or extreme to climb?", "acceptedAnswer": { "@type": "Answer", "text": "Our difficulty ratings mark 7 peaks as extreme: Mount Hua (cliff-face Plank Walk), Mount Everest (north ridge), Mount Siguniang, Haba Snow Mountain, Namcha Barwa, Mount Gongga, and Mount Kailash. Most visitors still enjoy them safely via cable cars and guided treks, but the summit routes demand real mountaineering experience." } }
     ]
   })} />
 </BaseLayout>

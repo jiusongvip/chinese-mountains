@@ -2,18 +2,193 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MountainCard from "../components/MountainCard.astro";
 import { mountains } from "../data/mountains";
-const ranked = mountains.sort((a,b) => b.rating.overall - a.rating.overall);
+import type { Mountain } from "../types/mountain";
+
+const ranked = [...mountains].sort((a, b) => b.rating.overall - a.rating.overall);
+const topTen = ranked.slice(0, 10);
+const rest = ranked.slice(10);
+const unescoTop = topTen.filter(m => m.culture.unescoSite).length;
+
+const diffColor = (d: string) => ({
+  easy: "bg-emerald-100 text-emerald-700",
+  moderate: "bg-amber-100 text-amber-700",
+  hard: "bg-orange-100 text-orange-700",
+  extreme: "bg-red-100 text-red-700",
+}[d] || "bg-slate-100 text-slate-600");
+
+// 从 description 提炼 1-2 句点评，确保每山有真实文字而非模板句
+function blurb(m: Mountain): string {
+  const sentences = m.description.split(". ").filter((s) => s.length > 0);
+  let text = sentences.slice(0, 2).join(". ");
+  if (!text.endsWith(".")) text += ".";
+  if (text.length > 240) text = text.slice(0, 237).trimEnd() + "...";
+  return text;
+}
+
+const faqSchema = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  mainEntity: [
+    {
+      "@type": "Question",
+      name: "What is the best mountain to visit in China?",
+      acceptedAnswer: { "@type": "Answer", text: `By our composite ranking, ${topTen[0].name.en} (${topTen[0].location.province}) is the #1 mountain in China, scoring ${topTen[0].rating.overall}/5 for its combination of scenery, hiking, and cultural significance. The full top 10 includes ${topTen.slice(1, 5).map(m => m.name.en).join(", ")}, and ${topTen.slice(5, 10).map(m => m.name.en).join(", ")} — spanning karst pillars, granite spires, sacred Buddhist peaks, and 8,000m Himalayan giants.` },
+    },
+    {
+      "@type": "Question",
+      name: "How were these Chinese mountains ranked?",
+      acceptedAnswer: { "@type": "Answer", text: `Every mountain in our database of 37 is scored on four dimensions — scenery, hiking experience, cultural value, and accessibility — each out of 5. The overall score is the composite of these four. UNESCO World Heritage status and verified traveler feedback are factored in. ${unescoTop} of the top 10 are UNESCO World Heritage Sites.` },
+    },
+    {
+      "@type": "Question",
+      name: "Which mountain in China is best for first-time visitors?",
+      acceptedAnswer: { "@type": "Answer", text: `Tianmen Mountain, Huangshan, and Jade Dragon Snow Mountain are the most beginner-friendly — all have cable cars that deliver you near the summit with paved paths at the top. For a first Himalayan experience without technical climbing, Haba Snow Mountain (5,396m) is the classic gateway peak.` },
+    },
+    {
+      "@type": "Question",
+      name: "When is the best time to visit these mountains?",
+      acceptedAnswer: { "@type": "Answer", text: "April-May and September-October are the golden windows for most of the top 10 — clear skies, mild temperatures, and the famous sea-of-clouds phenomena. High-altitude peaks like Tianshan and Siguniang are best June-September; Namcha Barwa's peak is only reliably visible in October-November. Avoid Golden Week (Oct 1-7)." },
+    },
+  ],
+};
+
+const breadcrumbSchema = {
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  itemListElement: [
+    { "@type": "ListItem", position: 1, name: "Home", item: "https://chinese-mountains.com/" },
+    { "@type": "ListItem", position: 2, name: "Best Mountains in China", item: "https://chinese-mountains.com/best" },
+  ],
+};
 ---
-<BaseLayout title="Best Mountains" description="The definitive ranking of China's best mountains.">
-<section class="pt-12 pb-20">
-<div class="max-w-[1400px] mx-auto px-6">
-<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Best Mountains in China</h1>
-<p class="mt-3 text-slate-500">The definitive ranking. Compare by scenery, hiking, culture, and overall experience.</p>
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
-{ranked.map((m,i) => (
-<MountainCard name={m.name.en} zhName={"#"+(i+1)+" . "+m.name.zh} tagline={m.tagline} imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"} imageAlt={m.images[0]?.alt ?? m.name.en} elevation={m.physical.elevation} province={m.location.province} difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug} />
-))}
-</div>
-</div>
-</section>
+
+<BaseLayout
+  title="Top 10 Best Mountains in China (2026) - Rankings &amp; Reviews"
+  description="The definitive ranking of China's 10 best mountains for 2026, scored on scenery, hiking, culture, and accessibility. In-depth reviews, photos, and practical guides for every peak."
+>
+  <section class="pt-14 pb-10 bg-slate-50 border-b border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <nav class="text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+        <a href="/" class="hover:text-accent no-underline">Home</a>
+        <span class="mx-1.5">/</span>
+        <span class="text-slate-500">Best Mountains</span>
+      </nav>
+      <h1 class="text-4xl md:text-5xl font-bold tracking-tighter text-slate-900 max-w-[20ch] text-balance">The 10 Best Mountains in China, Ranked</h1>
+      <p class="mt-4 text-lg text-slate-600 leading-relaxed max-w-[70ch]">
+        China holds more famous mountains than any country on Earth — sacred peaks, rainbow sandstone ranges, and 8,000-meter Himalayan giants. We ranked all {mountains.length} mountains in our guide on four dimensions: <strong class="text-slate-800">scenery</strong>, <strong class="text-slate-800">hiking experience</strong>, <strong class="text-slate-800">cultural value</strong>, and <strong class="text-slate-800">accessibility</strong>. Here are the ten that score highest overall.
+      </p>
+      <div class="flex flex-wrap gap-x-6 gap-y-2 mt-6 text-sm text-slate-500">
+        <span><strong class="text-slate-800">{unescoTop}</strong> of the top 10 are UNESCO World Heritage Sites</span>
+        <span><strong class="text-slate-800">{topTen.filter(m => m.culture.type.some(t => t === "Buddhist" || t === "Daoist")).length}</strong> are sacred mountains</span>
+        <span>Elevations from <strong class="text-slate-800">{Math.min(...topTen.map(m => m.physical.elevation)).toLocaleString()}m</strong> to <strong class="text-slate-800">{Math.max(...topTen.map(m => m.physical.elevation)).toLocaleString()}m</strong></span>
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="space-y-6">
+        {topTen.map((m, i) => (
+          <article class="bg-white rounded-2xl border border-slate-200 overflow-hidden hover:shadow-md transition-shadow">
+            <div class="flex flex-col md:flex-row">
+              <a href={"/mountains/" + m.slug} class="md:w-[280px] lg:w-[320px] shrink-0 relative block no-underline group">
+                <img
+                  src={m.images[0]?.src ?? "/images/placeholder.jpg"}
+                  alt={m.images[0]?.alt ?? m.name.en}
+                  loading={i < 3 ? "eager" : "lazy"}
+                  class="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"
+                />
+                <span class={"absolute top-3 left-3 w-10 h-10 rounded-full flex items-center justify-center text-white font-bold text-base shadow-lg " + (i < 3 ? "bg-accent" : "bg-slate-700/90")}>
+                  {i + 1}
+                </span>
+              </a>
+              <div class="flex-1 p-6">
+                <div class="flex flex-wrap items-start justify-between gap-3">
+                  <div>
+                    <h2 class="text-xl font-bold text-slate-900">
+                      <a href={"/mountains/" + m.slug} class="hover:text-accent no-underline">{m.name.en}</a>
+                    </h2>
+                    <p class="text-sm text-slate-400 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m · <span class={diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span> {m.culture.unescoSite && <span class="text-amber-600">· UNESCO {m.culture.yearDesignated}</span>}</p>
+                  </div>
+                  <div class="text-right">
+                    <div class="text-2xl font-bold text-accent">{m.rating.overall}</div>
+                    <div class="text-xs text-slate-400">overall / 5</div>
+                  </div>
+                </div>
+                <p class="mt-3 text-sm text-slate-600 leading-relaxed">{blurb(m)}</p>
+                <div class="flex flex-wrap gap-1.5 mt-3">
+                  {m.highlights.slice(0, 3).map(h => (
+                    <span class="text-xs px-2 py-1 rounded-full bg-slate-100 text-slate-600">{h}</span>
+                  ))}
+                </div>
+                <div class="flex flex-wrap items-center gap-4 mt-4 text-xs text-slate-500">
+                  <span>Scenery <strong class="text-slate-700">{m.rating.scenery}</strong>/5</span>
+                  <span>Hiking <strong class="text-slate-700">{m.rating.hikingExperience}</strong>/5</span>
+                  <span>Culture <strong class="text-slate-700">{m.rating.culturalValue}</strong>/5</span>
+                  <span>Access <strong class="text-slate-700">{m.rating.accessibility}</strong>/5</span>
+                  <a href={"/mountains/" + m.slug} class="font-medium text-accent hover:underline no-underline ml-auto">Full guide: when to go, how to get there, tickets →</a>
+                </div>
+              </div>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14 bg-slate-50 border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Beyond the Top 10: All {mountains.length} Mountains Ranked</h2>
+      <p class="mt-2 text-slate-500 max-w-[70ch]">The ranking continues below. Every one of the remaining {rest.length} mountains earned its place — from the rainbow strata of Zhangye Danxia to the 7,782m eastern anchor of the Himalaya.</p>
+      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-10">
+        {rest.map((m, i) => (
+          <MountainCard
+            name={m.name.en} zhName={"#" + (i + 11) + " . " + m.name.zh} tagline={m.tagline}
+            imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"}
+            imageAlt={m.images[0]?.alt ?? m.name.en}
+            elevation={m.physical.elevation} province={m.location.province}
+            difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug}
+          />
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="grid lg:grid-cols-2 gap-10">
+        <div>
+          <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Frequently Asked Questions</h2>
+          <p class="mt-2 text-slate-500 mb-6">Everything travelers ask before choosing a Chinese mountain.</p>
+          <div class="space-y-4">
+            {faqSchema.mainEntity.map(f => (
+              <div class="bg-white rounded-xl border border-slate-200 p-5">
+                <h3 class="font-semibold text-slate-900">{f.name}</h3>
+                <p class="mt-2 text-sm text-slate-600 leading-relaxed">{f.acceptedAnswer.text}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+        <div class="bg-accent/[0.06] rounded-2xl border border-accent/20 p-8 h-fit">
+          <h2 class="text-2xl font-bold tracking-tighter text-slate-900">Not sure where to start?</h2>
+          <p class="mt-3 text-slate-600 leading-relaxed">Answer three questions — season, interests, and fitness — and we'll match you with the right mountain. It takes 30 seconds and beats scrolling a ranking.</p>
+          <a href="/#quiz" class="inline-flex items-center gap-2 px-5 py-3 bg-accent text-white rounded-lg font-medium text-sm hover:bg-accent-dark transition-colors no-underline mt-5">
+            Take the quiz
+          </a>
+          <div class="mt-8 pt-8 border-t border-accent/20">
+            <h3 class="font-semibold text-slate-900">By interest</h3>
+            <div class="flex flex-wrap gap-2 mt-3">
+              <a href="/collections/five-great-mountains" class="text-xs px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-accent hover:text-accent no-underline">Five Great Mountains</a>
+              <a href="/collections/buddhist-mountains" class="text-xs px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-accent hover:text-accent no-underline">Buddhist sacred peaks</a>
+              <a href="/collections/daoist-mountains" class="text-xs px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-accent hover:text-accent no-underline">Daoist sacred peaks</a>
+              <a href="/explore" class="text-xs px-3 py-1.5 rounded-full bg-white border border-slate-200 text-slate-600 hover:border-accent hover:text-accent no-underline">Explore all {mountains.length}</a>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify(faqSchema)} />
+  <script type="application/ld+json" set:html={JSON.stringify(breadcrumbSchema)} />
 </BaseLayout>

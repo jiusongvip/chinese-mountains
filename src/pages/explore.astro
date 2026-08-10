@@ -2,12 +2,31 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MountainCard from "../components/MountainCard.astro";
 import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mountains";
+const unescoCount = mountains.filter(m => m.culture.unescoSite).length;
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Famous Mountains of China",
+  numberOfItems: mountains.length,
+  itemListElement: mountains.map((m, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: m.name.en,
+    url: "https://chinese-mountains.com/mountains/" + m.slug,
+  })),
+};
 ---
-<BaseLayout title="Explore Every Mountain in China" description="Browse all 25 famous Chinese mountains with interactive filters by region, difficulty, and vibe. Compare elevation, UNESCO status, and hiking details to find your perfect peak.">
+<BaseLayout title="Explore Every Mountain in China" description="Browse all 37 famous Chinese mountains with interactive filters by region, difficulty, and vibe. Compare elevation, UNESCO status, and hiking details to find your perfect peak.">
 <section class="pt-12 pb-20">
 <div class="max-w-[1400px] mx-auto px-6" id="explore-root">
-<h1 class="text-4xl font-bold tracking-tighter text-slate-900" id="explore-heading">Explore All Mountains</h1>
-<p class="mt-3 text-slate-500 max-w-[50ch]" id="explore-desc">Browse all mountains. Use the filters to narrow down your options.</p>
+<nav class="text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+  <a href="/" class="hover:text-accent no-underline">Home</a>
+  <span class="mx-1.5">/</span>
+  <span class="text-slate-500">All Mountains</span>
+</nav>
+<h1 class="text-4xl font-bold tracking-tighter text-slate-900" id="explore-heading">Explore All {mountains.length} Famous Mountains of China</h1>
+<p class="mt-3 text-slate-500 max-w-[50ch]" id="explore-desc">Browse all {mountains.length} mountains. Use the filters to narrow down your options — every entry links to a complete guide with tickets, transport, and seasons.</p>
+<p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-[70ch] bg-slate-50 border border-slate-200 rounded-xl p-4">China's mountains span {new Set(mountains.map(m => m.location.province)).size} provinces and 7 geographic regions, from the sea-of-clouds granite of Huangshan to the 8,000-meter Himalayan giants. Filter by region, difficulty, or vibe (the homepage quiz groups them by travel mood) — or start with our <a href="/best" class="text-accent hover:underline no-underline font-medium">ranked Top 10</a>.</p>
 <a href="/explore" id="clear-filters" class="hidden inline-flex items-center gap-1 mt-4 text-sm text-slate-500 hover:text-slate-700 no-underline">Clear filters</a>
 
 <div class="flex flex-wrap gap-2 mt-8 mb-6" id="region-filters">
@@ -22,18 +41,39 @@ import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mou
 ))}
 </div>
 
+<div class="flex flex-wrap gap-2 mb-8" id="unesco-filters">
+<a href="/explore?unesco=1" class="unesco-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-unesco="1">UNESCO World Heritage</a>
+</div>
+
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="mountain-grid">
 {mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => {
   const vibes = vibeGroups.filter(v => v.mountainIds.includes(m.id)).map(v => v.id);
   return (
-    <div class="mountain-card" data-vibes={JSON.stringify(vibes)} data-region={m.location.region} data-difficulty={m.tourism.difficulty}>
+    <div class="mountain-card" data-vibes={JSON.stringify(vibes)} data-region={m.location.region} data-difficulty={m.tourism.difficulty} data-unesco={m.culture.unescoSite ? "1" : "0"}>
       <MountainCard name={m.name.en} zhName={m.name.zh} tagline={m.tagline} imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"} imageAlt={m.images[0]?.alt ?? m.name.en} elevation={m.physical.elevation} province={m.location.province} difficulty={m.tourism.difficulty} overall={m.rating.overall} slug={m.slug} />
     </div>
   );
 })}
 </div>
+
+<div class="mt-16 pt-12 border-t border-slate-200 grid lg:grid-cols-2 gap-10">
+  <div>
+    <h2 class="text-2xl font-bold tracking-tighter text-slate-900">How to Choose a Chinese Mountain</h2>
+    <p class="mt-3 text-sm text-slate-600 leading-relaxed">The right mountain depends on three things: <strong class="text-slate-800">season</strong> (spring and autumn suit most peaks; high-altitude ranges are summer-only), <strong class="text-slate-800">interests</strong> (sacred sites like Wutai and Emei vs. landscapes like Huangshan and Zhangjiajie), and <strong class="text-slate-800">fitness</strong> (every major peak has cable cars, but summit walks and pilgrim trails are another story). Our <a href="/#quiz" class="text-accent hover:underline no-underline">3-question quiz</a> matches you in 30 seconds, or compare the heavyweights in our <a href="/best" class="text-accent hover:underline no-underline">Top 10 ranking</a>.</p>
+  </div>
+  <div>
+    <h2 class="text-2xl font-bold tracking-tighter text-slate-900">By the Numbers</h2>
+    <div class="grid grid-cols-2 gap-4 mt-4">
+      <div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xl font-bold text-accent">{mountains.length}</div><div class="text-xs text-slate-500 mt-1">famous peaks covered</div></div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xl font-bold text-accent">{unescoCount}</div><div class="text-xs text-slate-500 mt-1">UNESCO World Heritage Sites</div></div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xl font-bold text-accent">{new Set(mountains.map(m => m.location.province)).size}</div><div class="text-xs text-slate-500 mt-1">provinces</div></div>
+      <div class="bg-white rounded-xl border border-slate-200 p-4"><div class="text-xl font-bold text-accent">7</div><div class="text-xs text-slate-500 mt-1">geographic regions</div></div>
+    </div>
+  </div>
+</div>
 </div>
 </section>
+<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
 </BaseLayout>
 
 <script>
@@ -42,8 +82,9 @@ import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mou
   const vibe = params.get("vibe");
   const region = params.get("region");
   const diff = params.get("difficulty");
-
-  if (vibe || region || diff) {
+  const unesco = params.get("unesco");
+  
+  if (vibe || region || diff || unesco) {
     const heading = document.getElementById("explore-heading");
     const desc = document.getElementById("explore-desc");
     const clearBtn = document.getElementById("clear-filters");
@@ -53,18 +94,20 @@ import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mou
     if (vibe) parts.push(VIBE_LABELS[vibe] || vibe);
     if (region) parts.push(region.charAt(0).toUpperCase() + region.slice(1));
     if (diff) parts.push(diff.charAt(0).toUpperCase() + diff.slice(1));
-
+    if (unesco) parts.push("UNESCO World Heritage");
+  
     cards.forEach(card => {
       const cardVibes = JSON.parse(card.getAttribute("data-vibes") || "[]");
       const cardRegion = card.getAttribute("data-region");
       const cardDiff = card.getAttribute("data-difficulty");
-      const match = (!vibe || cardVibes.includes(vibe)) && (!region || cardRegion === region) && (!diff || cardDiff === diff);
+      const cardUnesco = card.getAttribute("data-unesco");
+      const match = (!vibe || cardVibes.includes(vibe)) && (!region || cardRegion === region) && (!diff || cardDiff === diff) && (!unesco || cardUnesco === "1");
       if (!match) card.style.display = "none";
       else count++;
     });
-
+  
     if (heading) heading.textContent = parts.join(" · ");
-    if (desc) desc.textContent = "Showing " + count + " of " + cards.length + " mountains" + (vibe ? " in “" + (VIBE_LABELS[vibe] || vibe) + "”" : "") + ".";
+    if (desc) desc.textContent = "Showing " + count + " of " + cards.length + " mountains" + (vibe ? " in \u201c" + (VIBE_LABELS[vibe] || vibe) + "\u201d" : "") + ".";
     if (clearBtn) clearBtn.classList.remove("hidden");
   }
 
@@ -76,6 +119,12 @@ import { mountains, vibeGroups, allRegions, difficultyLevels } from "../data/mou
   });
   document.querySelectorAll(".diff-btn").forEach(btn => {
     if (btn.getAttribute("data-diff") === diff) {
+      btn.classList.remove("bg-slate-100","text-slate-600","hover:bg-slate-200");
+      btn.classList.add("bg-accent","text-white");
+    }
+  });
+  document.querySelectorAll(".unesco-btn").forEach(btn => {
+    if (unesco) {
       btn.classList.remove("bg-slate-100","text-slate-600","hover:bg-slate-200");
       btn.classList.add("bg-accent","text-white");
     }

@@ -7,13 +7,14 @@ export interface Props {
   description?: string;
   noindex?: boolean;
   skipOG?: boolean;
+  ogImage?: string;
 }
 
-const { title, description, noindex = false, skipOG = false } = Astro.props;
+const { title, description, noindex = false, skipOG = false, ogImage } = Astro.props;
 const fullTitle = title.includes("Chinese Mountains") ? title : title + " | Chinese Mountains";
-const siteUrl = "https://chinesemountains.org";
+const siteUrl = "https://chinese-mountains.com";
 const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
-const ogImage = siteUrl + "/images/og-default.png";
+const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
 ---
 
 <!doctype html>
@@ -27,13 +28,13 @@ const ogImage = siteUrl + "/images/og-default.png";
   {!skipOG && <>
   <meta property="og:title" content={fullTitle} />
   {description && <meta property="og:description" content={description} />}
-  <meta property="og:image" content={ogImage} />
+  <meta property="og:image" content={ogImageUrl} />
   <meta property="og:url" content={pageUrl} />
   <meta property="og:type" content="website" />
   <meta name="twitter:card" content="summary_large_image" />
   <meta name="twitter:title" content={fullTitle} />
   {description && <meta name="twitter:description" content={description} />}
-  <meta name="twitter:image" content={ogImage} />
+  <meta name="twitter:image" content={ogImageUrl} />
   </>}
     <link rel="dns-prefetch" href="https://cdn.jsdelivr.net" />
   <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />

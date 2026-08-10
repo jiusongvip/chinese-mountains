@@ -1,23 +1,58 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { mountains } from "../data/mountains";
+
+const unescoCount = mountains.filter(m => m.culture.unescoSite).length;
+const itemListSchema = {
+  "@context": "https://schema.org",
+  "@type": "ItemList",
+  name: "Chinese Mountains Photo Gallery",
+  numberOfItems: mountains.length,
+  itemListElement: mountains.map((m, i) => ({
+    "@type": "ListItem",
+    position: i + 1,
+    name: m.name.en,
+    url: "https://chinese-mountains.com/mountains/" + m.slug,
+    image: {
+      "@type": "ImageObject",
+      url: "https://chinese-mountains.com" + (m.images[0]?.src ?? "/images/placeholder.jpg"),
+      caption: m.images[0]?.alt ?? m.name.en,
+    },
+  })),
+};
 ---
-<BaseLayout title="Photo Gallery" description="Browse stunning photography of China's most beautiful mountain landscapes.">
+<BaseLayout
+  title="Chinese Mountain Photo Gallery - 37 Stunning Landscapes"
+  description="Browse 37 photos of China's most beautiful mountains — Huangshan sea of clouds, Zhangye rainbow mountains, Zhangjiajie karst pillars, and Himalayan giants. Every image links to a full guide."
+>
 <section class="pt-12 pb-20">
-<div class="max-w-[1400px] mx-auto px-6">
-<h1 class="text-4xl font-bold tracking-tighter text-slate-900">Photo Gallery</h1>
-<p class="mt-3 text-slate-500">A visual journey through China's most breathtaking mountain landscapes.</p>
-<div class="columns-1 sm:columns-2 lg:columns-3 gap-4 mt-10 space-y-4">
-{mountains.map((m) => (
-<a href={"/mountains/"+m.slug} class="block break-inside-avoid rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
-<img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
-<div class="p-3">
-<h3 class="font-medium text-sm text-slate-900">{m.name.en}</h3>
-<p class="text-xs text-slate-400 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m</p>
-</div>
-</a>
-))}
-</div>
-</div>
+  <div class="max-w-[1400px] mx-auto px-6">
+    <nav class="text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+      <a href="/" class="hover:text-accent no-underline">Home</a>
+      <span class="mx-1.5">/</span>
+      <span class="text-slate-500">Photo Gallery</span>
+    </nav>
+    <h1 class="text-4xl font-bold tracking-tighter text-slate-900">Photo Gallery: China's Most Beautiful Mountains</h1>
+    <p class="mt-3 text-slate-500 max-w-[60ch]">A visual journey through {mountains.length} of China's most breathtaking landscapes — from the granite spires of Huangshan to the rainbow strata of Zhangye and the 8,000-meter giants of the Himalaya. Click any photo for the full travel guide.</p>
+    <div class="flex flex-wrap gap-x-6 gap-y-2 mt-5 text-sm text-slate-500">
+      <span><strong class="text-slate-800">{mountains.length}</strong> peaks photographed</span>
+      <span><strong class="text-slate-800">{unescoCount}</strong> UNESCO World Heritage Sites</span>
+      <span><strong class="text-slate-800">{new Set(mountains.map(m => m.location.province)).size}</strong> provinces</span>
+      <span>Highest: <strong class="text-slate-800">{Math.max(...mountains.map(m => m.physical.elevation)).toLocaleString()}m</strong> (Everest, Tibet)</span>
+    </div>
+    <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 mt-10 space-y-4">
+      {mountains.map((m) => (
+        <a href={"/mountains/"+m.slug} class="block break-inside-avoid rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
+          <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} title={m.name.en + " - " + (m.images[0]?.alt ?? "")} loading="lazy" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <div class="p-3">
+            <h3 class="font-medium text-sm text-slate-900">{m.name.en}</h3>
+            <p class="text-xs text-slate-400 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m · {m.tourism.difficulty}</p>
+            {m.images[0]?.credit && <p class="text-[10px] text-slate-300 mt-1">Photo: {m.images[0].credit}</p>}
+          </div>
+        </a>
+      ))}
+    </div>
+  </div>
 </section>
+<script type="application/ld+json" set:html={JSON.stringify(itemListSchema)} />
 </BaseLayout>
