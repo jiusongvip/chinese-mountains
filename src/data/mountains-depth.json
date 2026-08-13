@@ -1,0 +1,1285 @@
+{
+  "huangshan": {
+    "verifiedDate": "August 2026",
+    "verdict": {
+      "score": 9,
+      "headline": "A world-class mountain that genuinely lives up to its reputation",
+      "worthIt": "Huangshan is the single most iconic mountain landscape in China. A 2-day trip delivers the full package: granite spires, sea of clouds, the Welcoming Pine, and one of China's great sunrise experiences. Well-developed cable cars keep it achievable for most fitness levels, and the off-peak ticket price (CNY 150 in winter) plus quiet trails make it genuinely underrated outside autumn.",
+      "skipIf": "You only have one day and cannot stay overnight, you are avoiding crowds at any cost (peak autumn weekends are shoulder-to-shoulder), or you want alpine wilderness rather than a developed tourist park with stone stairs and queues.",
+      "bestFor": "First-time visitors to China's famous mountains, photographers chasing cloud seas, and anyone who wants a 'greatest hits' experience with cable car assistance."
+    },
+    "personas": [
+      {
+        "id": "first-time",
+        "label": "First-time visitor",
+        "verdict": "go",
+        "summary": "Huangshan is the definitive first mountain experience in China.",
+        "advice": "Take the 2-day itinerary: up the eastern cable car, stay at Beihai or Xihai Hotel, catch sunrise at Dawn Pavilion or Guangmingding, then descend via the front (Jade Screen) cable car. Book the summit hotel 3-4 weeks ahead — it is the difference between a great trip and a rushed one."
+      },
+      {
+        "id": "photographer",
+        "label": "Photographer",
+        "verdict": "go",
+        "summary": "The best cloud-sea and sunrise odds of any Chinese mountain.",
+        "advice": "Go in late October or November and stay 2 nights to get two sunrise attempts. Check the official Huangshan weather forecast (which publishes cloud-sea and sunrise probability) the night before. Dawn Pavilion and Guangmingding are the two essential sunrise spots; the sea of clouds is most likely after a cold front clears humidity."
+      },
+      {
+        "id": "family",
+        "label": "Traveling with kids",
+        "verdict": "conditional",
+        "summary": "Doable with cable cars, but the stone stairs are relentless.",
+        "advice": "Take cable cars both ways and limit walking to the flat ridge sections around Beihai and the Welcoming Pine. Budget 2x the time adults need. Avoid the West Sea Grand Canyon descent with young children. Book a private room, not a dorm bed, at the summit hotel."
+      },
+      {
+        "id": "budget",
+        "label": "Tight budget",
+        "verdict": "go",
+        "summary": "Off-peak winter visits cut costs by 30-40% and crowds by 80%.",
+        "advice": "Visit December-February: entry drops to CNY 150, dorm beds at summit hotels are CNY 300-400, and food stalls are cheaper. Bring your own snacks and water (instant noodles cost CNY 25-40 on the mountain). One cable car round trip is enough for the 2-day loop. Total: about CNY 800 per person, transport excluded."
+      },
+      {
+        "id": "senior",
+        "label": "Older travelers / knee issues",
+        "verdict": "conditional",
+        "summary": "Accessible by cable car, but plan around the stairs.",
+        "advice": "Use cable cars for both ascent and descent and skip the West Sea Grand Canyon loop (steep, 1,000+ steps down). Seniors over 65 get discounted entry (about CNY 115 peak). The flat section from Beihai to Guangmingding via the ridgeline is the most rewarding walk. Avoid stairs in wet weather — they get slippery."
+      },
+      {
+        "id": "hiker",
+        "label": "Serious hiker",
+        "verdict": "go",
+        "summary": "Real hiking exists, but this is a scenic park, not wilderness.",
+        "advice": "Hike the full Eastern Steps route (Yungu Temple to White Goose Ridge, 2.5-3.5 hours, 800-1,000m of stairs) instead of taking the cable car, then do the West Sea Grand Canyon loop (one-way, 4-5 hours, exit via the sightseeing railway). In the 2024-2029 rotation, Heavenly Capital Peak (Tiandu) is open — the toughest scramble on the mountain, with the famous 85-degree 'ladder' section."
+      }
+    ],
+    "routes": [
+      {
+        "name": "Eastern cable car (Yungu)",
+        "gate": "Yungu Temple, east side",
+        "type": "cable-car",
+        "time": "8-12 min",
+        "cost": "CNY 80-90 each way",
+        "difficulty": "easy",
+        "scenery": 4,
+        "pros": ["Shortest queue of the three cable cars", "Delivers you to White Goose Ridge near Beihai — the ideal base for a 2-day loop", "Operates year-round, including winter"],
+        "cons": ["You skip the 2.5-3h hike up", "Ridge area from the top still has steps to the summit viewpoints"],
+        "bestFor": "The default choice for first-timers and the 2-day itinerary",
+        "recommended": true
+      },
+      {
+        "name": "Western cable car (Yuping / Jade Screen)",
+        "gate": "Mercy Light Temple (Ciguang), south side",
+        "type": "cable-car",
+        "time": "8-10 min",
+        "cost": "CNY 90-100 each way",
+        "difficulty": "easy",
+        "scenery": 5,
+        "pros": ["Approaches the Welcoming Pine and front-side cliffs directly", "Most dramatic scenery on the ascent"],
+        "cons": ["Longer queues than the eastern cable car in peak season", "Reaching the summit viewpoints from Yupinglou still involves a big stair climb"],
+        "bestFor": "Visitors descending after a 2-day loop, or those prioritizing the Welcoming Pine"
+      },
+      {
+        "name": "Full hike via Eastern Steps",
+        "gate": "Yungu Temple, east side",
+        "type": "hike",
+        "time": "2.5-3.5 hours up (7 km)",
+        "cost": "Free (park entry only)",
+        "difficulty": "hard",
+        "scenery": 3,
+        "pros": ["Saves CNY 80-90 and earns genuine bragging rights", "Quiet trail — most visitors take the cable car", "Warms you up before the ridge walks"],
+        "cons": ["800-1,000m of relentless stone stairs with no flat sections", "Trees block most views for the first 2 hours", "Knees take a beating — allow recovery time"],
+        "bestFor": "Fit hikers on a budget; not for families or anyone with knee issues"
+      },
+      {
+        "name": "West Sea Grand Canyon loop",
+        "gate": "From Beihai / Xihai area",
+        "type": "hike",
+        "time": "4-5 hours (one-way loop)",
+        "cost": "CNY 100 for the sightseeing railway out (optional)",
+        "difficulty": "hard",
+        "scenery": 5,
+        "pros": ["The most spectacular scenery on the mountain — granite walls, hanging walkways, sea of clouds", "Guided path makes it safe despite the drop-offs"],
+        "cons": ["Steep, with 1,000+ steps of descent into the canyon", "Physically demanding; the climb back out is brutal without the railway", "Closed in winter and during heavy rain or lightning"],
+        "bestFor": "Moderate-to-fit travelers with a full day; skip it for family or knee-sensitive trips"
+      }
+    ],
+    "itineraries": [
+      {
+        "days": 1,
+        "title": "Fast-paced day trip",
+        "suitable": "Only if you cannot stay overnight — you will miss sunrise and the canyon",
+        "steps": [
+          { "time": "06:30", "title": "First shuttle bus from Tangkou", "detail": "Take the 06:30 park shuttle (CNY 19) to Yungu Temple station to beat the queues.", "duration": "30 min" },
+          { "time": "07:10", "title": "Eastern cable car up", "detail": "First cable car of the day. Walk the ridge from White Goose Ridge to Beihai and Dawn Pavilion (30-40 min).", "duration": "1.5 h" },
+          { "time": "09:00", "title": "Startish Peak (Shixinfeng)", "detail": "Short detour — the classic pine-on-cliff photo spot with views back over the sea of clouds.", "duration": "1 h" },
+          { "time": "10:30", "title": "Walk to Guangmingding", "detail": "The flat, scenic ridge walk via Beihai Hotel. Views open up dramatically to the west.", "duration": "1.5 h" },
+          { "time": "12:30", "title": "Lunch and descend to Yupinglou", "detail": "Lunch at Tianhai or Guangmingding food areas (CNY 60-100). Walk down through the Aoyu (Turtle) peak section to the Welcoming Pine.", "duration": "2.5 h" },
+          { "time": "15:30", "title": "Welcoming Pine and Jade Screen cable car down", "detail": "See the famous Yingke Pine, then take the western cable car down (CNY 90-100) and the shuttle back to Tangkou.", "duration": "1.5 h" }
+        ],
+        "note": "One day works only with cable cars both ways and an early start. You miss sunrise and the West Sea Grand Canyon — if you can stretch to two days, do it."
+      },
+      {
+        "days": 2,
+        "title": "The classic 2-day loop (recommended)",
+        "suitable": "Most visitors — includes sunrise and the best of the east, central and front sections",
+        "steps": [
+          { "time": "Day 1 · 08:00", "title": "Shuttle + eastern cable car up", "detail": "Take the park shuttle to Yungu Temple, cable car to White Goose Ridge (CNY 80-90).", "duration": "1.5 h" },
+          { "time": "Day 1 · 10:00", "title": "Startish Peak and Beihai area", "detail": "The gentlest, most scenic ridge walks on the mountain. Drop your bags at Beihai Hotel or Xihai Hotel first.", "duration": "2.5 h" },
+          { "time": "Day 1 · 14:00", "title": "Guangmingding and west-facing viewpoints", "detail": "Walk the ridge to Guangmingding (1860m) and back via the Aoyu peak — afternoon light is best for the west.", "duration": "3 h" },
+          { "time": "Day 1 · 18:00", "title": "Sunset from Guangmingding or Paiyun Pavilion", "detail": "Both are 10-15 min from the summit hotels. Dinner on the mountain (CNY 60-100 per person).", "duration": "1.5 h" },
+          { "time": "Day 2 · 05:30", "title": "Sunrise at Dawn Pavilion or Guangmingding", "detail": "Arrive 45 min early in autumn for a good spot. Cloud-sea days are unforgettable; check the official sunrise probability forecast the night before.", "duration": "1.5 h" },
+          { "time": "Day 2 · 08:30", "title": "Front-side descent to the Welcoming Pine", "detail": "Walk via Aoyu to Yupinglou — the front side has the steepest stairs on the route, so going down is smarter than up.", "duration": "2 h" },
+          { "time": "Day 2 · 11:00", "title": "Jade Screen cable car down", "detail": "Cable car to Mercy Light Temple (CNY 90-100), shuttle bus to Tangkou, then onward to Huangshan City or Hongcun.", "duration": "1.5 h" }
+        ],
+        "note": "This loop hits every highlight except the West Sea Grand Canyon. Add the canyon as a Day 1.5 option if you have the legs — details in the 3-day plan."
+      },
+      {
+        "days": 3,
+        "title": "Relaxed 3-day itinerary with the Grand Canyon",
+        "suitable": "Hikers and photographers who want everything, plus two sunrise chances",
+        "steps": [
+          { "time": "Day 1 · 09:00", "title": "Up the eastern cable car, settle at Xihai Hotel", "detail": "Same approach as the 2-day plan, but base at Xihai Hotel — it sits right at the Grand Canyon trailhead.", "duration": "2 h" },
+          { "time": "Day 1 · 14:00", "title": "Startish Peak and the east ridge", "detail": "Afternoon ridge walks to Startish Peak and the Cloud-Dispelling Pavilion for the west-side views.", "duration": "3 h" },
+          { "time": "Day 2 · 05:30", "title": "Sunrise attempt one: Dawn Pavilion", "detail": "A short walk from Xihai. If clouds block it, you still have tomorrow morning.", "duration": "1.5 h" },
+          { "time": "Day 2 · 08:30", "title": "West Sea Grand Canyon descent", "detail": "Enter at Paiyun Pavilion, descend through the One Ring and Two Ring sections. The suspended walkways and granite walls are the mountain's best scenery.", "duration": "4-5 h" },
+          { "time": "Day 2 · 14:00", "title": "Exit via the sightseeing railway", "detail": "The railway (CNY 100) lifts you out of the canyon floor — the only sane way out. Rejoin the ridge at Tianhai.", "duration": "1 h" },
+          { "time": "Day 2 · 16:00", "title": "Guangmingding for sunset", "detail": "The highest viewpoint reachable without scrambling. Then back to Xihai or move to Guangmingding's hotel.", "duration": "2 h" },
+          { "time": "Day 3 · 05:30", "title": "Sunrise attempt two: Guangmingding", "detail": "Best overall sunrise spot if Dawn Pavilion failed you. 10 min from the Guangmingding Hotel.", "duration": "1.5 h" },
+          { "time": "Day 3 · 08:30", "title": "Front side: Aoyu to the Welcoming Pine", "detail": "The classic descent line, with optional side trip up Heavenly Capital Peak if it is open (2024-2029 rotation) and you have the legs.", "duration": "3 h" },
+          { "time": "Day 3 · 12:00", "title": "Jade Screen cable car down, then Hongcun", "detail": "Descend by cable car, and spend the afternoon at Hongcun village (1h drive from Tangkou) — the perfect cultural epilogue.", "duration": "afternoon" }
+        ],
+        "note": "Three days is the sweet spot for hikers and photographers. The two sunrise attempts matter: cloud seas are beautiful but fickle."
+      }
+    ],
+    "stays": [
+      {
+        "name": "Beihai Hotel (Beihai Binguan)",
+        "location": "summit",
+        "price": "Dorm CNY 300-500 · Private CNY 800-2,000",
+        "sunriseAccess": "10 min to Dawn Pavilion",
+        "pros": ["Central location for the classic 2-day loop", "Closest summit hotel to the best sunrise viewpoint", "Dining hall with warm meals"],
+        "cons": ["Books out 2-4 weeks ahead on weekends", "Private rooms are basic for the price"],
+        "bestFor": "First-timers doing the standard 2-day loop"
+      },
+      {
+        "name": "Xihai Hotel (Xihai Fandian)",
+        "location": "summit",
+        "price": "Dorm CNY 300-500 · Private CNY 800-2,000",
+        "sunriseAccess": "15 min to Dawn Pavilion; trailhead of the Grand Canyon",
+        "pros": ["Sits at the West Sea Grand Canyon trailhead", "Newer wings are the most comfortable summit rooms", "Great sunset views from nearby Paiyun Pavilion"],
+        "cons": ["Slightly less central for the front-side descent", "Pricier new wing sells out first"],
+        "bestFor": "Hikers doing the Grand Canyon, photographers on 3-day trips"
+      },
+      {
+        "name": "Yupinglou Hotel (Jade Screen)",
+        "location": "summit",
+        "price": "Private CNY 1,000-2,500",
+        "sunriseAccess": "Next to the Welcoming Pine; steep climb to the front peaks",
+        "pros": ["The only hotel on the front (Jade Screen) side", "Wake up beside the Welcoming Pine before day-trippers arrive"],
+        "cons": ["Most expensive and basic summit option", "No dorm beds — private rooms only"],
+        "bestFor": "Photographers who want the front side empty at dawn"
+      },
+      {
+        "name": "Tangkou town (base)",
+        "location": "base",
+        "price": "CNY 150-400 per room",
+        "sunriseAccess": "None — you must take the 06:30 shuttle and miss dawn",
+        "pros": ["30-50% cheaper than summit rooms", "Hundreds of restaurants and shops", "Great budget fallback when summit hotels are full"],
+        "cons": ["You miss sunrise entirely — the biggest single regret of a Huangshan trip", "Adds 1-1.5h of shuttles to each day"],
+        "bestFor": "Budget travelers who accept missing sunrise"
+      }
+    ],
+    "seasons": [
+      {
+        "season": "Spring",
+        "months": "March-May",
+        "weather": "5-18 C, frequent morning mist and occasional rain",
+        "views": "Azalea blooms on the slopes; cloud seas on cold-front mornings",
+        "crowds": "busy",
+        "score": 4,
+        "highlight": "Pink and red azaleas against grey granite — a painter's palette"
+      },
+      {
+        "season": "Summer",
+        "months": "June-August",
+        "weather": "15-28 C, humid, afternoon thunderstorms, July-August wettest",
+        "views": "Long visibility windows but frequent fog; dramatic storm light",
+        "crowds": "busy",
+        "score": 3,
+        "highlight": "The greenest season; lush foliage and occasional post-storm clarity"
+      },
+      {
+        "season": "Autumn",
+        "months": "September-November",
+        "weather": "0-18 C, driest months, visibility over 100 km on clear days",
+        "views": "Highest cloud-sea probability of the year — the classic Huangshan look",
+        "crowds": "busy",
+        "score": 5,
+        "highlight": "Golden larch against granite, sea of clouds, and the year's best sunrise odds — but avoid Golden Week (Oct 1-7)"
+      },
+      {
+        "season": "Winter",
+        "months": "December-February",
+        "weather": "-10 to 5 C, snow and rime ice; wind chill to -15 C at dawn",
+        "views": "Snow-dusted peaks, rime ice on every pine needle, near-empty trails",
+        "crowds": "quiet",
+        "score": 4,
+        "highlight": "Ink-painting landscapes with 70-90% fewer visitors and CNY 80 cheaper entry — the photographers' secret season"
+      }
+    ],
+    "costs": {
+      "entry": "CNY 230 peak (Mar-Nov) · CNY 150 off-peak (Dec-Feb) · ~CNY 115 for seniors 65+",
+      "cableCar": "CNY 80-100 each way per cable car",
+      "shuttle": "CNY 19 per park shuttle trip (Tangkou to cable car stations)",
+      "hotelDorm": "CNY 300-500 per bed",
+      "hotelPrivate": "CNY 800-2,500 per room",
+      "mealBudget": "CNY 60-100 per meal · instant noodles CNY 25-40",
+      "calculator": {
+        "entryPeak": 230,
+        "entryOffPeak": 150,
+        "cableCar": 90,
+        "shuttle": 19,
+        "dormPerNight": 400,
+        "privatePerNight": 900,
+        "baseHotelPerNight": 250,
+        "mealPerDay": 180,
+        "canyonRailway": 100
+      },
+      "samplePlans": [
+        {
+          "tier": "budget",
+          "days": 2,
+          "totalPerPerson": "~CNY 850",
+          "items": ["Off-peak entry CNY 150", "Cable car round trip CNY 180", "Park shuttles CNY 38", "Summit dorm bed CNY 350", "Bring-your-own food ~CNY 50"]
+        },
+        {
+          "tier": "mid",
+          "days": 2,
+          "totalPerPerson": "~CNY 1,450",
+          "items": ["Peak entry CNY 230", "Cable car round trip CNY 190", "Park shuttles CNY 38", "Private summit room CNY 900 (shared by 2)", "Meals on the mountain CNY 200"]
+        },
+        {
+          "tier": "premium",
+          "days": 3,
+          "totalPerPerson": "~CNY 2,800",
+          "items": ["Peak entry CNY 230", "Cable cars + Grand Canyon railway CNY 390", "Park shuttles CNY 57", "2 nights private summit room CNY 1,800 (shared by 2)", "Restaurant meals and snacks CNY 350"]
+        }
+      ]
+    },
+    "comparisons": [
+      {
+        "slug": "sanqingshan",
+        "headline": "Huangshan vs Sanqingshan: the crowd question",
+        "differences": [
+          "Sanqingshan is often called 'the quieter Huangshan' — similar granite spires and cloud seas, at roughly half the visitor volume",
+          "Huangshan has the bigger reputation, better sunrise infrastructure (Dawn Pavilion), and the iconic Welcoming Pine; Sanqingshan has more walkable summit loops and smaller crowds",
+          "Both are 2-day trips; Huangshan is easier from Shanghai (2.5h train), Sanqingshan is better paired with Wuyuan or the Jiangxi circuit",
+          "Sanqingshan winter is milder and its cable cars run year-round with shorter queues"
+        ],
+        "verdict": "Pick Huangshan for the icon and the sunrise; pick Sanqingshan if you want the same style of landscape with half the people. Photographers often do both on one trip."
+      },
+      {
+        "slug": "zhangjiajie",
+        "headline": "Huangshan vs Zhangjiajie: granite spires vs sandstone pillars",
+        "differences": [
+          "Zhangjiajie's quartz-sandstone pillars are taller, stranger, and more alien (think Avatar); Huangshan is subtler — weathered granite with pines, mist and classical Chinese painting aesthetics",
+          "Zhangjiajie is a sprawling 481 km2 park with buses and multiple zones (3+ days ideal); Huangshan is a compact single-peak experience (2 days is enough)",
+          "Huangshan rewards hikers with real trails; Zhangjiajie is dominated by viewpoints reached by cable car and elevators",
+          "Zhangjiajie crowds are intense year-round; Huangshan has genuine quiet windows in winter",
+          "Both are UNESCO sites; Huangshan adds cultural depth (Daoist heritage, painting tradition)"
+        ],
+        "verdict": "First trip to China's mountains: Huangshan. You want otherworldly alien scenery: Zhangjiajie. Time-poor travelers should note Zhangjiajie demands 3+ days to do properly."
+      },
+      {
+        "slug": "lushan",
+        "headline": "Huangshan vs Lushan: the epic vs the easy",
+        "differences": [
+          "Lushan is a gentle mountain — easy trails, colonial villas, lake views, and a fraction of Huangshan's physical demands",
+          "Huangshan is the dramatic granite showpiece; Lushan is a misty cultural retreat with 1,500 years of poetry and politics",
+          "Lushan suits a relaxed 1-2 day escape from Wuhan or Nanchang; Huangshan rewards a focused 2-3 day trip",
+          "Summer: Lushan is a classic Chinese heat-escape; Huangshan in July-August is rainy and foggy"
+        ],
+        "verdict": "Knee-friendly or time-poor: Lushan. The full Chinese mountain experience: Huangshan. They are complementary, not competitors."
+      }
+    ],
+    "proTips": [
+      "Book summit hotels 3-4 weeks ahead, especially Beihai and Xihai on weekends — they genuinely sell out; Tangkou base hotels are the fallback.",
+      "Check the official Huangshan weather forecast (WeChat mini-program or weather sites) for cloud-sea and sunrise probability the evening before — it will tell you whether to set the 05:00 alarm.",
+      "Weekday mornings are dramatically quieter. The first shuttle from Tangkou (06:30) puts you at the cable car before tour groups arrive.",
+      "In the 2024-2029 rotation, Heavenly Capital Peak (Tiandu) is open and Lotus Peak is closed. Confirm the scramble conditions before committing — it adds 2-3 hours.",
+      "Rent a bamboo hiking pole at the base for CNY 2-5 — it saves your knees on every descent and is the best value purchase on the mountain.",
+      "Golden Week (Oct 1-7) is the single worst window: multi-hour cable car queues. The last week of October offers the same scenery with 80% fewer people.",
+      "Rain jackets beat umbrellas on the ridgelines — wind turns umbrellas into kites. Pack one even in July.",
+      "Combine Huangshan with Hongcun village (1h from Tangkou) for the classic Anhui cultural pairing — half a day is enough."
+    ],
+    "packing": [
+      { "item": "Sturdy hiking shoes", "why": "Stone stairs get dangerously slippery when wet" },
+      { "item": "Rain jacket", "why": "Mountain weather changes in minutes; umbrellas fail in ridge wind" },
+      { "item": "Warm layers", "why": "Summit is 10-15 C cooler than the base, even in summer" },
+      { "item": "Gloves and beanie", "why": "Dawn is cold in every season; winter wind chill hits -15 C" },
+      { "item": "Portable charger", "why": "No outlets on the trails" },
+      { "item": "High-calorie snacks and water", "why": "Instant noodles cost CNY 25-40 and meals CNY 60-100 on the mountain" },
+      { "item": "Headlamp or phone torch", "why": "Needed for pre-dawn sunrise walks in winter" },
+      { "item": "Microspikes (winter only)", "why": "Icy steps on the eastern side; sold at Tangkou" },
+      { "item": "Bamboo hiking pole", "why": "CNY 2-5 at the base; protects knees on the descents" },
+      { "item": "Tickets booked in advance", "why": "Entry and cable cars sell out on holiday weekends; book via the official platform" }
+   ]
+  },
+  "sanqingshan": {
+    "verifiedDate": "August 2026",
+    "verdict": {
+      "score": 8,
+      "headline": "Huangshan-grade granite scenery at half the crowd — and half the price",
+      "worthIt": "Sanqingshan delivers the classic Chinese granite landscape — spires, twisted pines, sea of clouds — through a mostly flat 3.6km boardwalk suspended along cliff faces. Entry costs CNY 120 versus Huangshan's 230, queues are shorter, and the 72-hour ticket lets you sleep on the mountain for a dawn summit. For travelers who want the look of Huangshan without the stair torture, this is the smarter pick.",
+      "skipIf": "You want Huangshan's iconic sunrise infrastructure (Dawn Pavilion, the Welcoming Pine), you are visiting on a Chinese holiday weekend (the narrow boardwalk queues up badly), or you need summit luxury — Sanqing's summit lodgings are basic.",
+      "bestFor": "Travelers who want world-class granite scenery with gentle walking, photographers chasing a quieter cloud sea, and anyone building a Jiangxi trip around Wuyuan or Lushan."
+    },
+    "personas": [
+      {
+        "id": "first-time",
+        "label": "First-time visitor",
+        "verdict": "go",
+        "summary": "The easiest big-scenery mountain in China: flat boardwalks, no climbing required.",
+        "advice": "Take the 1-day loop: Jinsha cable car up, South Clear Garden (Giant Python, Goddess Peak), Sunshine Coast, West Coast Trail, cable car down. Start before 8 AM to beat the queue. If you can stay one night, the 2-day plan with sunrise at Yujing Peak is worth the extra planning."
+      },
+      {
+        "id": "photographer",
+        "label": "Photographer",
+        "verdict": "go",
+        "summary": "A quieter cloud sea than Huangshan, with sunrise from Yujing Peak (1,819.9m).",
+        "advice": "Go in October or November — the driest months with the highest visibility. Sleep at a summit hotel and catch sunrise from Yujing Peak or the Goddess Peak platform. Mornings before 10 AM are the clearest window; the 'Sanqing mist' at dawn is the classic shot."
+      },
+      {
+        "id": "family",
+        "label": "Traveling with kids",
+        "verdict": "conditional",
+        "summary": "Flat boardwalks are kid-friendly, but weekend cable car queues are not.",
+        "advice": "Go on a weekday and arrive at the cable car station by 7:30 AM. The loop itself is smooth walking with guardrails — safe for older kids. Skip the Yujing Peak side trail. Bring snacks: summit food is limited and expensive."
+      },
+      {
+        "id": "budget",
+        "label": "Tight budget",
+        "verdict": "go",
+        "summary": "CNY 120 entry and CNY 125 cable car — the cheapest big granite mountain in China.",
+        "advice": "Visit in winter: entry drops to CNY 80 and the cable car to about CNY 110. Stay at a summit dorm bed (CNY 150-300) to avoid a second cable car ride, and bring your own food. The 72-hour ticket means one entry covers two days. Total: roughly CNY 450-550 per person, transport excluded."
+      },
+      {
+        "id": "senior",
+        "label": "Older travelers / knee issues",
+        "verdict": "go",
+        "summary": "The most accessible big-mountain scenery in China — flat boardwalk, minimal stairs.",
+        "advice": "This is the mountain to pick over Huangshan if stairs are a problem. The main loop is level boardwalk; only the side trails to Yujing Peak involve real climbing. Seniors 65+ enter free. Avoid holiday weekends — the walkway itself is easy, but queues and crowd crush are not."
+      },
+      {
+        "id": "hiker",
+        "label": "Serious hiker",
+        "verdict": "conditional",
+        "summary": "Spectacular, but the boardwalk makes it almost too easy.",
+        "advice": "Take the traditional Southern cable car (Wai Shuangxi) to feel the pilgrimage route, then add the Yujing Peak side trail (the highest point, about 1.5h round trip from the West Coast Trail). For a real workout, hike up from Wai Shuangxi (2-3h of stairs) and descend by cable car — but the ascent has few views, so most hikers skip it."
+      }
+    ],
+    "routes": [
+      {
+        "name": "Jinsha cable car (west side)",
+        "gate": "Jinsha service area, west side",
+        "type": "cable-car",
+        "time": "8-10 min",
+        "cost": "CNY 125 round trip",
+        "difficulty": "easy",
+        "scenery": 4,
+        "pros": ["Fastest access to the main summit loop and South Clear Garden", "Delivers you to the start of the classic one-way loop", "Larger station with more buses and hotels below"],
+        "cons": ["Longest queues in peak season — up to 2-4 hours on holiday weekends", "You skip the traditional pilgrimage approach"],
+        "bestFor": "The default choice — recommended for first-timers and day-trippers",
+        "recommended": true
+      },
+      {
+        "name": "Wai Shuangxi cable car (south side)",
+        "gate": "Wai Shuangxi, south side",
+        "type": "cable-car",
+        "time": "8-10 min",
+        "cost": "CNY 120 round trip",
+        "difficulty": "easy",
+        "scenery": 4,
+        "pros": ["Serves the traditional pilgrimage route to Sanqing Temple", "Usually shorter queues than Jinsha", "Milder winter operation schedule"],
+        "cons": ["Slightly longer walk to the main South Clear Garden area", "Fewer hotels and restaurants at the base"],
+        "bestFor": "Hikers doing the full loop in the opposite direction, or visitors wanting the quieter entrance"
+      },
+      {
+        "name": "Summit loop boardwalk (South Clear Garden + Sunshine Coast + West Coast)",
+        "gate": "From either cable car station, up at the summit",
+        "type": "hike",
+        "time": "4-6 hours full loop",
+        "cost": "Included in entry (no extra charge)",
+        "difficulty": "moderate",
+        "scenery": 5,
+        "pros": ["The 3.6km suspended boardwalk — flat, wide, safe, with constant cliff views", "Covers every major viewpoint: Giant Python, Goddess Peak, Sunshine Coast, West Coast Trail", "Mostly level — no technical climbing required"],
+        "cons": ["Narrow in sections — single-file when crowded", "Loop direction matters for light: do it clockwise to face the sun in the morning"],
+        "bestFor": "Everyone — this IS the Sanqingshan experience, not an optional extra"
+      },
+      {
+        "name": "Full hike from the base",
+        "gate": "Wai Shuangxi or Jinsha trailhead",
+        "type": "hike",
+        "time": "2-3 hours up (about 1,200m of stairs)",
+        "cost": "Free (saves the CNY 120-125 cable car)",
+        "difficulty": "hard",
+        "scenery": 2,
+        "pros": ["Saves the cable car fare", "Quiet trail"],
+        "cons": ["Trees block almost all views for the first 2 hours", "1,200m of relentless stone stairs — the mountain's own guidebook discourages it", "Arriving exhausted means enjoying the boardwalk less"],
+        "bestFor": "Only budget hikers who genuinely want the workout; not recommended for most visitors"
+      }
+    ],
+    "itineraries": [
+      {
+        "days": 1,
+        "title": "The classic one-day loop",
+        "suitable": "Most visitors — the loop is compact enough for a full day",
+        "steps": [
+          { "time": "07:30", "title": "Jinsha cable car up", "detail": "Beat the queues with the first cable cars. Land at the summit loop entrance.", "duration": "30 min" },
+          { "time": "08:30", "title": "South Clear Garden", "detail": "The star views: Giant Python Emerging from the Mountain and the Goddess of the East, with pines on granite in every direction.", "duration": "2 h" },
+          { "time": "11:00", "title": "Sunshine Coast boardwalk", "detail": "The eastern cliff trail — mostly flat, with views over the Jade Capital peaks. Grab lunch at a summit vendor (CNY 40-60).", "duration": "1.5 h" },
+          { "time": "13:00", "title": "West Coast Trail", "detail": "The most dramatic section — boardwalk curling around cliff faces above thousand-meter drops. Watch the afternoon light on the granite spires.", "duration": "2 h" },
+          { "time": "15:30", "title": "Return via Yujing junction and cable car down", "detail": "Optional 1.5h side trip up Yujing Peak (1,819.9m) from the West Coast midpoint. Otherwise descend by cable car and bus back to Shangrao.", "duration": "1.5 h" }
+        ],
+        "note": "One day works well because the loop is flat and compact. You miss sunrise and the mountain's famous dawn mist — if the forecast is clear, the 2-day plan is meaningfully better."
+      },
+      {
+        "days": 2,
+        "title": "Two days with a summit sunrise (recommended)",
+        "suitable": "Photographers and anyone who wants the sea of clouds at dawn",
+        "steps": [
+          { "time": "Day 1 · 14:00", "title": "Up the Jinsha cable car, settle at a summit hotel", "detail": "Sunrise Hotel (Rishan) or Goddess Hotel — basic but positioned for dawn. Your 72-hour ticket means no re-entry worries.", "duration": "1 h" },
+          { "time": "Day 1 · 15:30", "title": "West Coast Trail in afternoon light", "detail": "The west face is best in the afternoon. Quiet crowds after 3 PM — most day-trippers are already leaving.", "duration": "2 h" },
+          { "time": "Day 1 · 18:00", "title": "Sunset from Sunshine Coast", "detail": "The east-facing boardwalk catches the last light on the Yujing spires.", "duration": "1 h" },
+          { "time": "Day 2 · 05:00", "title": "Sunrise from Yujing Peak or Goddess Peak platform", "detail": "The classic Sanqing moment — granite spires emerging from a white ocean of cloud. Check the summit forecast the night before.", "duration": "2 h" },
+          { "time": "Day 2 · 08:30", "title": "South Clear Garden and the main loop", "detail": "Finish the loop you started yesterday: Giant Python, Goddess of the East, and the Fuxi rock formations.", "duration": "3 h" },
+          { "time": "Day 2 · 12:00", "title": "Cable car down, then Wuyuan or Shangrao", "detail": "Descend by cable car. Wuyuan's villages are 1.5h away — a perfect pairing for a Jiangxi trip.", "duration": "afternoon" }
+        ],
+        "note": "The 72-hour ticket was designed for exactly this: sleep on the mountain, catch the dawn, and leave relaxed. Summit rooms are basic but the sunrise justifies them."
+      },
+      {
+        "days": 3,
+        "title": "Relaxed 3 days: Sanqing plus Wuyuan", "suitable": "Travelers combining the mountain with the Jiangxi countryside",
+        "steps": [
+          { "time": "Day 1 · 10:00", "title": "Jinsha cable car up, settle at a summit hotel", "detail": "No rush — the full loop ahead of you. Deposit bags and start the South Clear Garden section.", "duration": "2 h" },
+          { "time": "Day 1 · 13:00", "title": "South Clear Garden + Sunshine Coast", "detail": "Take the loop clockwise. Stop as long as you like at the photography platforms.", "duration": "4 h" },
+          { "time": "Day 2 · 05:00", "title": "Sunrise at Yujing Peak", "detail": "The side trail from the West Coast midpoint — about 45 min each way with chains on the final scramble.", "duration": "2 h" },
+          { "time": "Day 2 · 08:30", "title": "West Coast Trail + Sanqing Temple", "detail": "Descend the West Coast section, then visit Sanqing Temple (1,530m) — 1,600 years of Daoist history in a stone hall that seems to grow from the rock.", "duration": "3 h" },
+          { "time": "Day 2 · 13:00", "title": "Cable car down, overnight in Wuyuan", "detail": "Transfer to Wuyuan (about 1.5h). The Hui-style villages and golden rapeseed fields are a postcard ending.", "duration": "afternoon" },
+          { "time": "Day 3 · 09:00", "title": "Wuyuan villages, then home", "detail": "Pick one or two villages — Huangling's terraces or Likeng's water lanes. Train back from Shangrao or Wuyuan station.", "duration": "full day" }
+        ],
+        "note": "Three days turns Sanqing from a viewpoint into a trip. Wuyuan is the natural companion — the classic Jiangxi pairing."
+      }
+    ],
+    "stays": [
+      {
+        "name": "Sunrise Hotel (Rishan Zhuang)",
+        "location": "summit",
+        "price": "Dorm CNY 150-300 · Private CNY 400-700",
+        "sunriseAccess": "30 min to Yujing Peak; 10 min to the West Coast Trail",
+        "pros": ["Closest summit hotel to the Yujing Peak sunrise trail", "Dorm beds cheap enough to justify the overnight", "Heated dining hall for dinner"],
+        "cons": ["Rooms are basic — think mountain lodge, not hotel", "Books out on holiday weekends"],
+        "bestFor": "Sunrise chasers and budget travelers"
+      },
+      {
+        "name": "Goddess Hotel (Nüshen Binguan)",
+        "location": "summit",
+        "price": "Dorm CNY 150-300 · Private CNY 400-800",
+        "sunriseAccess": "20 min to the Goddess Peak sunrise platform",
+        "pros": ["Sits at the edge of South Clear Garden — steps from the Giant Python", "Easier booking than Sunrise Hotel on weekdays"],
+        "cons": ["Facilities are older", "No direct trail access to Yujing Peak"],
+        "bestFor": "First-timers who want to wake up inside the main scenery"
+      },
+      {
+        "name": "Sanqing Temple guesthouse",
+        "location": "summit",
+        "price": "CNY 100-200 per bed",
+        "sunriseAccess": "1h to Yujing Peak; dawn from the temple steps",
+        "pros": ["The cheapest summit sleep in China's big mountains", "A genuinely atmospheric stay beside the 1,600-year-old Daoist temple"],
+        "cons": ["Very basic — shared bathrooms, thin walls", "Far from the cable car stations; carry your own water"],
+        "bestFor": "Backpackers and the truly budget-minded"
+      },
+      {
+        "name": "Jinsha town (base)",
+        "location": "base",
+        "price": "CNY 200-400 per room",
+        "sunriseAccess": "None — first cable car is around 7 AM",
+        "pros": ["30-40% cheaper than summit rooms", "Restaurants and shops right at the cable car station", "Comfortable modern rooms"],
+        "cons": ["You miss the dawn entirely", "Adds 30-40 min of cable car + queues each morning"],
+        "bestFor": "Comfort-first travelers who accept missing sunrise"
+      }
+    ],
+    "seasons": [
+      {
+        "season": "Spring",
+        "months": "March-May",
+        "weather": "5-20 C, azalea blooms, frequent mist",
+        "views": "Pink azaleas against grey granite; cloud seas common in May-June after rain",
+        "crowds": "moderate",
+        "score": 4,
+        "highlight": "Azalea season turns mid-elevation slopes pink — a rare combination with granite spires"
+      },
+      {
+        "season": "Summer",
+        "months": "June-August",
+        "weather": "15-28 C, warm and wet, heavy morning mist",
+        "views": "Mist often hides the pillars until mid-morning; post-storm clarity can be stunning",
+        "crowds": "busy",
+        "score": 3,
+        "highlight": "Greenest season with dramatic storm light — but the fog gamble is real"
+      },
+      {
+        "season": "Autumn",
+        "months": "September-November",
+        "weather": "8-20 C, driest months of the year",
+        "views": "Highest visibility and the famous 'Sanqing mist' at sunrise — the classic season",
+        "crowds": "moderate",
+        "score": 5,
+        "highlight": "Crisp air, golden valley colors, and the year's best sea-of-clouds odds — avoid Golden Week (Oct 1-7)"
+      },
+      {
+        "season": "Winter",
+        "months": "December-February",
+        "weather": "-5 to -10 C at the summit, snow and rime ice",
+        "views": "Rime ice coats the granite spires and pines — a starkly beautiful, near-empty landscape",
+        "crowds": "quiet",
+        "score": 4,
+        "highlight": "Entry drops to CNY 80 and the cable car shortens its hours — check the schedule; the reward is a private mountain"
+      }
+    ],
+    "costs": {
+      "entry": "CNY 120 peak (Mar-Nov) · CNY 80 off-peak (Dec-Feb) · ticket valid 72 hours",
+      "cableCar": "CNY 125 round trip (Jinsha) · CNY 120 round trip (Wai Shuangxi) · about CNY 110 in winter",
+      "shuttle": "No park shuttle — the cable car lands you directly on the summit loop; buses from Shangrao Station cost CNY 27",
+      "hotelDorm": "CNY 150-300 per bed",
+      "hotelPrivate": "CNY 400-800 per room",
+      "mealBudget": "CNY 40-80 per meal · limited summit options, bring snacks",
+      "calculator": {
+        "entryPeak": 120,
+        "entryOffPeak": 80,
+        "cableCar": 62,
+        "shuttle": 0,
+        "dormPerNight": 200,
+        "privatePerNight": 500,
+        "baseHotelPerNight": 250,
+        "mealPerDay": 150,
+        "canyonRailway": 0
+      },
+      "note": "Excludes the CNY 27 bus from Shangrao Station. Off-peak (Dec-Feb) saves CNY 40 on entry and about CNY 15 on the cable car. Summit food is limited — packing your own lunch cuts CNY 50-100 per day.",
+      "samplePlans": [
+        {
+          "tier": "budget",
+          "days": 2,
+          "totalPerPerson": "~CNY 520",
+          "items": ["Peak entry CNY 120 (72h valid)", "Cable car round trip CNY 125", "Summit dorm bed CNY 200", "Bring-your-own food ~CNY 50", "Winter drops this to ~CNY 400"]
+        },
+        {
+          "tier": "mid",
+          "days": 2,
+          "totalPerPerson": "~CNY 800",
+          "items": ["Peak entry CNY 120", "Cable car round trip CNY 125", "Summit private room CNY 500 (shared by 2)", "Meals at summit vendors CNY 180"]
+        },
+        {
+          "tier": "premium",
+          "days": 2,
+          "totalPerPerson": "~CNY 1,000",
+          "items": ["Peak entry CNY 120", "Cable car round trip CNY 125", "Best summit room CNY 700 (shared by 2)", "Restaurant meals + snacks CNY 260", "Combine with Wuyuan for a full Jiangxi trip"]
+        }
+      ]
+    },
+    "comparisons": [
+      {
+        "slug": "huangshan",
+        "headline": "Sanqingshan vs Huangshan: same granite DNA, half the crowds",
+        "differences": [
+          "Both are UNESCO granite-spire landscapes with pines, mist, and sea-of-clouds sunrises — geologically, Sanqingshan is the quieter sibling of Huangshan",
+          "Sanqingshan's summit loop is a flat 3.6km boardwalk; Huangshan demands hours of stone stairs between viewpoints",
+          "Entry costs CNY 120 vs 230, and the 72-hour ticket is built for overnighting",
+          "Huangshan has the better sunrise infrastructure (Dawn Pavilion) and the iconic Welcoming Pine; Sanqingshan has roughly half the visitor volume",
+          "Pairing: Huangshan goes with Hongcun; Sanqingshan goes with Wuyuan or Lushan"
+        ],
+        "verdict": "Pick Huangshan for the icon and the sunrise; pick Sanqingshan for the same style of landscape with gentler walking, shorter queues, and a smaller bill."
+      },
+      {
+        "slug": "zhangjiajie",
+        "headline": "Sanqingshan vs Zhangjiajie: granite spires vs sandstone pillars",
+        "differences": [
+          "Zhangjiajie's quartz-sandstone pillars are taller and stranger (the Avatar look); Sanqingshan's weathered granite is subtler and more classical",
+          "Zhangjiajie is a sprawling multi-zone park needing 3+ days; Sanqingshan is a compact 1-2 day loop",
+          "Zhangjiajie averages 110,000 visitors a day; Sanqingshan is a fraction of that even in peak season",
+          "Both are cheap by Chinese standards: 228/120 for entry, with cable cars around 72-125",
+          "Sanqingshan is walkable (flat boardwalks); Zhangjiajie is viewpoint-hopping by elevator and cable car"
+        ],
+        "verdict": "Short on time or allergic to crowds: Sanqingshan. You want the alien Avatar landscape and can commit 3+ days: Zhangjiajie."
+      },
+      {
+        "slug": "lushan",
+        "headline": "Sanqingshan vs Lushan: Jiangxi's scenery vs Jiangxi's soul",
+        "differences": [
+          "Lushan is a gentle cultural retreat — poetry, villas, mist, and lake views; Sanqingshan is a granite spectacle with real (if easy) walking",
+          "Lushan's ticket covers 7 days of sights including museums and villages; Sanqingshan's 72-hour ticket covers one mountain loop",
+          "Summer: Lushan is a famous heat-escape; Sanqingshan is foggy and wet in July-August",
+          "Both pair perfectly with each other — they are 2.5h apart and make a natural Jiangxi double-header"
+        ],
+        "verdict": "Culture, ease, and summer cool: Lushan. Granite scenery and a proper mountain feel: Sanqingshan. Do both if your itinerary allows — they complement rather than compete."
+      }
+    ],
+    "proTips": [
+      "Arrive at the Jinsha cable car by 7:30 AM on weekends — queues hit 2-4 hours between 9 and 11 AM.",
+      "The 72-hour ticket is designed for overnighting: one entry covers two days, so sleep on the mountain and catch dawn.",
+      "Walk the loop clockwise (South Clear Garden → Sunshine Coast → West Coast) to keep the sun at your back in the morning.",
+      "The Yujing Peak side trail is easy to miss — it branches off the West Coast midpoint. About 45 min each way, with chains on the last scramble.",
+      "Sanqingshan runs regular free-ticket promotions for residents of certain provinces and cities (Jiangxi, Hunan/Hubei, the 'furnace cities', Shandong/Henan in 2026) — check the official 'Sanqingshan Smart Tourism' mini-program before booking.",
+      "All tickets are online-only real-name reservations — there is no walk-up window. Book 1-3 days ahead.",
+      "Hiking up from the base is 2-3 hours of viewless stairs; even the park's own guide recommends the cable car.",
+      "Pair with Wuyuan's villages (1.5h drive) or Lushan (2.5h) for the classic Jiangxi circuit."
+    ],
+    "packing": [
+      { "item": "Flat-soled walking shoes", "why": "The boardwalk is smooth — no need for boots, but comfort matters over 4-6 hours" },
+      { "item": "Rain jacket", "why": "The mountain generates its own microclimate; mist and drizzle appear without warning" },
+      { "item": "Warm layers", "why": "Summit is 10 C cooler than the base; sunrise and winter hit -5 to -10 C" },
+      { "item": "Camera with telephoto lens", "why": "The granite pillars and pines reward compression and close-ups" },
+      { "item": "Snacks and water", "why": "Summit food is limited — vendors run out on busy afternoons" },
+      { "item": "Portable charger", "why": "No outlets along the boardwalk" },
+      { "item": "Gloves and beanie (winter)", "why": "Dawn on the boardwalk is brutally cold in December-February" },
+      { "item": "Tickets booked in advance", "why": "Online real-name reservation required — no walk-up window since 2023" }
+   ]
+  },
+  "zhangjiajie": {
+    "verifiedDate": "August 2026",
+    "verdict": {
+      "score": 9,
+      "headline": "China's strangest landscape — worth every minute of the queues",
+      "worthIt": "Over 3,000 quartz-sandstone pillars rising out of subtropical forest — the Avatar landscape is real, and it is here. The 4-day pass (CNY 228, shuttle buses included) is China's best-value mountain ticket, and the Bailong Elevator makes the surreal scenery reachable in a morning. Yes, it is crowded. No, nowhere else looks like this.",
+      "skipIf": "You have only one day (you will see two of five zones and regret it), you cannot tolerate crowds (110,000 visitors a day in peak season), or you want quiet mountain hiking — Zhangjiajie is viewpoint-hopping by elevator and cable car, not wilderness.",
+      "bestFor": "First-timers to China who want the country's most mind-bending landscape, Avatar fans, photographers chasing mist between pillars, and families with 3+ days to spend."
+    },
+    "personas": [
+      {
+        "id": "first-time",
+        "label": "First-time visitor",
+        "verdict": "go",
+        "summary": "The single most unforgettable first mountain experience in China.",
+        "advice": "Commit 3 days: Day 1 Yuanjiajie (Avatar) + Tianzi Mountain via the Bailong Elevator, Day 2 Golden Whip Stream + Huangshi Village, Day 3 Tianmen Mountain. Stay in Wulingyuan town by the east gate. Start each day by 7 AM — the queues decide your experience."
+      },
+      {
+        "id": "photographer",
+        "label": "Photographer",
+        "verdict": "go",
+        "summary": "Post-rain mist between the pillars is one of China's great landscape scenes.",
+        "advice": "Go in late September or October — the classic 'floating mountain' mist appears in the hour after rain stops. Shoot from Yuanjiajie's Avatar viewpoint early, then Tianzi Mountain for mid-morning layers. Stay 3+ days so you can chase weather rather than be trapped by it."
+      },
+      {
+        "id": "family",
+        "label": "Traveling with kids",
+        "verdict": "conditional",
+        "summary": "Elevators and cable cars make it easy — the crowds make it hard.",
+        "advice": "Pick weekdays and skip Golden Week entirely. Use the Bailong Elevator up and Tianzi cable car down to avoid the worst stair sections. Golden Whip Stream is flat and stroller-friendly for the first 2km. Book a hotel within walking distance of the east gate so tired kids don't face a long transfer."
+      },
+      {
+        "id": "budget",
+        "label": "Tight budget",
+        "verdict": "go",
+        "summary": "Winter entry at CNY 144 (4 days, buses included) is among China's cheapest big-park deals.",
+        "advice": "Visit December-February: the pass drops from 228 to 144, hotels fall 40-60%, and the park is nearly empty on weekdays. Golden Whip Stream and Huangshi Village need no extra transport fees. Budget for about CNY 550-650 per person over 2 days, transport excluded."
+      },
+      {
+        "id": "senior",
+        "label": "Older travelers / knee issues",
+        "verdict": "conditional",
+        "summary": "Fully accessible by elevator and cable car — but the queues mean standing.",
+        "advice": "Use the north gate (Tianzi Mountain): least crowded, and the Tianzi cable car lands you on the ridge directly. Avoid the Bailong Elevator's 2-3 hour peak-season queues. Seniors 65+ get free entry (the ticket includes buses). Golden Whip Stream's first 2km is flat and gentle."
+      },
+      {
+        "id": "hiker",
+        "label": "Serious hiker",
+        "verdict": "go",
+        "summary": "Not wilderness, but the valley and ridge trails reward real walking.",
+        "advice": "Walk the full 7.5km of Golden Whip Stream from south gate to Water Around Four Gates, then take the elevator up for the ridge section. Add the Yangjiajie area (west gate, fewest crowds) and the step trails around Huangshi Village. Winter is the hiker's season — empty trails and clear air."
+      }
+    ],
+    "routes": [
+      {
+        "name": "Wulingyuan Gate (east) + Bailong Elevator",
+        "gate": "Wulingyuan town, east side",
+        "type": "cable-car",
+        "time": "Elevator 1.5 min (326m)",
+        "cost": "CNY 72 one way (plus pass)",
+        "difficulty": "easy",
+        "scenery": 5,
+        "pros": ["Fastest route to Yuanjiajie (the Avatar viewpoint) — the park's centerpiece", "Closest gate to hotels, restaurants, and night markets", "The elevator ride itself is a spectacle: the pillar wall rises past the glass"],
+        "cons": ["Longest queues in peak season — 2-3 hours on holidays", "You skip the valley-level views entirely"],
+        "bestFor": "The default for first-timers and the classic 2-day itinerary",
+        "recommended": true
+      },
+      {
+        "name": "Forest Park Gate (south) + Golden Whip Stream walk-in",
+        "gate": "Forest Park Gate, south side",
+        "type": "hike",
+        "time": "7.5km valley walk, 2.5-3 h to Water Around Four Gates",
+        "cost": "Included in the pass",
+        "difficulty": "easy",
+        "scenery": 4,
+        "pros": ["The gentlest way in: flat riverside trail between the pillars", "Sees the landscape from below before seeing it from above — better perspective", "Shaded and cool even in summer"],
+        "cons": ["Long walk before the elevator ride up (or take the shuttle to Water Around Four Gates)", "Trail gets crowded after 10 AM"],
+        "bestFor": "Hikers, families with older kids, and photographers who want both angles"
+      },
+      {
+        "name": "Tianzi Mountain Gate (north)",
+        "gate": "Tianzi Mountain ticket station, north side",
+        "type": "shuttle",
+        "time": "Shuttle 25 min to the Tianzi cable car base",
+        "cost": "Included in the pass; cable car CNY 72",
+        "difficulty": "easy",
+        "scenery": 5,
+        "pros": ["The least crowded gate — tour groups use east and south", "Direct line to Tianzi Mountain's panoramas, often with the best cloud layers", "Good for seniors: cable car up, short walks between viewpoints"],
+        "cons": ["Farther from Wulingyuan hotels", "Reaching Yuanjiajie from Tianzi requires a shuttle connection"],
+        "bestFor": "Crowd-averse visitors and the 'Tianzi first' strategy"
+      },
+      {
+        "name": "Yangjiajie Gate (west) + Yangjiajie cable car",
+        "gate": "Yangjiajie ticket station, west side",
+        "type": "cable-car",
+        "time": "Cable car 8 min",
+        "cost": "CNY 76 one way (plus pass)",
+        "difficulty": "moderate",
+        "scenery": 5,
+        "pros": ["The quietest corner of the park — Wulong Village and Tianbo Mansion rarely queue", "Raw, less-visited pillar formations", "Great late-afternoon light"],
+        "cons": ["Needs a full half-day and some stamina", "Fewer shuttle connections than the east side"],
+        "bestFor": "Repeat visitors, hikers, and anyone fleeing the east-gate crowds"
+      }
+    ],
+    "itineraries": [
+      {
+        "days": 1,
+        "title": "Compressed single day",
+        "suitable": "Only if you are truly time-limited — you will see two of five zones",
+        "steps": [
+          { "time": "06:45", "title": "East gate before the tour groups", "detail": "Be at the Wulingyuan Gate turnstiles by 6:45 — the difference between a 30-min and a 2-hour elevator queue.", "duration": "30 min" },
+          { "time": "07:30", "title": "Bailong Elevator to Yuanjiajie", "detail": "First elevator of the day. Walk the Avatar viewpoint platform (Hallelujah Mountain) before crowds arrive.", "duration": "2.5 h" },
+          { "time": "10:30", "title": "Shuttle to Tianzi Mountain", "detail": "Cross the ridge by shuttle. Tianzi's panoramas are the park's best wide views; pick a viewpoint and stay for the cloud layers.", "duration": "2 h" },
+          { "time": "13:00", "title": "Tianzi cable car down, shuttle to the valley", "detail": "Descend by cable car (CNY 72) and catch the shuttle back to Wulingyuan. Skip Golden Whip Stream — you simply do not have time.", "duration": "2 h" },
+          { "time": "16:00", "title": "Optional: Water Around Four Gates viewpoint", "detail": "If energy remains, a quick shuttle to the valley junction for the classic riverside pillar view before exiting.", "duration": "1 h" }
+        ],
+        "note": "One day works only with the east-gate elevator plan and zero dawdling. You miss Golden Whip Stream, Huangshi Village, Yangjiajie — and all valley-level views. The landscape deserves the 3-day pass."
+      },
+      {
+        "days": 2,
+        "title": "The classic 2-day loop",
+        "suitable": "Most visitors — covers the two headline zones plus the valley",
+        "steps": [
+          { "time": "Day 1 · 07:00", "title": "East gate + Bailong Elevator", "detail": "Elevator to Yuanjiajie (CNY 72). Explore the Avatar area — Hallelujah Mountain, the First Bridge Under Heaven — then shuttle onward.", "duration": "4 h" },
+          { "time": "Day 1 · 12:00", "title": "Tianzi Mountain panoramas", "detail": "The big-view ridge. Walk the viewpoints (Imperial Brush Peak, Fairy Scattering Flowers) and descend by cable car (CNY 72) at 4 PM.", "duration": "3.5 h" },
+          { "time": "Day 1 · 17:30", "title": "Wulingyuan evening", "detail": "Back to the east gate. Dinner in Wulingyuan town — local stir-fried river shrimp and sour soup.", "duration": "evening" },
+          { "time": "Day 2 · 08:00", "title": "South gate: Golden Whip Stream", "detail": "Enter at Forest Park Gate and walk the 7.5km riverside trail between the pillars — the park's best gentle walk.", "duration": "3.5 h" },
+          { "time": "Day 2 · 13:00", "title": "Huangshi Village (optional) or exit", "detail": "Huangshi Village is a 30-min shuttle away — the classic postcard view of the park. Or exit and rest before Tianmen.", "duration": "2.5 h" }
+        ],
+        "note": "This covers the two famous ridge zones plus the valley. You skip Yangjiajie and Tianmen Mountain — add Day 3 for Tianmen, which needs its own ticket and is a different park."
+      },
+      {
+        "days": 3,
+        "title": "Full 3-day: the park plus Tianmen Mountain",
+        "suitable": "The complete Zhangjiajie — the recommended plan",
+        "steps": [
+          { "time": "Day 1 · 07:00", "title": "Yuanjiajie + Tianzi via east gate", "detail": "Same as the 2-day plan: elevator up, ridge walks, Tianzi cable car down.", "duration": "full day" },
+          { "time": "Day 2 · 08:00", "title": "Golden Whip Stream full walk", "detail": "Walk the complete 7.5km valley trail, then shuttle to Huangshi Village for the classic panorama.", "duration": "6 h" },
+          { "time": "Day 2 · 16:00", "title": "Optional: Yangjiajie sunset", "detail": "If the legs allow, the west gate's cable car (CNY 76) lands you in the quietest pillar country for late light.", "duration": "2 h" },
+          { "time": "Day 3 · 07:30", "title": "Tianmen Mountain (separate park)", "detail": "A different ticket (about CNY 278, A line). World's longest cable car (7.5km), the Heaven's Door arch, and cliff glass skywalks. Book 3-7 days ahead.", "duration": "full day" },
+          { "time": "Day 3 · 17:00", "title": "Cable car down to the city", "detail": "Tianmen descends into Zhangjiajie city itself — fly or train out from there.", "duration": "evening" }
+        ],
+        "note": "Three days is the honest minimum for 'having seen Zhangjiajie'. The 4-day pass covers all five zones of the forest park; Tianmen is a separate ticket and a separate day."
+      }
+    ],
+    "stays": [
+      {
+        "name": "Wulingyuan town (east gate)",
+        "location": "base",
+        "price": "CNY 150-400 per room · dorms CNY 60-120",
+        "sunriseAccess": "At the gate by 6:45 AM for the first elevator",
+        "pros": ["Steps from the main entrance — the queue is your only clock", "Hundreds of restaurants, night markets, and a full tourist town", "The most convenient base for every zone"],
+        "cons": ["Busy and commercial — not a scenic stay", "Books out completely for Golden Week"],
+        "bestFor": "Virtually everyone; this is the default Zhangjiajie base"
+      },
+      {
+        "name": "Forest Park Gate area (south)",
+        "location": "base",
+        "price": "CNY 150-300 per room",
+        "sunriseAccess": "First entry to Golden Whip Stream by 7:30 AM",
+        "pros": ["Quiet village atmosphere", "Closest to the Golden Whip Stream trailhead", "Cheaper than Wulingyuan"],
+        "cons": ["Far from the Bailong Elevator and Tianzi zones", "Fewer restaurants and transport options"],
+        "bestFor": "Hikers prioritizing the valley walks and Huangshi Village"
+      },
+      {
+        "name": "Zhangjiajie city (Yongding)",
+        "location": "base",
+        "price": "CNY 200-500 per room",
+        "sunriseAccess": "45-60 min from the park gates",
+        "pros": ["Best hotels and restaurants in the region", "Closest to Tianmen Mountain — its cable car descends into the city", "Good for train and flight connections"],
+        "cons": ["Long daily commute to the forest park", "You will eat 2 hours of shuttling per day"],
+        "bestFor": "The day before flying out, or trips centered on Tianmen Mountain"
+      }
+    ],
+    "seasons": [
+      {
+        "season": "Spring",
+        "months": "April-May",
+        "weather": "15-25 C, occasional rain showers, morning mist",
+        "views": "The classic 'floating mountain' mist effect; forest turns lush green",
+        "crowds": "moderate",
+        "score": 4,
+        "highlight": "Dawn mist between the pillars — the Avatar look, best in the hour after rain"
+      },
+      {
+        "season": "Summer",
+        "months": "June-August",
+        "weather": "25-35 C, hot and humid, frequent thunderstorms",
+        "views": "Heavy fog burns off slowly; dramatic post-storm clarity",
+        "crowds": "busy",
+        "score": 3,
+        "highlight": "The heaviest crowds of the year — arrive at gates by 6:30 AM or reschedule"
+      },
+      {
+        "season": "Autumn",
+        "months": "September-November",
+        "weather": "15-25 C, crisp, low humidity",
+        "views": "Best visibility of the year; foliage adds gold and red; October 10-25 is the photographer's sweet spot",
+        "crowds": "busy",
+        "score": 5,
+        "highlight": "The classic season — but Golden Week (Oct 1-7) pushes the park to capacity; go late October instead"
+      },
+      {
+        "season": "Winter",
+        "months": "December-February",
+        "weather": "0-10 C, occasional snow dusting the pillar tops",
+        "views": "Monochrome landscape — snow on quartzite is genuinely rare and beautiful",
+        "crowds": "quiet",
+        "score": 4,
+        "highlight": "Entry drops to CNY 144, hotels fall 40-60%, and weekday trails are nearly empty"
+      }
+    ],
+    "costs": {
+      "entry": "CNY 228 peak (Mar-Nov) · CNY 144 off-peak (Dec-Feb) · 4-day pass covers all five zones + shuttle buses",
+      "cableCar": "Bailong Elevator CNY 72 · Tianzi cable car CNY 72 · Yangjiajie cable car CNY 76 (each one way)",
+      "shuttle": "Included in the pass — park buses are covered by the 228/144 ticket",
+      "hotelDorm": "CNY 60-120 per bed",
+      "hotelPrivate": "CNY 250-600 per room",
+      "mealBudget": "CNY 40-80 per meal · street food from CNY 15",
+      "calculator": {
+        "entryPeak": 228,
+        "entryOffPeak": 144,
+        "cableCar": 72,
+        "shuttle": 0,
+        "dormPerNight": 150,
+        "privatePerNight": 350,
+        "baseHotelPerNight": 300,
+        "mealPerDay": 160,
+        "canyonRailway": 76,
+        "extraLabel": "Ten-mile Gallery train (round trip)"
+      },
+      "note": "Excludes Tianmen Mountain (about CNY 278) and transport to Zhangjiajie. Off-peak (Dec-Feb) saves CNY 84 on the pass. The ticket already includes all park shuttle buses.",
+      "samplePlans": [
+        {
+          "tier": "budget",
+          "days": 2,
+          "totalPerPerson": "~CNY 650",
+          "items": ["4-day pass CNY 228", "Bailong Elevator CNY 72", "Dorm bed 2 nights CNY 240", "Street food and snacks ~CNY 110"]
+        },
+        {
+          "tier": "mid",
+          "days": 3,
+          "totalPerPerson": "~CNY 1,350",
+          "items": ["4-day pass CNY 228", "Elevator + Tianzi cable car CNY 144", "Private room 2 nights CNY 700 (shared by 2)", "Tianmen Mountain ticket ~CNY 278", "Restaurant meals CNY 300"]
+        },
+        {
+          "tier": "premium",
+          "days": 3,
+          "totalPerPerson": "~CNY 2,100",
+          "items": ["4-day pass CNY 228", "All cable cars and elevator CNY 300", "Boutique hotel 2 nights CNY 1,000 (shared by 2)", "Tianmen A-line CNY 278", "Dining and local tours CNY 400"]
+        }
+      ]
+    },
+    "comparisons": [
+      {
+        "slug": "huangshan",
+        "headline": "Zhangjiajie vs Huangshan: sandstone pillars vs granite spires",
+        "differences": [
+          "Zhangjiajie's quartz-sandstone pillars are taller and stranger — the Avatar landscape; Huangshan is subtler, painterly granite with pines and mist",
+          "Zhangjiajie needs 3+ days across a sprawling 481 km2 park; Huangshan is a compact single-peak 2-day experience",
+          "Huangshan rewards walkers with real trails; Zhangjiajie is viewpoint-hopping by elevator and cable car",
+          "Zhangjiajie's crowds are intense year-round; Huangshan has genuine quiet windows in winter",
+          "Both are UNESCO sites; Huangshan adds cultural depth (Daoist heritage, painting tradition)"
+        ],
+        "verdict": "The full Chinese mountain icon: Huangshan. The otherworldly alien landscape: Zhangjiajie. Time-poor travelers should note Zhangjiajie demands 3+ days to do properly."
+      },
+      {
+        "slug": "sanqingshan",
+        "headline": "Zhangjiajie vs Sanqingshan: the two 'pillar mountains'",
+        "differences": [
+          "Different rocks: Zhangjiajie's sandstone pillars are green-capped towers; Sanqingshan's granite spires look like Huangshan's sibling",
+          "Zhangjiajie is a 3+ day, multi-zone park with heavy crowds; Sanqingshan is a compact 1-2 day loop at a fraction of the visitor volume",
+          "Sanqingshan's flat boardwalk is walkable by everyone; Zhangjiajie relies on elevator and cable car transfers between viewpoints",
+          "Zhangjiajie's pass is cheaper per day (228 for 4 days); Sanqingshan's 72-hour ticket is simpler",
+          "Pairing logic: Zhangjiajie stands alone; Sanqingshan slots naturally into a Jiangxi circuit"
+        ],
+        "verdict": "You want the famous Avatar towers and have 3+ days: Zhangjiajie. You want the same pillar vibe with quiet walking and a 2-day schedule: Sanqingshan."
+      },
+      {
+        "slug": "tianmen",
+        "headline": "Zhangjiajie Forest Park vs Tianmen Mountain: the two-ticket confusion",
+        "differences": [
+          "Two completely separate parks with separate tickets — the Forest Park is the Avatar pillar landscape; Tianmen is a single peak with the world's longest cable car, the Heaven's Door arch, and glass skywalks",
+          "The Forest Park needs 2-3 days and a 4-day pass; Tianmen is a single full day (about CNY 278)",
+          "Tianmen's cable car descends into Zhangjiajie city; the Forest Park is a 40-min drive away",
+          "Tianmen is better in bad weather (glass walkways and caves); the Forest Park needs clear mornings",
+          "Most travelers do both: park first, Tianmen last, fly or train out from the city"
+        ],
+        "verdict": "Do not skip either — they are the two halves of the Zhangjiajie trip. Park for the pillars, Tianmen for the cable car and the arch. Book Tianmen's A line 3-7 days ahead."
+      }
+    ],
+    "proTips": [
+      "Be at the east gate by 6:45 AM — the Bailong Elevator queue grows from 20 minutes to 2-3 hours by 9 AM in peak season.",
+      "Visit Tianzi Mountain first, then Yuanjiajie — tour groups do the opposite, so you ride against the crowd.",
+      "Walk Golden Whip Stream in the afternoon: groups are on the ridges by then, and the valley stays shaded.",
+      "Do not cancel for rain — the hour after a storm is when the misty 'floating mountain' look actually happens.",
+      "Winter (Dec-Feb) is the crowd escape: entry drops to CNY 144, hotels fall 40-60%, and weekday trails are nearly empty.",
+      "Tianmen Mountain's A line opens booking 3-7 days ahead and sells out — reserve as soon as your dates are fixed.",
+      "The 4-day pass includes all shuttle buses: never pay for a shuttle ride inside the park.",
+      "Ask your hotel about the pre-dawn van to Laowuchang — the park's best-kept sunrise spot, reached by local farm road.",
+      "Golden Week (Oct 1-7) pushes the park to capacity — the last two weeks of October deliver the same scenery at a third of the crowd."
+    ],
+    "packing": [
+      { "item": "Sturdy walking shoes", "why": "Thousands of stone steps between viewpoints; wet stone is slick" },
+      { "item": "Rain jacket", "why": "Thunderstorms arrive fast; the misty look happens right after rain" },
+      { "item": "ID card / passport", "why": "Real-name reservation required; scanned at every gate and ticket check" },
+      { "item": "Camera", "why": "The pillars compress beautifully from Tianzi and Yuanjiajie viewpoints" },
+      { "item": "Snacks and water", "why": "Summit vendors are expensive (CNY 25+ for instant noodles); valley shops are cheap" },
+      { "item": "Sunscreen and hat", "why": "Ridge walks are exposed; summer sun is strong above the forest" },
+      { "item": "Insect repellent (summer)", "why": "The subtropical valley trails are buggy after rain" },
+      { "item": "Warm layer", "why": "Elevator and cable car stations stay cool; winter ridge wind is biting" },
+      { "item": "Portable charger", "why": "Long shuttle waits and photo sessions drain phones fast" }
+  ]
+  },
+  "lushan": {
+    "verifiedDate": "August 2026",
+    "verdict": {
+      "score": 7,
+      "headline": "China's gentlest great mountain — a misty cultural retreat, not a summit challenge",
+      "worthIt": "Lushan is the anti-Huangshan: instead of conquering a peak, you wander a European-style mountain town (Guling, at 1,100m), drink cloud-mist tea, walk between poetry-steeped viewpoints, and watch dawn break over Poyang Lake. The CNY 160 ticket is valid for 7 days across the core and ring sights, the sightseeing bus does the climbing for you, and summer on the mountain sits at a cool 22 C. For culture, family trips, and heat-escape, it is quietly one of China's best-value mountains.",
+      "skipIf": "You want dramatic granite scenery and real hiking (go to Sanqingshan, 2.5h away), you are visiting on a July-August weekend (the summer retreat crowds are real), or you want a quiet wilderness — Lushan is a settled cultural landscape, not a national park wilderness.",
+      "bestFor": "Families with elderly members or young kids, cultural travelers, photography of mist and layered mountains, and anyone escaping summer heat."
+    },
+    "personas": [
+      {
+        "id": "first-time",
+        "label": "First-time visitor",
+        "verdict": "go",
+        "summary": "The easiest introduction to a famous Chinese mountain — no fitness required.",
+        "advice": "Do the 2-day plan: Day 1 west line (Flower Path, Jinxiu Valley, Immortal's Cave, Ruqin Lake) plus Guling town at dusk; Day 2 dawn at Hampo Pass, then the Three-Step Waterfall. Take the cable car up (CNY 120 round trip) and buy the CNY 90 sightseeing bus pass — the mountain is bigger than it looks."
+      },
+      {
+        "id": "photographer",
+        "label": "Photographer",
+        "verdict": "go",
+        "summary": "Layered mist at dawn here rivals any mountain in China — with far less effort.",
+        "advice": "Stay near Ruqin Lake and shoot the lake-and-villa mist at first light. Hampo Pass at dawn is the classic: Poyang Lake and the Yangtze on clear mornings. Late October-November gives the clearest air; the post-rain day is the mistiest. A telephoto lens compresses the layers beautifully."
+      },
+      {
+        "id": "family",
+        "label": "Traveling with kids",
+        "verdict": "go",
+        "summary": "The most family-friendly famous mountain in China — bus and cable car everywhere.",
+        "advice": "Cable car up, sightseeing bus between sights, and keep to the west line (gentle paths) plus Hampo Pass viewpoint. Skip the Three-Step Waterfall's 2,600 steps with young kids — the views from the top platform are enough. Stay in Guling so evenings are a walk in the town."
+      },
+      {
+        "id": "budget",
+        "label": "Tight budget",
+        "verdict": "go",
+        "summary": "March is free, off-peak entry is CNY 135, and the public bus up costs CNY 10.",
+        "advice": "Target December-March (CNY 135 entry, 3月 free in March) and ride the CNY 10 public bus up the mountain road. The CNY 70 summit-only bus pass still saves your legs. Dorms in Guling start around CNY 100. A 2-day trip runs about CNY 400-450 per person all-in, transport to Jiujiang excluded."
+      },
+      {
+        "id": "senior",
+        "label": "Older travelers / knee issues",
+        "verdict": "go",
+        "summary": "The friendliest mountain in China for limited mobility — nearly everything is reachable by bus.",
+        "advice": "Seniors 65+ enter free. Use the cable car (no winding-road nausea), the CNY 90 sightseeing bus, and stick to the west line and Hampo Pass — all gentle. Skip the Three-Step Waterfall stair descent. Summer is comfortable and busy; April-May and September-October are ideal."
+      },
+      {
+        "id": "hiker",
+        "label": "Serious hiker",
+        "verdict": "conditional",
+        "summary": "Not a hiking mountain — but the classic trails have real pedigree.",
+        "advice": "Take the old Haohan Slope footpath up from the Lianhuadong trailhead (about 3h of stone stairs to Guling) to earn the summit the way poets did. Then tackle Five Old Men Peak (Wulaofeng) and the 2,600 steps down to the Three-Step Waterfall. It is not alpine wilderness, but it is history on foot."
+      }
+    ],
+    "routes": [
+      {
+        "name": "Summit cable car (from Lianhua station)",
+        "gate": "Lianhua cable car station, south side",
+        "type": "cable-car",
+        "time": "7-10 min to Guling",
+        "cost": "CNY 120 round trip (CNY 75 up / 65 down)",
+        "difficulty": "easy",
+        "scenery": 4,
+        "pros": ["No motion sickness — the winding mountain road is notorious", "Fastest way to Guling town", "Smooth for elderly travelers and kids"],
+        "cons": ["Does not connect to the sightseeing bus pass — buy the CNY 70 summit pass separately", "Summer queues build from 8 AM"],
+        "bestFor": "The default — recommended for families, seniors, and anyone prone to car sickness",
+        "recommended": true
+      },
+      {
+        "name": "Sightseeing bus from the north gate",
+        "gate": "North gate (Beimen) exchange center",
+        "type": "shuttle",
+        "time": "50 min winding road to Guling",
+        "cost": "CNY 90 incl. 7-day unlimited summit rides",
+        "difficulty": "easy",
+        "scenery": 3,
+        "pros": ["One ticket covers ascent AND all 7 days of summit transport", "Frequent departures from Jiujiang's bus terminal", "Cheapest comfortable option"],
+        "cons": ["The switchback road upsets stomachs", "Slower than the cable car"],
+        "bestFor": "Budget travelers and anyone who will use the bus pass heavily"
+      },
+      {
+        "name": "Public bus (CNY 10)",
+        "gate": "North gate, from Jiujiang",
+        "type": "shuttle",
+        "time": "40 min up",
+        "cost": "CNY 10 one way",
+        "difficulty": "easy",
+        "scenery": 2,
+        "pros": ["The cheapest way up in China's famous mountains", "Runs through the day"],
+        "cons": ["Same winding road, no guaranteed seat in season", "You still need the summit bus pass for the sights"],
+        "bestFor": "True budget travelers and backpackers"
+      },
+      {
+        "name": "Haohan Slope footpath (classic hike)",
+        "gate": "Lianhuadong trailhead near Jiujiang",
+        "type": "hike",
+        "time": "2.5-3.5 h up, about 8km of stairs",
+        "cost": "Free (park entry only)",
+        "difficulty": "hard",
+        "scenery": 3,
+        "pros": ["The traditional ascent used by pilgrims and poets", "Quiet — almost nobody walks up", "Earns the arrival at Guling"],
+        "cons": ["Relentless stone stairs with limited views until the top", "No facilities en route — carry water", "Knee-taxing descent if done in reverse"],
+        "bestFor": "Hikers and history buffs; not for families"
+      }
+    ],
+    "itineraries": [
+      {
+        "days": 1,
+        "title": "West-line sprint",
+        "suitable": "Only if you cannot stay — you will miss the east line and the dawn",
+        "steps": [
+          { "time": "08:00", "title": "Cable car up to Guling", "detail": "First cable car of the day. Buy the CNY 70 summit bus pass at the top.", "duration": "1 h" },
+          { "time": "09:15", "title": "West line: Flower Path and Jinxiu Valley", "detail": "Bai Juyi's azalea walk and the cliff-path valley — the gentlest famous scenery on the mountain.", "duration": "2 h" },
+          { "time": "11:30", "title": "Immortal's Cave and Ruqin Lake", "detail": "The Taoist cave over the valley, then lunch beside the misty lake.", "duration": "2 h" },
+          { "time": "14:00", "title": "Hampo Pass viewpoint", "detail": "The classic overlook — Poyang Lake below on clear days. Then decide: skip the Three-Step Waterfall if pressed.", "duration": "1.5 h" },
+          { "time": "16:00", "title": "Guling town wander, then cable car down", "detail": "A quick walk past the colonial villas before the last cable car.", "duration": "1.5 h" }
+        ],
+        "note": "One day covers the west line only — the cultural core. You miss the Three-Step Waterfall, Five Old Men Peak, and dawn at Hampo Pass, which is Lushan's signature moment."
+      },
+      {
+        "days": 2,
+        "title": "West + east: the classic 2-day plan (recommended)",
+        "suitable": "Most visitors — culture and waterfalls in a comfortable rhythm",
+        "steps": [
+          { "time": "Day 1 · 10:00", "title": "Up by cable car, settle in Guling", "detail": "Drop bags at a Guling hotel, then start the west line: Flower Path, Jinxiu Valley, Immortal's Cave.", "duration": "3.5 h" },
+          { "time": "Day 1 · 15:00", "title": "Ruqin Lake and the villa district", "detail": "The lake's mirror calm is best in afternoon light. Walk the old stone villas — Lushan's unique colonial heritage.", "duration": "2 h" },
+          { "time": "Day 1 · 18:00", "title": "Guling evening", "detail": "Dinner in town — Jiangxi cooking with chili and fermented black beans, plus Lushan cloud-mist tea.", "duration": "evening" },
+          { "time": "Day 2 · 05:30", "title": "Dawn at Hampo Pass", "detail": "First sightseeing bus out. Poyang Lake and the Yangtze on clear mornings; layered mist on misty ones — both are Lushan.", "duration": "2 h" },
+          { "time": "Day 2 · 08:30", "title": "Three-Step Waterfall", "detail": "The 155m cascade in three tiers. The 2,600-step descent is optional — the top viewing platform is spectacular alone. Cable car down the gorge (CNY 80 round trip) saves the climb back.", "duration": "4 h" },
+          { "time": "Day 2 · 14:00", "title": "White Deer Grotto Academy or descend", "detail": "One of China's Four Great Academies, reachable by ring-road bus. Or take the cable car down and head for Jiujiang.", "duration": "2 h" }
+        ],
+        "note": "This is the balanced Lushan: culture on day one, nature and dawn on day two. The 7-day ticket means you could stretch it over three relaxed days without extra cost."
+      },
+      {
+        "days": 3,
+        "title": "Relaxed 3-day escape", "suitable": "Summer heat-escapees, photographers, and slow travelers", "steps": [
+          { "time": "Day 1 · 10:00", "title": "Cable car up, west line at leisure", "detail": "Same west line as the 2-day plan but unhurried — stop for tea, linger at Ruqin Lake.", "duration": "afternoon" },
+          { "time": "Day 2 · 05:30", "title": "Hampo Pass dawn, then Five Old Men Peak", "detail": "Dawn viewpoint first, then the Five Old Men ridge — the mountain's only real climb, with 360-degree views.", "duration": "5 h" },
+          { "time": "Day 2 · 14:00", "title": "Three-Step Waterfall full descent", "detail": "With fresh legs, do the full 2,600-step descent and back up — or down-and-up via the gorge cable car (CNY 80).", "duration": "4 h" },
+          { "time": "Day 3 · 09:00", "title": "Lushan Botanical Garden and villas", "detail": "3,400+ plant species and the garden's misty greenhouse paths — a gentle morning.", "duration": "2.5 h" },
+          { "time": "Day 3 · 13:00", "title": "Ring sights: White Deer Grotto or Xiufeng", "detail": "The 7-day ticket covers the ring attractions — the academy or Xiufeng's waterfall (the one Li Bai made famous).", "duration": "afternoon" },
+          { "time": "Day 3 · 17:00", "title": "Cable car down to Jiujiang", "detail": "Descend and catch the evening train.", "duration": "1 h" }
+        ],
+        "note": "Three days unlocks the ring sights included in the same ticket — the whole thing costs no more than the 2-day version. Summer weekdays are the sweet spot."
+      }
+    ],
+    "stays": [
+      {
+        "name": "Guling town center",
+        "location": "summit",
+        "price": "CNY 200-500 per room · dorms CNY 100-180",
+        "sunriseAccess": "15 min bus to Hampo Pass",
+        "pros": ["Steps from restaurants, tea houses, and bus stops", "The evening town stroll is a genuine highlight", "Every price range available"],
+        "cons": ["Summer weekends book out weeks ahead", "Standard rooms are dated in older hotels"],
+        "bestFor": "First-timers and anyone who wants convenience"
+      },
+      {
+        "name": "Ruqin Lake area",
+        "location": "summit",
+        "price": "CNY 250-600 per room",
+        "sunriseAccess": "Mist over the lake at your doorstep; 15 min to Hampo Pass",
+        "pros": ["The most beautiful location on the mountain", "Photographers can shoot dawn without moving", "Quieter than the town center"],
+        "cons": ["Fewer restaurants nearby", "Popular with tour groups in summer"],
+        "bestFor": "Photographers and couples"
+      },
+      {
+        "name": "Restored colonial villa",
+        "location": "summit",
+        "price": "CNY 400-1,000 per room",
+        "sunriseAccess": "Varies — most are within the villa district, central",
+        "pros": ["Sleep inside history — the 1930s stone villas are Lushan's soul", "Warm wood interiors and garden terraces", "The unique stay nobody else offers"],
+        "cons": ["Premium price", "Historic buildings can be creaky and cool in winter"],
+        "bestFor": "Culture travelers and anniversary-style trips"
+      },
+      {
+        "name": "Jiujiang city (base)",
+        "location": "base",
+        "price": "CNY 150-350 per room",
+        "sunriseAccess": "None — you ride up after dawn",
+        "pros": ["Cheaper and easier to book", "Good restaurants and nightlife", "Convenient for train connections"],
+        "cons": ["You miss the dawn entirely", "An hour of transfers each day"],
+        "bestFor": "Budget travelers who accept missing sunrise"
+      }
+    ],
+    "seasons": [
+      {
+        "season": "Spring",
+        "months": "April-May",
+        "weather": "15-25 C, azaleas blooming, valley mist until mid-morning",
+        "views": "The misty, layered look that made Lushan famous — watercolor mornings",
+        "crowds": "moderate",
+        "score": 4,
+        "highlight": "Azaleas and poetry-season light; Qingming holiday (early April) spikes crowds"
+      },
+      {
+        "season": "Summer",
+        "months": "June-August",
+        "weather": "22-26 C on the mountain — the classic heat escape",
+        "views": "Frequent mist; clear mornings after rain",
+        "crowds": "busy",
+        "score": 4,
+        "highlight": "The coolest famous mountain in China in July — but go on weekdays and book early"
+      },
+      {
+        "season": "Autumn",
+        "months": "September-November",
+        "weather": "10-22 C, driest and clearest of the year",
+        "views": "Highest visibility — Poyang Lake clearly visible from Hampo Pass; fall colors in the valleys",
+        "crowds": "moderate",
+        "score": 5,
+        "highlight": "The photographer's season — crisp air, layered foliage, and the best dawn odds"
+      },
+      {
+        "season": "Winter",
+        "months": "December-March",
+        "weather": "-5 to 5 C, occasional snow, rime ice on the ridges",
+        "views": "Snow-dusted villas and mist — a quiet, atmospheric Lushan",
+        "crowds": "quiet",
+        "score": 3,
+        "highlight": "Entry drops to CNY 135 and March is free — the budget season, with occasional road closures after heavy snow"
+      }
+    ],
+    "costs": {
+      "entry": "CNY 160 peak (Apr-Nov) · CNY 135 off-peak (Dec-Mar) · 7-day pass, multiple entries · March is free",
+      "cableCar": "Summit cable car CNY 120 round trip (7-10 min, no car sickness) · or public bus CNY 10",
+      "shuttle": "Sightseeing bus CNY 90 incl. summit transfer (or CNY 70 summit-only) — 7 days unlimited",
+      "hotelDorm": "CNY 100-180 per bed",
+      "hotelPrivate": "CNY 200-600 per room · villas CNY 400-1,000",
+      "mealBudget": "CNY 40-80 per meal · Lushan cloud-mist tea from CNY 30 a pot",
+      "calculator": {
+        "entryPeak": 160,
+        "entryOffPeak": 135,
+        "cableCar": 60,
+        "shuttle": 0,
+        "dormPerNight": 150,
+        "privatePerNight": 300,
+        "baseHotelPerNight": 200,
+        "mealPerDay": 150,
+        "canyonRailway": 80,
+        "extraLabel": "Sandiequan gorge cable car (round trip)"
+      },
+      "note": "Excludes the sightseeing bus (CNY 90 for 7 days incl. summit transfer) — add it for a complete estimate. Off-peak (Dec-Mar) saves CNY 25 on entry; March is free. The gorge cable car is optional.",
+      "samplePlans": [
+        {
+          "tier": "budget",
+          "days": 2,
+          "totalPerPerson": "~CNY 450",
+          "items": ["Off-peak entry CNY 135", "Public bus up + sightseeing bus CNY 100", "Guling dorm bed CNY 150", "Street food and snacks ~CNY 80"]
+        },
+        {
+          "tier": "mid",
+          "days": 2,
+          "totalPerPerson": "~CNY 800",
+          "items": ["Peak entry CNY 160", "Cable car round trip CNY 120", "Sightseeing bus CNY 90", "Private room CNY 300 (shared by 2)", "Restaurant meals CNY 250"]
+        },
+        {
+          "tier": "premium",
+          "days": 3,
+          "totalPerPerson": "~CNY 1,500",
+          "items": ["Peak entry CNY 160", "Cable car round trip CNY 120", "Sightseeing bus CNY 90", "Gorge cable car CNY 80", "Colonial villa 2 nights CNY 900 (shared by 2)", "Dining and tea CNY 350"]
+        }
+      ]
+    },
+    "comparisons": [
+      {
+        "slug": "huangshan",
+        "headline": "Lushan vs Huangshan: the poems vs the epic",
+        "differences": [
+          "Huangshan is dramatic granite, sea of clouds, and stair-climbing; Lushan is gentle culture — villas, tea, and misty viewpoints",
+          "Lushan's sightseeing bus reaches nearly everything; Huangshan requires hours on stone steps",
+          "Both are UNESCO sites — Huangshan for landscape, Lushan as a cultural landscape",
+          "Lushan's 7-day ticket is cheaper and more flexible; Huangshan's 2-day rhythm is more focused",
+          "Summer: Lushan is a classic heat-escape; Huangshan in July-August is rainy and foggy"
+        ],
+        "verdict": "Knee-friendly or time-poor: Lushan. The full Chinese mountain experience: Huangshan. They are complementary, not competitors."
+      },
+      {
+        "slug": "sanqingshan",
+        "headline": "Lushan vs Sanqingshan: Jiangxi's culture vs Jiangxi's scenery",
+        "differences": [
+          "Sanqingshan is a granite spectacle with real (if easy) walking; Lushan is a misty cultural retreat",
+          "Sanqingshan's boardwalk delivers constant cliff views; Lushan's rewards are quieter — lake mirrors, villa lanes, poetry",
+          "Summer favors Lushan (cool 22 C); autumn favors both equally",
+          "Sanqingshan is 1-2 days; Lushan's 7-day ticket suits 2-3 relaxed days",
+          "They sit 2.5h apart — the natural Jiangxi double-header"
+        ],
+        "verdict": "Culture, ease, and summer cool: Lushan. Granite scenery and a proper mountain feel: Sanqingshan. Do both if your itinerary allows — they complement rather than compete."
+      },
+      {
+        "slug": "emeishan",
+        "headline": "Lushan vs Emei Shan: the two 'easy culture mountains'",
+        "differences": [
+          "Both are gentle, cable-car-served UNESCO mountains — Emei is a 2,000-year Buddhist pilgrimage site; Lushan is a poets-and-villas cultural retreat",
+          "Emei's Golden Summit (3,099m) is the bigger show; Lushan's charm is the town itself at 1,100m",
+          "Emei's famous monkeys are a hazard; Lushan has none",
+          "Emei pairs with Chengdu and Leshan; Lushan pairs with Poyang Lake and Jiangxi's ring sights",
+          "Both are 2-day trips at similar cost — the decision is Buddhist pageantry vs literary atmosphere"
+        ],
+        "verdict": "Golden temples and pilgrimage energy: Emei Shan. Poetry, villas, and cloud-mist tea: Lushan. Flip a coin — both are wonderful easy mountains."
+      }
+    ],
+    "proTips": [
+      "Take the high-speed train to Jiujiang Station, not 'Lushan Station' — Lushan Station is far from the mountain with poor connections.",
+      "Buy the CNY 90 sightseeing bus pass on day one: sights are 10+ km apart and the pass covers your summit transfer too.",
+      "Dawn at Hampo Pass is the signature Lushan moment — take the first 5:30 bus and be on the platform by 6.",
+      "The Three-Step Waterfall's 2,600 steps are optional: the top viewing platform is spectacular, and the gorge cable car (CNY 80) handles the descent.",
+      "March is entirely free, and off-peak entry (Dec-Mar) is CNY 135 — the budget window with 80% fewer visitors.",
+      "Private cars are banned in peak season; non-peak driving needs a vehicle reservation (about CNY 45) — the cable car and buses are simpler.",
+      "Stay in Guling town center at least one night: the evening atmosphere after day-trippers leave is the best part of Lushan.",
+      "Mist clears by mid-morning — photographers should shoot west line and lakes before 10 AM.",
+      "The 7-day ticket covers ring sights too: White Deer Grotto Academy and Xiufeng's waterfall (the Li Bai poem) are included, not extra."
+    ],
+    "packing": [
+      { "item": "Light jacket or sweater", "why": "Even summer sits at 22 C on the mountain; evenings need a layer" },
+      { "item": "Rain jacket or umbrella", "why": "The famous mist is literally weather — drizzle appears and disappears" },
+      { "item": "Comfortable walking shoes", "why": "Gentle paths but long days; the waterfall stairs demand grip" },
+      { "item": "Camera with telephoto", "why": "Layered mist and lake views compress into classic watercolor frames" },
+      { "item": "Insect repellent (summer)", "why": "The botanical garden and valley trails are buggy" },
+      { "item": "Sunscreen", "why": "UV is strong at altitude even when hazy" },
+      { "item": "Thermos for tea", "why": "Lushan cloud-mist tea tastes better at a viewpoint than in the shop" },
+      { "item": "ID card / passport", "why": "Real-name reservation required via the 'Yijiyou Lushan' mini-program" },
+      { "item": "Snacks and water", "why": "Sight buses stop at busy spots; trail sections between sights are dry" }
+    ]
+  }
+}

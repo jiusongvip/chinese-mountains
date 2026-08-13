@@ -1,0 +1,76 @@
+---
+import type { SeasonProfile } from "../../types/mountain";
+
+interface Props {
+  seasons: SeasonProfile[];
+}
+const { seasons } = Astro.props;
+
+const crowdLabel: Record<SeasonProfile["crowds"], string> = {
+  busy: "Crowded",
+  moderate: "Manageable",
+  quiet: "Quiet",
+};
+const crowdStyle: Record<SeasonProfile["crowds"], string> = {
+  busy: "bg-rose-100 text-rose-700",
+  moderate: "bg-amber-100 text-amber-700",
+  quiet: "bg-emerald-100 text-emerald-700",
+};
+---
+<section id="seasons" class="scroll-mt-36 mt-16">
+  <h2 class="text-2xl font-bold tracking-tighter text-slate-900">When to go: the season trade-offs</h2>
+  <p class="mt-2 text-slate-500 text-sm max-w-[60ch]">Every season works — but each one is a different mountain. Pick the row that matches your priorities.</p>
+
+  <div class="hidden md:block mt-6 overflow-x-auto rounded-xl border border-slate-200">
+    <table class="w-full text-sm bg-white">
+      <thead>
+        <tr class="bg-slate-50 text-left text-xs uppercase tracking-wider text-slate-400">
+          <th class="px-4 py-3 font-medium">Season</th>
+          <th class="px-4 py-3 font-medium">Weather</th>
+          <th class="px-4 py-3 font-medium">Views</th>
+          <th class="px-4 py-3 font-medium">Crowds</th>
+          <th class="px-4 py-3 font-medium">Score</th>
+        </tr>
+      </thead>
+      <tbody>
+        {seasons.map((s) => (
+          <tr class={`border-t border-slate-100 align-top ${s.score === 5 ? "bg-accent-50/60" : ""}`}>
+            <td class="px-4 py-4">
+              <div class="font-semibold text-slate-900">{s.season}</div>
+              <div class="text-xs text-slate-400 mt-0.5">{s.months}</div>
+            </td>
+            <td class="px-4 py-4 text-slate-600 max-w-[220px]">{s.weather}</td>
+            <td class="px-4 py-4 text-slate-600 max-w-[260px]">
+              {s.views}
+              <div class="text-xs text-slate-400 mt-1">{s.highlight}</div>
+            </td>
+            <td class="px-4 py-4">
+              <span class={`text-xs px-2 py-0.5 rounded-full ${crowdStyle[s.crowds]}`}>{crowdLabel[s.crowds]}</span>
+            </td>
+            <td class="px-4 py-4">
+              <span class="text-amber-500 whitespace-nowrap">{"★".repeat(s.score)}<span class="text-slate-300">{"★".repeat(5 - s.score)}</span></span>
+            </td>
+          </tr>
+        ))}
+      </tbody>
+    </table>
+  </div>
+
+  <div class="md:hidden mt-6 space-y-4">
+    {seasons.map((s) => (
+      <div class={`bg-white border rounded-xl p-5 ${s.score === 5 ? "border-accent" : "border-slate-200"}`}>
+        <div class="flex items-center justify-between">
+          <h3 class="font-semibold text-slate-900">{s.season}</h3>
+          <span class="text-amber-500 text-sm">{"★".repeat(s.score)}<span class="text-slate-300">{"★".repeat(5 - s.score)}</span></span>
+        </div>
+        <p class="text-xs text-slate-400 mt-0.5">{s.months}</p>
+        <div class="flex flex-wrap gap-2 mt-3 text-xs">
+          <span class={`px-2 py-1 rounded-full ${crowdStyle[s.crowds]}`}>{crowdLabel[s.crowds]}</span>
+        </div>
+        <p class="mt-3 text-sm text-slate-600">{s.weather}</p>
+        <p class="mt-2 text-sm text-slate-600">{s.views}</p>
+        <p class="mt-2 text-xs text-slate-400">{s.highlight}</p>
+      </div>
+    ))}
+  </div>
+</section>

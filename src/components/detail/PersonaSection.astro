@@ -1,0 +1,30 @@
+---
+import type { Persona } from "../../types/mountain";
+
+interface Props {
+  personas: Persona[];
+}
+const { personas } = Astro.props;
+
+const styles: Record<Persona["verdict"], { badge: string; label: string }> = {
+  go: { badge: "bg-emerald-100 text-emerald-700", label: "GO" },
+  skip: { badge: "bg-rose-100 text-rose-700", label: "SKIP" },
+  conditional: { badge: "bg-amber-100 text-amber-700", label: "IT DEPENDS" },
+};
+---
+<section id="personas" class="scroll-mt-36 mt-16">
+  <h2 class="text-2xl font-bold tracking-tighter text-slate-900">Who should go — and who should skip</h2>
+  <p class="mt-2 text-slate-500 text-sm max-w-[60ch]">A quick reality check for six common traveler profiles, based on the real terrain, stairs, and queues.</p>
+  <div class="grid sm:grid-cols-2 lg:grid-cols-3 gap-4 mt-6">
+    {personas.map((p) => (
+      <div class="bg-white border border-slate-200 rounded-xl p-5 flex flex-col">
+        <div class="flex items-center justify-between gap-2 mb-3">
+          <h3 class="font-semibold text-slate-900 text-sm">{p.label}</h3>
+          <span class={`shrink-0 text-[10px] font-bold tracking-wider px-2 py-1 rounded-full uppercase ${styles[p.verdict].badge}`}>{styles[p.verdict].label}</span>
+        </div>
+        <p class="text-sm font-medium text-slate-800">{p.summary}</p>
+        <p class="text-sm text-slate-500 leading-relaxed mt-2">{p.advice}</p>
+      </div>
+    ))}
+  </div>
+</section>

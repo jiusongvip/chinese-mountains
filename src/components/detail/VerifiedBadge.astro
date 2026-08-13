@@ -1,0 +1,10 @@
+---
+interface Props {
+  date: string;
+}
+const { date } = Astro.props;
+---
+<p class="flex items-center gap-1.5 text-xs text-slate-400">
+  <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+  Information verified: {date} — prices and opening status change; recheck official sources before you travel.
+</p>

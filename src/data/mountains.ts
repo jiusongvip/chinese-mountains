@@ -1,11 +1,16 @@
- import type { Mountain, VibeGroup } from "../types/mountain";
+import type { Mountain, VibeGroup, MountainDepth } from "../types/mountain";
 import raw from "./mountains-data.json";
+import depthRaw from "./mountains-depth.json";
 
 export const mountains: Mountain[] = raw.mountains as Mountain[];
 export const vibeGroups: VibeGroup[] = raw.vibes as VibeGroup[];
+export const depthData = depthRaw as Record<string, MountainDepth>;
 
 export function getMountain(slug: string): Mountain | undefined {
   return mountains.find(m => m.slug === slug);
+}
+export function getMountainDepth(slug: string): MountainDepth | undefined {
+  return depthData[slug];
 }
 export function getMountainsByVibe(vibeId: string): Mountain[] {
   const group = vibeGroups.find(v => v.id === vibeId);

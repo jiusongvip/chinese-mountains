@@ -1,7 +1,18 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MountainCard from "../../components/MountainCard.astro";
-import { mountains, getMountain, getMountainsByRegion } from "../../data/mountains";
+import DetailSubNav from "../../components/detail/DetailSubNav.astro";
+import VerifiedBadge from "../../components/detail/VerifiedBadge.astro";
+import VerdictSection from "../../components/detail/VerdictSection.astro";
+import PersonaSection from "../../components/detail/PersonaSection.astro";
+import RouteCompare from "../../components/detail/RouteCompare.astro";
+import ItineraryPlanner from "../../components/detail/ItineraryPlanner.tsx";
+import StayCompare from "../../components/detail/StayCompare.astro";
+import CostSection from "../../components/detail/CostSection.astro";
+import SeasonCompare from "../../components/detail/SeasonCompare.astro";
+import VsSection from "../../components/detail/VsSection.astro";
+import PackingChecklist from "../../components/detail/PackingChecklist.tsx";
+import { mountains, getMountain, getMountainsByRegion, getMountainDepth } from "../../data/mountains";
 
 export function getStaticPaths() {
   return mountains.map((m) => ({ params: { slug: m.slug } }));
@@ -10,6 +21,8 @@ export function getStaticPaths() {
 const { slug } = Astro.params;
 const mountain = getMountain(slug!);
 if (!mountain) return Astro.redirect("/404");
+
+const depth = getMountainDepth(slug!);
 
 const related = getMountainsByRegion(mountain.location.region)
   .filter((m) => m.id !== mountain.id)
@@ -30,6 +43,19 @@ const faqSchema = {
     acceptedAnswer: { "@type": "Answer", text: f.a }
   }))
 };
+const navSections = depth
+  ? [
+      { id: "verdict", label: "Verdict" },
+      { id: "personas", label: "Who It's For" },
+      { id: "routes", label: "Routes" },
+      { id: "itineraries", label: "Itineraries" },
+      { id: "stays", label: "Where to Stay" },
+      { id: "costs", label: "Costs" },
+      { id: "seasons", label: "Seasons" },
+      { id: "vs", label: "Compare" },
+      { id: "faq", label: "FAQ" },
+    ]
+  : [{ id: "faq", label: "FAQ" }];
 ---
 
 <BaseLayout title={title} description={desc} ogImage={heroImage}>
@@ -96,7 +122,7 @@ const faqSchema = {
                 ))}
               </div>
 
-              <div class="mt-6 flex gap-2">
+              <div class="mt-6 flex gap-2 flex-wrap">
                 <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">
                   Scenery {mountain.rating.scenery}/5
                 </span>
@@ -106,10 +132,32 @@ const faqSchema = {
                 {mountain.culture.unescoSite && (
                   <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>
                 )}
+                {depth && (
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-900 text-white">
+                    Editor {depth.verdict.score}/10
+                  </span>
+                )}
               </div>
+
+              {depth && (
+                <div class="mt-5 pt-4 border-t border-slate-100">
+                  <VerifiedBadge date={depth.verifiedDate} />
+                </div>
+              )}
             </div>
           </div>
         </div>
+
+        {depth && (
+          <>
+            <div class="max-w-[48rem] mx-auto">
+              <VerdictSection depth={depth} name={mountain.name.en} />
+            </div>
+            <div class="mt-10">
+              <DetailSubNav sections={navSections} />
+            </div>
+          </>
+        )}
 
         <div class="max-w-[48rem] mx-auto">
           <div class="prose prose-slate max-w-none">
@@ -161,15 +209,59 @@ const faqSchema = {
               ))}
             </ul>
 
-            <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">When to Go</h2>
-            <p class="text-slate-600 leading-relaxed">{mountain.whenToGo}</p>
+            {!depth && mountain.whenToGo && (
+              <>
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">When to Go</h2>
+                <p class="text-slate-600 leading-relaxed whitespace-pre-line">{mountain.whenToGo}</p>
+              </>
+            )}
+          </div>
 
+          {depth && (
+            <>
+              <PersonaSection personas={depth.personas} />
+              <RouteCompare routes={depth.routes} />
+              <section id="itineraries" class="scroll-mt-36 mt-16">
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-900">Plan your trip: day-by-day</h2>
+                <p class="mt-2 text-slate-500 text-sm max-w-[60ch]">Three tested ways to see the mountain, from a rushed day trip to a full canyon expedition. Switch tabs to compare.</p>
+                <div class="mt-6">
+                  <ItineraryPlanner itineraries={depth.itineraries} client:load />
+                </div>
+              </section>
+              <StayCompare stays={depth.stays} />
+              <section id="costs" class="scroll-mt-36 mt-16">
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-900">What it really costs</h2>
+                <p class="mt-2 text-slate-500 text-sm max-w-[60ch]">Straight price ranges for a per-person trip — three tested styles and every charge spelled out. No math required.</p>
+                <div class="mt-6">
+                  <CostSection costs={depth.costs} />
+                </div>
+              </section>
+              <SeasonCompare seasons={depth.seasons} />
+              <VsSection comparisons={depth.comparisons} />
+              <section id="protips" class="scroll-mt-36 mt-16">
+                <h2 class="text-2xl font-bold tracking-tighter text-slate-900">Editor's pro tips</h2>
+                <div class="mt-6 space-y-3">
+                  {depth.proTips.map((tip) => (
+                    <div class="flex items-start gap-3 bg-white border border-slate-200 rounded-xl p-4">
+                      <span class="shrink-0 w-6 h-6 rounded-full bg-accent-100 text-accent flex items-center justify-center text-xs font-bold mt-0.5">!</span>
+                      <p class="text-sm text-slate-600 leading-relaxed">{tip}</p>
+                    </div>
+                  ))}
+                </div>
+              </section>
+              <section class="mt-16">
+                <PackingChecklist items={depth.packing} storageKey={`packing-${mountain.slug}`} client:load />
+              </section>
+            </>
+          )}
+
+          <div class="prose prose-slate max-w-none">
             <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">How to Get There</h2>
-            <p class="text-slate-600 leading-relaxed">{mountain.howToGetThere}</p>
+            <p class="text-slate-600 leading-relaxed whitespace-pre-line">{mountain.howToGetThere}</p>
 
             {mountain.faqs.length > 0 && (
               <>
-                <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
+                <h2 id="faq" class="scroll-mt-36 text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-6">Frequently Asked Questions</h2>
                 <div class="space-y-4">
                   {mountain.faqs.map((faq, i) => (
                     <details class="group border border-slate-200 rounded-xl overflow-hidden" open={i === 0}>
@@ -243,6 +335,40 @@ const faqSchema = {
     },
     ...(mountain.culture.unescoSite ? { additionalProperty: { "@type": "PropertyValue", name: "UNESCO World Heritage", value: String(mountain.culture.yearDesignated) } } : {}),
   })} />
+
+  {depth && depth.routes.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "ItemList",
+      name: "Ways to reach " + mountain.name.en,
+      itemListElement: depth.routes.map((r, i) => ({
+        "@type": "ListItem",
+        position: i + 1,
+        name: r.name,
+        description: r.bestFor,
+      })),
+    })} />
+  )}
+
+  {depth && depth.itineraries.length > 0 && (
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "TouristTrip",
+      name: mountain.name.en + " travel itineraries",
+      description: "Tested day-by-day itineraries for " + mountain.name.en,
+      itinerary: depth.itineraries.map((it) => ({
+        "@type": "Itinerary",
+        name: it.title + " (" + it.days + " day" + (it.days > 1 ? "s" : "") + ")",
+        description: it.suitable + ". " + it.note,
+        itemListElement: it.steps.map((s, i) => ({
+          "@type": "ListItem",
+          position: i + 1,
+          name: s.title,
+          description: s.detail,
+        })),
+      })),
+    })} />
+  )}
 </BaseLayout>
 
 <script>

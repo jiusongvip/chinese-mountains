@@ -1,0 +1,48 @@
+---
+import type { MountainDepth } from "../../types/mountain";
+
+interface Props {
+  depth: MountainDepth;
+  name: string;
+}
+const { depth, name } = Astro.props;
+const v = depth.verdict;
+const pct = Math.round((v.score / 10) * 100);
+---
+<section id="verdict" class="scroll-mt-36 mt-12">
+  <div class="bg-slate-900 text-white rounded-2xl overflow-hidden">
+    <div class="grid md:grid-cols-[auto_1fr]">
+      <div class="flex flex-col items-center justify-center gap-1 px-8 py-8 bg-accent">
+        <span class="text-5xl font-bold tracking-tighter">{v.score}</span>
+        <span class="text-xs uppercase tracking-widest text-white/80">Editor score /10</span>
+      </div>
+      <div class="p-8">
+        <h2 class="text-2xl font-bold tracking-tighter">Is {name} worth it?</h2>
+        <p class="mt-2 text-lg text-white/90 font-medium">{v.headline}</p>
+        <div class="mt-6 grid md:grid-cols-3 gap-6 text-sm leading-relaxed">
+          <div>
+            <div class="flex items-center gap-1.5 text-emerald-400 font-semibold uppercase tracking-wider text-xs mb-2">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M20 6L9 17l-5-5"/></svg>
+              Go for it if
+            </div>
+            <p class="text-white/85">{v.worthIt}</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 text-rose-400 font-semibold uppercase tracking-wider text-xs mb-2">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M18 6L6 18M6 6l12 12"/></svg>
+              Skip it if
+            </div>
+            <p class="text-white/85">{v.skipIf}</p>
+          </div>
+          <div>
+            <div class="flex items-center gap-1.5 text-sky-400 font-semibold uppercase tracking-wider text-xs mb-2">
+              <svg width="13" height="13" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><circle cx="12" cy="12" r="10"/><path d="M12 6v6l4 2"/></svg>
+              Best for
+            </div>
+            <p class="text-white/85">{v.bestFor}</p>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

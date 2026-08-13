@@ -1,0 +1,64 @@
+---
+import type { MountainDepth } from "../../types/mountain";
+
+interface Props {
+  costs: MountainDepth["costs"];
+}
+const { costs } = Astro.props;
+
+const tierMeta: Record<string, { label: string; desc: string; cls: string }> = {
+  budget: { label: "Budget", desc: "Dorm beds, bring your own food", cls: "border-slate-200" },
+  mid: { label: "Mid-range", desc: "Private room shared by two", cls: "border-accent" },
+  premium: { label: "Premium", desc: "Best rooms, everything included", cls: "border-slate-200" },
+};
+
+const priceRows = [
+  { label: "Entry ticket", value: costs.entry },
+  { label: "Cable car / elevator", value: costs.cableCar },
+  { label: "Shuttle / sightseeing bus", value: costs.shuttle },
+  { label: "Dorm bed", value: costs.hotelDorm },
+  { label: "Private room", value: costs.hotelPrivate },
+  { label: "Meals", value: costs.mealBudget },
+];
+
+const note = costs.note ?? costs.calculator?.note;
+---
+
+<div>
+  <div class="grid md:grid-cols-3 gap-4">
+    {costs.samplePlans.map((p) => (
+      <div class:list={["bg-white border rounded-xl p-5", tierMeta[p.tier].cls]}>
+        <div class="flex items-center justify-between">
+          <h3 class="font-bold text-slate-900">{tierMeta[p.tier].label}</h3>
+          <span class="text-[10px] font-bold uppercase tracking-wider bg-slate-100 text-slate-500 px-2 py-0.5 rounded-full">{p.days} days</span>
+        </div>
+        <p class="text-xs text-slate-400 mt-1">{tierMeta[p.tier].desc}</p>
+        <p class="mt-4 text-2xl font-bold tracking-tighter text-slate-900">{p.totalPerPerson}</p>
+        <p class="text-xs text-slate-400">per person</p>
+        <ul class="mt-4 space-y-1.5 text-xs text-slate-500">
+          {p.items.map((item) => (
+            <li class="flex items-start gap-1.5"><span class="text-accent mt-0.5">•</span>{item}</li>
+          ))}
+        </ul>
+      </div>
+    ))}
+  </div>
+
+  <div class="mt-8 bg-white border border-slate-200 rounded-2xl p-6">
+    <h3 class="text-lg font-bold tracking-tighter text-slate-900">Price at a glance</h3>
+    <p class="text-sm text-slate-400 mt-1">Every charge on the mountain, spelled out — no calculator needed.</p>
+    <div class="mt-5 grid sm:grid-cols-2 gap-x-8 gap-y-4">
+      {priceRows.map((r) => (
+        <div class="flex items-start justify-between gap-4 border-b border-slate-100 pb-3">
+          <span class="text-xs uppercase tracking-wider text-slate-400 font-medium pt-0.5 shrink-0">{r.label}</span>
+          <span class="text-sm text-slate-800 text-right font-medium leading-relaxed">{r.value}</span>
+        </div>
+      ))}
+    </div>
+    {note && (
+      <p class="mt-4 text-xs text-slate-400 leading-relaxed">
+        <span class="font-semibold text-slate-500">Note: </span>{note}
+      </p>
+    )}
+  </div>
+</div>

@@ -1,0 +1,51 @@
+---
+interface Props {
+  sections: { id: string; label: string }[];
+}
+const { sections } = Astro.props;
+---
+<nav class="sticky top-16 z-40 bg-white/85 backdrop-blur-md border-b border-slate-200/70">
+  <div class="max-w-[56rem] mx-auto px-6 flex items-center gap-1 overflow-x-auto scrollbar-none">
+    {sections.map((s) => (
+      <a
+        href={`#${s.id}`}
+        data-subnav-link={s.id}
+        class="shrink-0 px-3 py-3 text-sm text-slate-500 hover:text-slate-900 border-b-2 border-transparent hover:border-slate-300 transition-colors no-underline whitespace-nowrap"
+      >
+        {s.label}
+      </a>
+    ))}
+  </div>
+</nav>
+<style is:global>
+  .scrollbar-none {
+    scrollbar-width: none;
+  }
+  .scrollbar-none::-webkit-scrollbar {
+    display: none;
+  }
+</style>
+<script>
+  const links = document.querySelectorAll<HTMLElement>("[data-subnav-link]");
+  const sections = Array.from(links).map((l) => document.getElementById(l.dataset.subnavLink!)).filter(Boolean);
+  const activate = (id: string) => {
+    links.forEach((l) => {
+      if (l.dataset.subnavLink === id) {
+        l.classList.add("text-slate-900", "border-accent");
+        l.classList.remove("text-slate-500", "hover:border-slate-300");
+      } else {
+        l.classList.remove("text-slate-900", "border-accent");
+        l.classList.add("text-slate-500", "hover:border-slate-300");
+      }
+    });
+  };
+  const observer = new IntersectionObserver(
+    (entries) => {
+      entries.forEach((e) => {
+        if (e.isIntersecting) activate(e.target.id);
+      });
+    },
+    { rootMargin: "-96px 0px -70% 0px" }
+  );
+  sections.forEach((s) => s && observer.observe(s));
+</script>
