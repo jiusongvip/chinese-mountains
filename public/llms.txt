@@ -2,61 +2,61 @@
 An independent guide to every famous peak in China. Interactive maps, detailed guides, comparison tools, and a 3-step quiz to help you find your perfect mountain.
 
 ## Key Pages
-- Home (Decision Engine): https://chinese-mountains.com/
-- Explore All Mountains: https://chinese-mountains.com/explore
-- Best Mountains Ranking: https://chinese-mountains.com/best
-- Compare Mountains Tool: https://chinese-mountains.com/compare
-- Travel Guides: https://chinese-mountains.com/guides
-- Photo Gallery: https://chinese-mountains.com/gallery
-- Collections (Five Great Mountains, Buddhist & Daoist peaks): https://chinese-mountains.com/collections
-- About: https://chinese-mountains.com/about
+- Home (Decision Engine): https://www.chinese-mountains.com/
+- Explore All Mountains: https://www.chinese-mountains.com/explore
+- Best Mountains Ranking: https://www.chinese-mountains.com/best
+- Compare Mountains Tool: https://www.chinese-mountains.com/compare
+- Travel Guides: https://www.chinese-mountains.com/guides
+- Photo Gallery: https://www.chinese-mountains.com/gallery
+- Collections (Five Great Mountains, Buddhist & Daoist peaks): https://www.chinese-mountains.com/collections
+- About: https://www.chinese-mountains.com/about
 
 ## Mountain Detail Pages
 Each mountain has a dedicated page at /mountains/{slug} with elevation, difficulty, best season, highlights, cultural significance, how to get there, and FAQs.
-- Mount Huangshan (Yellow Mountain): https://chinese-mountains.com/mountains/huangshan
-- Zhangjiajie: https://chinese-mountains.com/mountains/zhangjiajie
-- Mount Tai (Taishan): https://chinese-mountains.com/mountains/taishan
-- Mount Hua (Huashan): https://chinese-mountains.com/mountains/huashan
-- Mount Emei (Emeishan): https://chinese-mountains.com/mountains/emeishan
-- Mount Everest (Qomolangma): https://chinese-mountains.com/mountains/everest
-- Jade Dragon Snow Mountain: https://chinese-mountains.com/mountains/jade-dragon
-- Mount Wutai: https://chinese-mountains.com/mountains/wutaishan
-- Meili Snow Mountain: https://chinese-mountains.com/mountains/meili-snow
-- Guilin Karst: https://chinese-mountains.com/mountains/guilin
-- Wudang Mountains: https://chinese-mountains.com/mountains/wudang
-- Mount Sanqing: https://chinese-mountains.com/mountains/sanqingshan
-- Tianmen Mountain: https://chinese-mountains.com/mountains/tianmen
-- Mount Siguniang: https://chinese-mountains.com/mountains/siguniang
-- Tianshan Mountains: https://chinese-mountains.com/mountains/tianshan
-- Mount Song: https://chinese-mountains.com/mountains/songshan
-- Mount Heng (Hunan): https://chinese-mountains.com/mountains/hengshan-hunan
-- Mount Heng (Shanxi): https://chinese-mountains.com/mountains/hengshan-shanxi
-- Mount Fanjing: https://chinese-mountains.com/mountains/fanjing
-- Mount Gongga: https://chinese-mountains.com/mountains/gongga
-- Namcha Barwa: https://chinese-mountains.com/mountains/namcha-barwa
-- Mount Kailash: https://chinese-mountains.com/mountains/kailash
-- Changbai Mountain: https://chinese-mountains.com/mountains/changbai
-- Mount Lu (Lushan): https://chinese-mountains.com/mountains/lushan
-- Mount Wuyi: https://chinese-mountains.com/mountains/wuyi
-- Jiuhua Mountain: https://chinese-mountains.com/mountains/jiuhuashan
-- Putuo Mountain: https://chinese-mountains.com/mountains/putuoshan
-- Qingcheng Mountain: https://chinese-mountains.com/mountains/qingcheng
-- Danxia Mountain: https://chinese-mountains.com/mountains/danxia
-- Haba Snow Mountain: https://chinese-mountains.com/mountains/haba-snow
-- Cangshan Mountain: https://chinese-mountains.com/mountains/cangshan
-- Kanas Lake & Mountains: https://chinese-mountains.com/mountains/kanas
-- Hailuogou Glacier: https://chinese-mountains.com/mountains/hailuogou
-- Yandang Mountain: https://chinese-mountains.com/mountains/yandang
-- Mingsha Dunes: https://chinese-mountains.com/mountains/mingsha
-- Laojun Mountain: https://chinese-mountains.com/mountains/laojun
-- Shilin Stone Forest: https://chinese-mountains.com/mountains/shilin
+- Mount Huangshan (Yellow Mountain): https://www.chinese-mountains.com/mountains/huangshan
+- Zhangjiajie: https://www.chinese-mountains.com/mountains/zhangjiajie
+- Mount Tai (Taishan): https://www.chinese-mountains.com/mountains/taishan
+- Mount Hua (Huashan): https://www.chinese-mountains.com/mountains/huashan
+- Mount Emei (Emeishan): https://www.chinese-mountains.com/mountains/emeishan
+- Mount Everest (Qomolangma): https://www.chinese-mountains.com/mountains/everest
+- Jade Dragon Snow Mountain: https://www.chinese-mountains.com/mountains/jade-dragon
+- Mount Wutai: https://www.chinese-mountains.com/mountains/wutaishan
+- Meili Snow Mountain: https://www.chinese-mountains.com/mountains/meili-snow
+- Guilin Karst: https://www.chinese-mountains.com/mountains/guilin
+- Wudang Mountains: https://www.chinese-mountains.com/mountains/wudang
+- Mount Sanqing: https://www.chinese-mountains.com/mountains/sanqingshan
+- Tianmen Mountain: https://www.chinese-mountains.com/mountains/tianmen
+- Mount Siguniang: https://www.chinese-mountains.com/mountains/siguniang
+- Tianshan Mountains: https://www.chinese-mountains.com/mountains/tianshan
+- Mount Song: https://www.chinese-mountains.com/mountains/songshan
+- Mount Heng (Hunan): https://www.chinese-mountains.com/mountains/hengshan-hunan
+- Mount Heng (Shanxi): https://www.chinese-mountains.com/mountains/hengshan-shanxi
+- Mount Fanjing: https://www.chinese-mountains.com/mountains/fanjing
+- Mount Gongga: https://www.chinese-mountains.com/mountains/gongga
+- Namcha Barwa: https://www.chinese-mountains.com/mountains/namcha-barwa
+- Mount Kailash: https://www.chinese-mountains.com/mountains/kailash
+- Changbai Mountain: https://www.chinese-mountains.com/mountains/changbai
+- Mount Lu (Lushan): https://www.chinese-mountains.com/mountains/lushan
+- Mount Wuyi: https://www.chinese-mountains.com/mountains/wuyi
+- Jiuhua Mountain: https://www.chinese-mountains.com/mountains/jiuhuashan
+- Putuo Mountain: https://www.chinese-mountains.com/mountains/putuoshan
+- Qingcheng Mountain: https://www.chinese-mountains.com/mountains/qingcheng
+- Danxia Mountain: https://www.chinese-mountains.com/mountains/danxia
+- Haba Snow Mountain: https://www.chinese-mountains.com/mountains/haba-snow
+- Cangshan Mountain: https://www.chinese-mountains.com/mountains/cangshan
+- Kanas Lake & Mountains: https://www.chinese-mountains.com/mountains/kanas
+- Hailuogou Glacier: https://www.chinese-mountains.com/mountains/hailuogou
+- Yandang Mountain: https://www.chinese-mountains.com/mountains/yandang
+- Mingsha Dunes: https://www.chinese-mountains.com/mountains/mingsha
+- Laojun Mountain: https://www.chinese-mountains.com/mountains/laojun
+- Shilin Stone Forest: https://www.chinese-mountains.com/mountains/shilin
 
 ## Blog
-- First-Timer's Guide: https://chinese-mountains.com/blog/first-timer-guide-2026
-- The Five Great Mountains: https://chinese-mountains.com/blog/5-great-mountains
-- Autumn Photography Guide: https://chinese-mountains.com/blog/autumn-golden-season
-- Best Hiking Mountains 2026: https://chinese-mountains.com/blog/best-hiking-mountains-2026
-- Mountain Photography Guide: https://chinese-mountains.com/blog/mountain-photography-guide
+- First-Timer's Guide: https://www.chinese-mountains.com/blog/first-timer-guide-2026
+- The Five Great Mountains: https://www.chinese-mountains.com/blog/5-great-mountains
+- Autumn Photography Guide: https://www.chinese-mountains.com/blog/autumn-golden-season
+- Best Hiking Mountains 2026: https://www.chinese-mountains.com/blog/best-hiking-mountains-2026
+- Mountain Photography Guide: https://www.chinese-mountains.com/blog/mountain-photography-guide
 
 ## Data Coverage
 37 mountains across 7 regions of China, including elevations, difficulty ratings, seasonal recommendations, UNESCO status, and cultural significance.

@@ -35,7 +35,7 @@ const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
       <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
         <a href="/" class="hover:text-slate-600 no-underline">Home</a>
         <span>/</span>
-        <a href="/guides" class="hover:text-slate-600 no-underline">Guides</a>
+        <a href="/guides/" class="hover:text-slate-600 no-underline">Guides</a>
         <span>/</span>
         <span class="text-slate-600">{guide.title}</span>
       </nav>
@@ -90,7 +90,7 @@ const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
               ))}
             </div>
             {matchedMountains.length > 6 && (
-              <p class="mt-4 text-sm text-slate-400">+{matchedMountains.length - 6} more mountains match this guide. <a href="/explore" class="text-accent hover:underline">Explore all</a></p>
+              <p class="mt-4 text-sm text-slate-400">+{matchedMountains.length - 6} more mountains match this guide. <a href="/explore/" class="text-accent hover:underline">Explore all</a></p>
             )}
           </div>
         )}

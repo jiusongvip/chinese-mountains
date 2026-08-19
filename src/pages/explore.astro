@@ -12,7 +12,7 @@ const itemListSchema = {
     "@type": "ListItem",
     position: i + 1,
     name: m.name.en,
-    url: "https://chinese-mountains.com/mountains/" + m.slug,
+    url: "https://www.chinese-mountains.com/mountains/" + m.slug,
   })),
 };
 ---
@@ -26,8 +26,8 @@ const itemListSchema = {
 </nav>
 <h1 class="text-4xl font-bold tracking-tighter text-slate-900" id="explore-heading">Explore All {mountains.length} Famous Mountains of China</h1>
 <p class="mt-3 text-slate-500 max-w-[50ch]" id="explore-desc">Browse all {mountains.length} mountains. Use the filters to narrow down your options — every entry links to a complete guide with tickets, transport, and seasons.</p>
-<p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-[70ch] bg-slate-50 border border-slate-200 rounded-xl p-4">China's mountains span {new Set(mountains.map(m => m.location.province)).size} provinces and 7 geographic regions, from the sea-of-clouds granite of Huangshan to the 8,000-meter Himalayan giants. Filter by region, difficulty, or vibe (the homepage quiz groups them by travel mood) — or start with our <a href="/best" class="text-accent hover:underline no-underline font-medium">ranked Top 10</a>.</p>
-<a href="/explore" id="clear-filters" class="hidden inline-flex items-center gap-1 mt-4 text-sm text-slate-500 hover:text-slate-700 no-underline">Clear filters</a>
+<p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-[70ch] bg-slate-50 border border-slate-200 rounded-xl p-4">China's mountains span {new Set(mountains.map(m => m.location.province)).size} provinces and 7 geographic regions, from the sea-of-clouds granite of Huangshan to the 8,000-meter Himalayan giants. Filter by region, difficulty, or vibe (the homepage quiz groups them by travel mood) — or start with our <a href="/best/" class="text-accent hover:underline no-underline font-medium">ranked Top 10</a>.</p>
+<a href="/explore/" id="clear-filters" class="hidden inline-flex items-center gap-1 mt-4 text-sm text-slate-500 hover:text-slate-700 no-underline">Clear filters</a>
 
 <div class="flex flex-wrap gap-2 mt-8 mb-6" id="region-filters">
 {allRegions.map((r) => (
@@ -59,7 +59,7 @@ const itemListSchema = {
 <div class="mt-16 pt-12 border-t border-slate-200 grid lg:grid-cols-2 gap-10">
   <div>
     <h2 class="text-2xl font-bold tracking-tighter text-slate-900">How to Choose a Chinese Mountain</h2>
-    <p class="mt-3 text-sm text-slate-600 leading-relaxed">The right mountain depends on three things: <strong class="text-slate-800">season</strong> (spring and autumn suit most peaks; high-altitude ranges are summer-only), <strong class="text-slate-800">interests</strong> (sacred sites like Wutai and Emei vs. landscapes like Huangshan and Zhangjiajie), and <strong class="text-slate-800">fitness</strong> (every major peak has cable cars, but summit walks and pilgrim trails are another story). Our <a href="/#quiz" class="text-accent hover:underline no-underline">3-question quiz</a> matches you in 30 seconds, or compare the heavyweights in our <a href="/best" class="text-accent hover:underline no-underline">Top 10 ranking</a>.</p>
+    <p class="mt-3 text-sm text-slate-600 leading-relaxed">The right mountain depends on three things: <strong class="text-slate-800">season</strong> (spring and autumn suit most peaks; high-altitude ranges are summer-only), <strong class="text-slate-800">interests</strong> (sacred sites like Wutai and Emei vs. landscapes like Huangshan and Zhangjiajie), and <strong class="text-slate-800">fitness</strong> (every major peak has cable cars, but summit walks and pilgrim trails are another story). Our <a href="/#quiz" class="text-accent hover:underline no-underline">3-question quiz</a> matches you in 30 seconds, or compare the heavyweights in our <a href="/best/" class="text-accent hover:underline no-underline">Top 10 ranking</a>.</p>
   </div>
   <div>
     <h2 class="text-2xl font-bold tracking-tighter text-slate-900">By the Numbers</h2>

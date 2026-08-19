@@ -76,7 +76,7 @@ function suitsTags(m: typeof mountains[0]): string {
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><path d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 1 0 6 8c0 1.3.5 2.6 1.5 3.5.8.8 1.3 1.5 1.5 2.5"/><path d="M9 18h6"/><path d="M10 22h4"/></svg>
             Take the Quiz
           </a>
-          <a href="/explore" class="inline-flex items-center gap-2 px-5 py-3 bg-slate-100 text-slate-700 rounded-lg font-medium text-sm hover:bg-slate-200 transition-colors no-underline">
+          <a href="/explore/" class="inline-flex items-center gap-2 px-5 py-3 bg-slate-100 text-slate-700 rounded-lg font-medium text-sm hover:bg-slate-200 transition-colors no-underline">
             <svg class="w-4 h-4" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
             Explore Map
           </a>
@@ -104,7 +104,7 @@ function suitsTags(m: typeof mountains[0]): string {
           <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Photos of China's Mountains</h2>
           <p class="mt-2 text-slate-500 max-w-[62ch]">Real photography from Huangshan's sea of clouds to the Himalaya's 8,000-meter giants — every picture links to a complete guide.</p>
         </div>
-        <a href="/gallery" class="text-sm font-medium text-accent hover:underline no-underline">View the full gallery →</a>
+        <a href="/gallery/" class="text-sm font-medium text-accent hover:underline no-underline">View the full gallery →</a>
       </div>
       <div class="flex gap-4 overflow-x-auto pb-4 -mx-6 px-6 snap-x">
         {galleryMountains.map((m) => (
@@ -298,19 +298,19 @@ function suitsTags(m: typeof mountains[0]): string {
       <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Sacred &amp; Cultural Mountains of China</h2>
       <p class="mt-2 text-slate-500 max-w-[60ch]">For most of Chinese history, mountains were not scenery — they were deities, pilgrimage routes, and places of imperial power. These four traditions explain why.</p>
       <div class="grid md:grid-cols-2 gap-6 mt-10">
-        <a href="/collections/five-great-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/five-great-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
           <h3 class="font-bold text-slate-900 text-lg">The Five Great Mountains (Wuyue)</h3>
           <p class="mt-2 text-sm text-slate-600 leading-relaxed">For 4,000 years, Chinese emperors climbed these five peaks — Mount Tai, Mount Hua, Mount Heng (Hunan), Mount Heng (Shanxi), and Mount Song — to perform the Fengshan sacrifice to heaven and earth. Mount Tai is the most storied, with 72 emperors and 12 emperors&rsquo; inscriptions among its 2,000+ stone tablets. Mount Hua adds adrenaline, with its famous cliff-face Plank Walk.</p>
         </a>
-        <a href="/collections/buddhist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/buddhist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
           <h3 class="font-bold text-slate-900 text-lg">The Four Sacred Buddhist Mountains</h3>
           <p class="mt-2 text-sm text-slate-600 leading-relaxed">Mount Wutai, Mount Emei, Mount Putuo, and Mount Jiuhua are the bodhisattva seats of Chinese Buddhism. Mount Wutai&rsquo;s five terraced peaks hosted 360+ temples at its peak; Mount Emei holds the world&rsquo;s tallest bronze Buddha statue. Pilgrims have walked these stone paths for over 1,500 years.</p>
         </a>
-        <a href="/collections/daoist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/daoist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
           <h3 class="font-bold text-slate-900 text-lg">Daoist Sacred Mountains</h3>
           <p class="mt-2 text-sm text-slate-600 leading-relaxed">Daoism was born among these peaks: Mount Qingcheng, where Zhang Daoling founded the Celestial Masters school in 142 AD; Mount Wudang, the 72-peak complex of martial-arts temples; and Mount Lao, where the legendary Mount Kunlun myths converge with the famous Yin-Yang symbol from the Book of Changes.</p>
         </a>
-        <a href="/collections" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/" class="group bg-white rounded-2xl border border-slate-200 p-6 hover:border-accent hover:shadow-md transition-all no-underline">
           <h3 class="font-bold text-slate-900 text-lg">Sacred High-Altitude Peaks of the West</h3>
           <p class="mt-2 text-sm text-slate-600 leading-relaxed">In Tibet and the western ranges, mountains are gods. Mount Kailash, the axis mundi of four religions, is circumnavigated by pilgrims in a 52-km kora. Meili Snow Mountain&rsquo;s Kawagarbo — unclimbed by choice — is the most sacred peak in Tibetan Buddhism, its golden sunrise visible from Feilai Temple.</p>
         </a>
@@ -328,17 +328,17 @@ function suitsTags(m: typeof mountains[0]): string {
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{unescoPeaks.length} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Globally protected landscapes & culture</p>
         </a>
-        <a href="/collections/buddhist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/buddhist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
           <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Buddhist Sacred Peaks</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{buddhistCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Wutai, Emei, Putuo, Jiuhua & more</p>
         </a>
-        <a href="/collections/daoist-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/daoist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
           <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Daoist Sacred Peaks</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{daoistCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Wudang, Qingcheng, Laojun, Sanqing</p>
         </a>
-        <a href="/collections/five-great-mountains" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/collections/five-great-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
           <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">The Five Great Mountains</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">5 peaks</div>
           <p class="mt-1 text-xs text-slate-500">The imperial Wuyue — 4,000 years old</p>
@@ -353,12 +353,12 @@ function suitsTags(m: typeof mountains[0]): string {
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{easyCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Cable cars, paved paths & gentle trails</p>
         </a>
-        <a href="/gallery" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/gallery/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
           <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Photography Favorites</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">View gallery</div>
           <p class="mt-1 text-xs text-slate-500">The most photogenic peaks in China</p>
         </a>
-        <a href="/explore" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
+        <a href="/explore/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
           <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">All Mountains</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{mountains.length} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Filter by region, difficulty & vibe</p>
@@ -382,7 +382,7 @@ function suitsTags(m: typeof mountains[0]): string {
           <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Top 10 Chinese Mountains to Visit</h2>
           <p class="mt-2 text-slate-500 max-w-[60ch]">Ranked by our composite score of scenery, hiking experience, cultural significance, and accessibility. Click any entry for the full guide.</p>
         </div>
-        <a href="/best" class="text-sm font-medium text-accent hover:underline no-underline">View the full ranking of all {mountains.length} mountains →</a>
+        <a href="/best/" class="text-sm font-medium text-accent hover:underline no-underline">View the full ranking of all {mountains.length} mountains →</a>
       </div>
       <div class="bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
         {topTen.map((m, i) => (
@@ -409,7 +409,7 @@ function suitsTags(m: typeof mountains[0]): string {
           <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Guides & Articles</h2>
           <p class="mt-2 text-slate-500 max-w-[62ch]">In-depth trip reports, seasonal planning guides, and expert advice — written by people who have actually been there.</p>
         </div>
-        <a href="/blog" class="text-sm font-medium text-accent hover:underline no-underline">All articles →</a>
+        <a href="/blog/" class="text-sm font-medium text-accent hover:underline no-underline">All articles →</a>
       </div>
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
         {latestPosts.map((post) => (
@@ -448,7 +448,7 @@ function suitsTags(m: typeof mountains[0]): string {
         ))}
       </div>
       <div class="mt-6 text-center">
-        <a href="/guides" class="text-sm font-medium text-accent hover:underline no-underline">Browse all seasonal & travel guides →</a>
+        <a href="/guides/" class="text-sm font-medium text-accent hover:underline no-underline">Browse all seasonal & travel guides →</a>
       </div>
     </div>
   </section>
@@ -469,7 +469,7 @@ function suitsTags(m: typeof mountains[0]): string {
       </div>
     </div>
   </section>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://chinese-mountains.com","potentialAction":{"@type":"SearchAction","target":"https://chinese-mountains.com/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://www.chinese-mountains.com","potentialAction":{"@type":"SearchAction","target":"https://www.chinese-mountains.com/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",

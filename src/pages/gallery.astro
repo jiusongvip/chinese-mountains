@@ -12,10 +12,10 @@ const itemListSchema = {
     "@type": "ListItem",
     position: i + 1,
     name: m.name.en,
-    url: "https://chinese-mountains.com/mountains/" + m.slug,
+    url: "https://www.chinese-mountains.com/mountains/" + m.slug,
     image: {
       "@type": "ImageObject",
-      url: "https://chinese-mountains.com" + (m.images[0]?.src ?? "/images/placeholder.jpg"),
+      url: "https://www.chinese-mountains.com" + (m.images[0]?.src ?? "/images/placeholder.jpg"),
       caption: m.images[0]?.alt ?? m.name.en,
     },
   })),

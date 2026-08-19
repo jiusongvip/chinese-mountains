@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://chinese-mountains.com/sitemap-index.xml
+Sitemap: https://www.chinese-mountains.com/sitemap-index.xml

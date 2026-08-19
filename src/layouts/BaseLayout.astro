@@ -12,8 +12,10 @@ export interface Props {
 
 const { title, description, noindex = false, skipOG = false, ogImage } = Astro.props;
 const fullTitle = title.includes("Chinese Mountains") ? title : title + " | Chinese Mountains";
-const siteUrl = "https://chinese-mountains.com";
-const pageUrl = new URL(Astro.url.pathname, siteUrl).href;
+const siteUrl = "https://www.chinese-mountains.com";
+const pageUrl = Astro.url.pathname === '/'
+  ? new URL('/', siteUrl).href.replace(/\/$/, '')
+  : new URL(Astro.url.pathname, siteUrl).href;
 const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
 ---
 
@@ -50,7 +52,7 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
   
   <link href="/fonts/geist.css" rel="stylesheet" />
   <link rel="stylesheet" href="/leaflet/leaflet.css" />
-  {!noindex && <link rel="canonical" href={new URL(Astro.url.pathname || '/', siteUrl).href.replace(/\/$/, '')} />}
+  {!noindex && <link rel="canonical" href={pageUrl} />}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <slot name="head" />
 </head>

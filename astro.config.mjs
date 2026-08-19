@@ -37,9 +37,9 @@ export default defineConfig({
       },
     }),
   ],
-  trailingSlash: "never",
+  trailingSlash: "always",
   vite: {
     plugins: [tailwindcss()],
   },
-  site: "https://chinese-mountains.com",
+  site: "https://www.chinese-mountains.com",
 });

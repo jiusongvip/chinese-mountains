@@ -79,7 +79,7 @@ export default function InteractiveMap({ className = "" }: Props) {
           </div>
           <noscript>
             <div className="absolute inset-0 flex items-center justify-center">
-              <a href="/explore" className="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">
+              <a href="/explore/" className="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">
                 Browse all {mountains.length} mountains instead →
               </a>
             </div>
@@ -88,7 +88,7 @@ export default function InteractiveMap({ className = "" }: Props) {
       )}
       {tileError && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
-          Map tiles unavailable — <a href="/explore" className="text-accent font-medium hover:underline">browse the list instead</a>
+          Map tiles unavailable — <a href="/explore/" className="text-accent font-medium hover:underline">browse the list instead</a>
         </div>
       )}
     </div>
