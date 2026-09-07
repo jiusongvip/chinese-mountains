@@ -58,7 +58,7 @@ export default function SeasonalCalendar() {
               />
             </div>
             <div className="p-3">
-              <h4 className="font-medium text-sm text-slate-900">{m.name.en}</h4>
+              <h3 className="font-medium text-sm text-slate-900">{m.name.en}</h3>
               <p className="text-xs text-slate-400 mt-0.5">
                 {m.location.province} · {m.physical.elevation.toLocaleString()}m
               </p>

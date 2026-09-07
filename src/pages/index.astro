@@ -129,6 +129,14 @@ function suitsTags(m: typeof mountains[0]): string {
         <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900">What Are Chinese Mountains?</h2>
         <p class="mt-4 text-lg text-slate-600 leading-relaxed">China is the most mountainous country on Earth. Roughly two-thirds of its territory is covered by mountains, plateaus, and hills, and its famous peaks have shaped Chinese civilization for over 5,000 years. Unlike the wilderness ranges of North America or Europe, most Chinese mountains are <strong class="text-slate-800">living cultural landscapes</strong> — sacred sites where emperors performed rituals, where Buddhist and Daoist monasteries cling to cliffs, and where poets and painters found their greatest muse.</p>
         <p class="mt-4 text-slate-600 leading-relaxed">This guide covers <strong class="text-slate-800">{mountains.length} famous mountains of China</strong> across {provinceCount} provinces and {allRegions.length} geographic regions — from the granite spires of Huangshan to the 8,000-meter giants of the Himalaya, from the karst pillars of Zhangjiajie to the rainbow strata of Zhangye. Every entry includes elevation, difficulty, best season, ticket prices, transport routes, and cultural context, so you can plan a visit with confidence.</p>
+        <div class="mt-6 bg-slate-100/70 rounded-xl border border-slate-200 p-5">
+          <h3 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Sources &amp; further reading</h3>
+          <ul class="mt-3 space-y-1.5 text-sm text-slate-600">
+            <li>- <a class="text-accent hover:underline no-underline" href="https://whc.unesco.org/en/list/" rel="noopener" target="_blank">UNESCO World Heritage List</a> — designation years and heritage criteria for the {unescoCount} UNESCO sites in this guide</li>
+            <li>- <a class="text-accent hover:underline no-underline" href="https://en.wikipedia.org/wiki/List_of_mountains_in_China" rel="noopener" target="_blank">Wikipedia: List of mountains in China</a> — cross-checking elevations and official romanizations</li>
+            <li>- <a class="text-accent hover:underline no-underline" href="https://www.openstreetmap.org/relation/148838" rel="noopener" target="_blank">OpenStreetMap China</a> — geographic coordinates used by our interactive map</li>
+          </ul>
+        </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
           <div class="bg-white rounded-xl border border-slate-200 p-4">
             <div class="text-2xl font-bold text-accent">{mountains.length}</div>
@@ -146,6 +154,11 @@ function suitsTags(m: typeof mountains[0]): string {
             <div class="text-2xl font-bold text-accent">7</div>
             <div class="text-xs text-slate-500 mt-1 uppercase tracking-wider">Regions</div>
           </div>
+        </div>
+        <div class="mt-8 pt-6 border-t border-slate-200 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-slate-500">
+          <span>Written &amp; field-checked by the <a href="/about/" class="text-accent hover:underline font-medium no-underline">Chinese Mountains Editorial Team</a>.</span>
+          <span class="text-slate-300">·</span>
+          <span>Last updated: <time datetime="2026-09-07">September 7, 2026</time></span>
         </div>
       </div>
     </div>
@@ -469,7 +482,27 @@ function suitsTags(m: typeof mountains[0]): string {
       </div>
     </div>
   </section>
-  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://www.chinese-mountains.com","potentialAction":{"@type":"SearchAction","target":"https://www.chinese-mountains.com/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
+
+  <section class="py-20 bg-white border-t border-slate-100">
+    <div class="max-w-[1400px] mx-auto px-6">
+      <div class="max-w-[52rem]">
+        <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Sources &amp; How We Verify Our Data</h2>
+        <p class="mt-3 text-slate-500 leading-relaxed">Elevations, ticket prices, trail conditions, and heritage status on this site are checked against the sources below before publishing — and re-verified whenever a mountain page is updated.</p>
+        <blockquote class="mt-8 border-l-4 border-accent pl-5 text-slate-600 leading-relaxed">
+          <p>&ldquo;Huangshan, known as &lsquo;the loveliest mountain of China&rsquo;, was acclaimed through art and literature during a good part of Chinese history.&rdquo;</p>
+          <cite class="block mt-2 text-sm text-slate-400 not-italic">— <a class="text-accent hover:underline no-underline" href="https://whc.unesco.org/en/list/551/" rel="noopener" target="_blank">UNESCO World Heritage Centre</a>, Mount Huangshan inscription</cite>
+        </blockquote>
+        <ul class="mt-8 space-y-4 text-slate-600 leading-relaxed">
+          <li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><span><cite class="font-medium text-slate-700 not-italic">UNESCO World Heritage Centre</cite> — inscription dossiers and criteria for the {unescoCount} World Heritage sites we cover, including Mount Tai (1987), Huangshan (1990), and Mount Wutai (2009).</span></li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><span><cite class="font-medium text-slate-700 not-italic">Official scenic-area announcements</cite> — ticket prices, cable-car fares, and opening hours quoted on each mountain page are taken from each scenic area&rsquo;s official notice channels and stamped with a &ldquo;last verified&rdquo; date.</span></li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><span><cite class="font-medium text-slate-700 not-italic">China Meteorological Administration climate normals</cite> — the basis for our month-by-month best-season recommendations on every guide.</span></li>
+          <li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><span><cite class="font-medium text-slate-700 not-italic">Editorial field notes</cite> — difficulty ratings come from our own climbs of each route, cross-checked against official trail maps and ranger advice.</span></li>
+        </ul>
+      </div>
+    </div>
+  </section>
+
+  <script type="application/ld+json" set:html={JSON.stringify({"@context":"https://schema.org","@type":"WebSite","name":"Chinese Mountains","url":"https://www.chinese-mountains.com","inLanguage":"en","dateModified":"2026-09-07","author":{"@type":"Organization","name":"Chinese Mountains Editorial Team","url":"https://www.chinese-mountains.com/about/"},"publisher":{"@type":"Organization","name":"Chinese Mountains","url":"https://www.chinese-mountains.com","logo":"https://www.chinese-mountains.com/favicon.svg","sameAs":["https://github.com/jiusongvip/chinese-mountains","https://en.wikipedia.org/wiki/Mountains_of_China"]},"potentialAction":{"@type":"SearchAction","target":"https://www.chinese-mountains.com/explore?q={search_term_string}","query-input":"required name=search_term_string"}})} />
   <script type="application/ld+json" set:html={JSON.stringify({
     "@context": "https://schema.org",
     "@type": "FAQPage",
