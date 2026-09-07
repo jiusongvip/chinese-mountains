@@ -28,7 +28,7 @@ const itemListSchema = {
 >
 <section class="pt-12 pb-20">
   <div class="max-w-[1400px] mx-auto px-6">
-    <nav class="text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
+    <nav class="text-xs text-slate-600 mb-4" aria-label="Breadcrumb">
       <a href="/" class="hover:text-accent no-underline">Home</a>
       <span class="mx-1.5">/</span>
       <span class="text-slate-500">Photo Gallery</span>
@@ -50,7 +50,7 @@ const itemListSchema = {
           <img src={thumb(m.images[0]?.src, 960)} alt={m.images[0]?.alt ?? m.name.en} title={m.name.en + " - " + (m.images[0]?.alt ?? "")} loading="lazy" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
           <div class="p-3">
             <h3 class="font-medium text-sm text-slate-900">{m.name.en}</h3>
-            <p class="text-xs text-slate-400 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m · {m.tourism.difficulty}</p>
+            <p class="text-xs text-slate-600 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m · {m.tourism.difficulty}</p>
             {m.images[0]?.credit && <p class="text-[10px] text-slate-300 mt-1">Photo: {m.images[0].credit}</p>}
           </div>
         </a>

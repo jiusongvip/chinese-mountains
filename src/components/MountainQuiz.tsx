@@ -133,7 +133,7 @@ export default function MountainQuiz() {
               <button key={s.id} onClick={() => handleSeason(s.id)} className={SHARED_BUTTON}>
                 <div className="text-2xl mb-1">{s.icon}</div>
                 <div className="font-medium text-sm text-slate-900">{s.label}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{s.months}</div>
+                <div className="text-xs text-slate-600 mt-0.5">{s.months}</div>
               </button>
             ))}
           </div>
@@ -148,7 +148,7 @@ export default function MountainQuiz() {
             {preferences.map((p) => (
               <button key={p.id} onClick={() => handlePreference(p.id)} className={SHARED_BUTTON}>
                 <div className="font-medium text-sm text-slate-900">{p.label}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{p.desc}</div>
+                <div className="text-xs text-slate-600 mt-0.5">{p.desc}</div>
               </button>
             ))}
           </div>
@@ -163,7 +163,7 @@ export default function MountainQuiz() {
             {difficulties.map((d) => (
               <button key={d.id} onClick={() => handleDifficulty(d.id)} className={SHARED_BUTTON}>
                 <div className="font-medium text-sm text-slate-900">{d.label}</div>
-                <div className="text-xs text-slate-400 mt-0.5">{d.desc}</div>
+                <div className="text-xs text-slate-600 mt-0.5">{d.desc}</div>
               </button>
             ))}
           </div>

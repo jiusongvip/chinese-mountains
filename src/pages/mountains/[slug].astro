@@ -65,7 +65,7 @@ const navSections = depth
   <section class="pt-8 pb-20">
     <div class="max-w-[1400px] mx-auto px-6">
       <div class="max-w-[56rem] mx-auto">
-        <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
+        <nav class="flex items-center gap-2 text-sm text-slate-600 mb-8">
           <a href="/" class="hover:text-slate-600 no-underline">Home</a>
           <span>/</span>
           <a href="/explore/" class="hover:text-slate-600 no-underline">Mountains</a>
@@ -83,7 +83,7 @@ const navSections = depth
                 class="w-full h-full object-cover"
               />
             </div>
-            <p id="photo-credit" class="text-xs text-slate-400 mb-4">{mountain.images[0]?.credit ? "Photo: " + mountain.images[0].credit : ""}</p>
+            <p id="photo-credit" class="text-xs text-slate-600 mb-4">{mountain.images[0]?.credit ? "Photo: " + mountain.images[0].credit : ""}</p>
             {mountain.images.length > 1 && (
               <div class="flex gap-2 mb-6 overflow-x-auto pb-1" role="tablist" aria-label="Photo gallery">
                 {mountain.images.map((img, i) => (
@@ -107,7 +107,7 @@ const navSections = depth
           <div class="lg:col-span-1">
             <div class="bg-white border border-slate-200 rounded-xl p-6 sticky top-24">
               <h1 class="text-2xl font-bold tracking-tighter text-slate-900 leading-tight">{mountain.name.en}</h1>
-              <p class="text-sm text-slate-400 mt-1">{mountain.name.zh}</p>
+              <p class="text-sm text-slate-600 mt-1">{mountain.name.zh}</p>
               <p class="text-sm text-slate-500 mt-3 leading-relaxed">{mountain.tagline}</p>
 
               <div class="mt-6 space-y-3">
@@ -119,7 +119,7 @@ const navSections = depth
                   { label: "Duration", value: mountain.tourism.avgVisitDuration },
                 ].map((row) => (
                   <div class="flex items-center justify-between py-2 border-b border-slate-100 last:border-0">
-                    <span class="text-xs text-slate-400 uppercase tracking-wider">{row.label}</span>
+                    <span class="text-xs text-slate-600 uppercase tracking-wider">{row.label}</span>
                     <span class="text-sm font-medium text-slate-700">{row.value}</span>
                   </div>
                 ))}
@@ -133,7 +133,7 @@ const navSections = depth
                   Hiking {mountain.rating.hikingExperience}/5
                 </span>
                 {mountain.culture.unescoSite && (
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">UNESCO</span>
                 )}
                 {depth && (
                   <span class="text-xs px-2 py-0.5 rounded-full bg-slate-900 text-white">
@@ -170,27 +170,27 @@ const navSections = depth
             <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12 mb-4">Mountain Facts</h2>
             <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 mt-4">
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Geology</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Geology</div>
                 <div class="mt-1 text-sm text-slate-700">{mountain.physical.geology}</div>
               </div>
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Protected Area</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Protected Area</div>
                 <div class="mt-1 text-sm text-slate-700">{mountain.physical.area}</div>
               </div>
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Nearest City</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Nearest City</div>
                 <div class="mt-1 text-sm text-slate-700">{mountain.location.nearestCity}</div>
               </div>
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Entry Ticket</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Entry Ticket</div>
                 <div class="mt-1 text-sm text-slate-700">{mountain.tourism.ticketPrice}</div>
               </div>
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">UNESCO Status</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">UNESCO Status</div>
                 <div class="mt-1 text-sm text-slate-700">{mountain.culture.unescoSite ? "World Heritage Site since " + mountain.culture.yearDesignated : "Not designated"}</div>
               </div>
               <div class="bg-slate-50 border border-slate-200 rounded-xl p-4">
-                <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Our Ratings</div>
+                <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Our Ratings</div>
                 <div class="mt-1 text-sm text-slate-700">Scenery {mountain.rating.scenery}/5 · Hiking {mountain.rating.hikingExperience}/5 · Culture {mountain.rating.culturalValue}/5 · Access {mountain.rating.accessibility}/5</div>
               </div>
             </div>
@@ -270,7 +270,7 @@ const navSections = depth
                     <details class="group border border-slate-200 rounded-xl overflow-hidden" open={i === 0}>
                       <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors list-none">
                         <span class="font-medium text-slate-900 text-sm">{faq.q}</span>
-                        <span class="text-slate-400 group-open:rotate-180 transition-transform text-lg">+</span>
+                        <span class="text-slate-600 group-open:rotate-180 transition-transform text-lg">+</span>
                       </summary>
                       <div class="px-4 pb-4 text-slate-600 text-sm leading-relaxed">{faq.a}</div>
                     </details>

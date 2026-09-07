@@ -17,7 +17,7 @@ interface Props {
 const { name, zhName, tagline, imageSrc, imageAlt, elevation, province, difficulty, overall, slug } = Astro.props;
 const difficultyColor = {
   easy: "bg-emerald-100 text-emerald-700",
-  moderate: "bg-amber-100 text-amber-700",
+  moderate: "bg-amber-100 text-amber-800",
   hard: "bg-orange-100 text-orange-700",
   extreme: "bg-red-100 text-red-700",
 }[difficulty] ?? "bg-slate-100 text-slate-600";
@@ -31,7 +31,7 @@ const difficultyColor = {
     <div class="flex items-start justify-between gap-2 mb-1">
       <div>
         <h3 class="font-semibold text-slate-900 text-base leading-tight">{name}</h3>
-        <p class="text-xs text-slate-400 mt-0.5">{zhName} · {province}</p>
+        <p class="text-xs text-slate-600 mt-0.5">{zhName} · {province}</p>
       </div>
       <span class="shrink-0 text-sm font-semibold text-accent">{overall}</span>
     </div>

@@ -37,7 +37,7 @@ export default function PackingChecklist({ items, storageKey }: Props) {
       <div className="flex items-center justify-between gap-3 flex-wrap">
         <h3 className="font-bold text-slate-900">Packing checklist</h3>
         <div className="flex items-center gap-3">
-          <span className="text-xs text-slate-400">{done}/{items.length} packed</span>
+          <span className="text-xs text-slate-600">{done}/{items.length} packed</span>
           <button
             onClick={() => setChecked(items.map(() => false))}
             className="text-xs font-medium text-accent hover:underline cursor-pointer"
@@ -60,8 +60,8 @@ export default function PackingChecklist({ items, storageKey }: Props) {
                 className="mt-0.5 w-4 h-4 accent-accent shrink-0 cursor-pointer"
               />
               <span className="text-sm leading-relaxed">
-                <span className={`font-medium ${checked[i] ? "text-slate-400 line-through" : "text-slate-800"}`}>{item.item}</span>
-                <span className="block text-xs text-slate-400 mt-0.5">{item.why}</span>
+                <span className={`font-medium ${checked[i] ? "text-slate-600 line-through" : "text-slate-800"}`}>{item.item}</span>
+                <span className="block text-xs text-slate-600 mt-0.5">{item.why}</span>
               </span>
             </label>
           </li>

@@ -6,7 +6,7 @@ import { thumb } from "../utils/thumb";
 let _L: any = null;
 const CHINA_CENTER: [number, number] = [35.86, 104.19];
 const DEFAULT_ZOOM = 4;
-const TILE_URL = "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+const TILE_URL = "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
 
 function popupHTML(m: Mountain): string {
   const img = thumb(m.images[0]?.src, 640);
@@ -66,7 +66,12 @@ export default function InteractiveMap({ className = "" }: Props) {
       });
       tiles.addTo(map);
 
-      const icon = L.divIcon({ className: "mountain-marker", html: '<div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div>', iconSize: [12, 12], iconAnchor: [6, 6] });
+      const icon = L.divIcon({
+        className: "mountain-marker",
+        html: '<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer"><div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div></div>',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+      });
 
       mountains.forEach((m) => {
         const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })

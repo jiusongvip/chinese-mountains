@@ -18,14 +18,14 @@ const daoist = mountains.filter(m => m.culture.type.includes("Daoist"));
 </a>
 <div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
 <div>
-<a href={`/mountains/${m.slug}/`} class="no-underline"><h2 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h2></a>
+<a href={`/mountains/${m.slug}/`} class="no-underline"><h2 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-600 ml-2">{m.name.zh}</span></h2></a>
 <p class="text-sm text-slate-500 mt-2 line-clamp-3">{m.tagline}</p>
 </div>
 <div class="flex flex-wrap items-center gap-2 mt-3">
 <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.location.province}</span>
 <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{m.physical.elevation.toLocaleString()}m</span>
 <span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">{m.rating.overall}/5</span>
-{m.culture.unescoSite && <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">UNESCO</span>}
+{m.culture.unescoSite && <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">UNESCO</span>}
 </div>
 </div>
 </div>

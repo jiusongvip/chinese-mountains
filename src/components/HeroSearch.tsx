@@ -45,7 +45,7 @@ export default function HeroSearch() {
   return (
     <div ref={ref} className="relative w-full max-w-md">
       <div className="relative">
-        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-400 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
+        <svg className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-slate-600 pointer-events-none" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round"><circle cx="11" cy="11" r="8"/><path d="m21 21-4.3-4.3"/></svg>
         <input
           ref={inputRef}
           type="text"
@@ -54,7 +54,7 @@ export default function HeroSearch() {
           onFocus={() => { if (results.length > 0) setOpen(true); }}
           onKeyDown={handleKeyDown}
           placeholder="Search a mountain..."
-          className="w-full pl-9 pr-4 py-3 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-400 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-shadow shadow-sm"
+          className="w-full pl-9 pr-4 py-3 bg-white border border-slate-300 rounded-lg text-sm text-slate-900 placeholder:text-slate-600 focus:outline-none focus:ring-2 focus:ring-accent/30 focus:border-accent transition-shadow shadow-sm"
           aria-label="Search mountains"
         />
         {query && (
@@ -75,7 +75,7 @@ export default function HeroSearch() {
               <img src={thumb(m.images[0]?.src, 160)} alt={m.name.en} className="w-10 h-10 rounded-lg object-cover shrink-0 bg-slate-100" />
               <div className="min-w-0 flex-1">
                 <div className="font-medium text-sm text-slate-900 truncate">{m.name.en}</div>
-                <div className="text-xs text-slate-400 truncate">{m.name.zh} &middot; {m.location.province} &middot; {m.physical.elevation.toLocaleString()}m</div>
+                <div className="text-xs text-slate-600 truncate">{m.name.zh} &middot; {m.location.province} &middot; {m.physical.elevation.toLocaleString()}m</div>
               </div>
               <span className="text-xs font-semibold text-accent shrink-0">{m.rating.overall}</span>
             </a>

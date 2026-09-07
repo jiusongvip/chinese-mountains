@@ -31,7 +31,7 @@ export default function ItineraryPlanner({ itineraries }: Props) {
       <div className="mt-5 bg-white border border-slate-200 rounded-xl p-6">
         <div className="flex items-start justify-between gap-4 flex-wrap">
           <h3 className="text-lg font-bold tracking-tighter text-slate-900">{plan.title}</h3>
-          <span className="text-xs px-2 py-1 rounded-full bg-amber-100 text-amber-700">{plan.suitable}</span>
+          <span className="text-xs px-2 py-1 rounded-full bg-amber-100 text-amber-800">{plan.suitable}</span>
         </div>
 
         <ol className="mt-6 space-y-0">
@@ -51,7 +51,7 @@ export default function ItineraryPlanner({ itineraries }: Props) {
               <div className="flex flex-wrap items-baseline gap-x-3 gap-y-0.5">
                 <span className="text-xs font-semibold text-accent uppercase tracking-wide whitespace-nowrap">{step.time}</span>
                 <h4 className="font-semibold text-slate-900 text-sm">{step.title}</h4>
-                <span className="text-xs text-slate-400 whitespace-nowrap">{step.duration}</span>
+                <span className="text-xs text-slate-600 whitespace-nowrap">{step.duration}</span>
               </div>
               <p className="mt-1 text-sm text-slate-600 leading-relaxed">{step.detail}</p>
             </li>

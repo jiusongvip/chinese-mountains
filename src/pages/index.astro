@@ -40,7 +40,7 @@ const homeGuides = allGuides.slice(0, 3);
 
 const diffColor = (d: string) => ({
   easy: "bg-emerald-100 text-emerald-700",
-  moderate: "bg-amber-100 text-amber-700",
+  moderate: "bg-amber-100 text-amber-800",
   hard: "bg-orange-100 text-orange-700",
   extreme: "bg-red-100 text-red-700",
 }[d] || "bg-slate-100 text-slate-600");
@@ -82,7 +82,7 @@ function suitsTags(m: typeof mountains[0]): string {
             Explore Map
           </a>
         </div>
-        <div class="flex flex-wrap items-center gap-2 mt-6 text-xs text-slate-400">
+        <div class="flex flex-wrap items-center gap-2 mt-6 text-xs text-slate-600">
           <span class="inline-flex items-center gap-1"><span class="font-semibold text-slate-600">{mountains.length}</span> peaks</span>
           <span class="text-slate-300">-</span>
           <span class="inline-flex items-center gap-1"><span class="font-semibold text-slate-600">7</span> regions</span>
@@ -115,7 +115,7 @@ function suitsTags(m: typeof mountains[0]): string {
             </div>
             <div class="mt-2 flex items-center justify-between">
               <span class="text-sm font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en}</span>
-              <span class="text-xs text-slate-400">{m.images.length} photos</span>
+              <span class="text-xs text-slate-600">{m.images.length} photos</span>
             </div>
             <p class="text-xs text-slate-500 mt-0.5 truncate">{m.location.province} · {m.physical.elevation.toLocaleString()}m</p>
           </a>
@@ -133,9 +133,9 @@ function suitsTags(m: typeof mountains[0]): string {
         <div class="mt-6 bg-slate-100/70 rounded-xl border border-slate-200 p-5">
           <h3 class="text-sm font-semibold text-slate-700 uppercase tracking-wider">Sources &amp; further reading</h3>
           <ul class="mt-3 space-y-1.5 text-sm text-slate-600">
-            <li>- <a class="text-accent hover:underline no-underline" href="https://whc.unesco.org/en/list/" rel="noopener" target="_blank">UNESCO World Heritage List</a> — designation years and heritage criteria for the {unescoCount} UNESCO sites in this guide</li>
-            <li>- <a class="text-accent hover:underline no-underline" href="https://en.wikipedia.org/wiki/List_of_mountains_in_China" rel="noopener" target="_blank">Wikipedia: List of mountains in China</a> — cross-checking elevations and official romanizations</li>
-            <li>- <a class="text-accent hover:underline no-underline" href="https://www.openstreetmap.org/relation/148838" rel="noopener" target="_blank">OpenStreetMap China</a> — geographic coordinates used by our interactive map</li>
+            <li>- <a class="text-accent underline underline-offset-2 hover:no-underline no-underline" href="https://whc.unesco.org/en/list/" rel="noopener" target="_blank">UNESCO World Heritage List</a> — designation years and heritage criteria for the {unescoCount} UNESCO sites in this guide</li>
+            <li>- <a class="text-accent underline underline-offset-2 hover:no-underline no-underline" href="https://en.wikipedia.org/wiki/List_of_mountains_in_China" rel="noopener" target="_blank">Wikipedia: List of mountains in China</a> — cross-checking elevations and official romanizations</li>
+            <li>- <a class="text-accent underline underline-offset-2 hover:no-underline no-underline" href="https://www.openstreetmap.org/relation/148838" rel="noopener" target="_blank">OpenStreetMap China</a> — geographic coordinates used by our interactive map</li>
           </ul>
         </div>
         <div class="grid grid-cols-2 sm:grid-cols-4 gap-4 mt-8">
@@ -171,25 +171,25 @@ function suitsTags(m: typeof mountains[0]): string {
       <p class="mt-2 text-slate-500 max-w-[62ch]">The statistics behind the legends — highest peaks, best scenery, toughest trails, and oldest heritage, computed from our database of {mountains.length} mountains.</p>
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 mt-8">
         <a href={`/mountains/${highest.slug}/`} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Highest Peak</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Highest Peak</div>
           <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{highest.physical.elevation.toLocaleString()}m</div>
           <div class="mt-1 font-semibold text-slate-700">{highest.name.en}</div>
           <p class="mt-1 text-xs text-slate-500">{highest.location.province} · {highest.location.region} region</p>
         </a>
         <a href={`/mountains/${bestSceneryPeak.slug}/`} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Best Scenery</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Best Scenery</div>
           <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{bestSceneryPeak.rating.scenery}/5</div>
           <div class="mt-1 font-semibold text-slate-700">{bestSceneryPeak.name.en}</div>
           <p class="mt-1 text-xs text-slate-500">Rated on our scenery scale across all {mountains.length} peaks</p>
         </a>
         <a href={`/mountains/${extremePeaks[0].slug}/`} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Most Extreme</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Most Extreme</div>
           <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{extremePeaks[0].name.en}</div>
           <div class="mt-1 font-semibold text-slate-700">{extremePeaks.length} extreme peaks</div>
           <p class="mt-1 text-xs text-slate-500">Cliff planks, glacier routes & 8,000m ridges</p>
         </a>
         <a href={`/mountains/${oldestUnesco.slug}/`} class="group bg-slate-50 rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Oldest Heritage Site</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Oldest Heritage Site</div>
           <div class="mt-2 text-3xl font-bold text-slate-900 group-hover:text-accent transition-colors">{oldestUnesco.culture.yearDesignated}</div>
           <div class="mt-1 font-semibold text-slate-700">{oldestUnesco.name.en}</div>
           <p class="mt-1 text-xs text-slate-500">UNESCO World Heritage · {unescoPeaks.length} sites covered</p>
@@ -201,9 +201,9 @@ function suitsTags(m: typeof mountains[0]): string {
           <div class="mt-4 bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
             {topElevations.map((m, i) => (
               <a href={`/mountains/${m.slug}/`} class="flex items-center gap-4 px-5 py-3 hover:bg-slate-50 transition-colors no-underline">
-                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-600")}>{i + 1}</span>
                 <span class="flex-1 font-medium text-slate-800">{m.name.en}</span>
-                <span class="text-xs text-slate-400 hidden sm:block">{m.location.province}</span>
+                <span class="text-xs text-slate-600 hidden sm:block">{m.location.province}</span>
                 <span class="font-bold text-slate-700 text-sm">{m.physical.elevation.toLocaleString()}m</span>
               </a>
             ))}
@@ -214,9 +214,9 @@ function suitsTags(m: typeof mountains[0]): string {
           <div class="mt-4 bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
             {extremePeaks.map((m, i) => (
               <a href={`/mountains/${m.slug}/`} class="flex items-center gap-4 px-5 py-3 hover:bg-slate-50 transition-colors no-underline">
-                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+                <span class={"w-7 h-7 shrink-0 rounded-full flex items-center justify-center text-xs font-bold " + (i === 0 ? "bg-accent text-white" : "bg-slate-100 text-slate-600")}>{i + 1}</span>
                 <span class="flex-1 font-medium text-slate-800">{m.name.en}</span>
-                <span class="text-xs text-slate-400 hidden sm:block">{m.tourism.difficulty}</span>
+                <span class="text-xs text-slate-600 hidden sm:block">{m.tourism.difficulty}</span>
                 <span class="font-bold text-slate-700 text-sm">{m.physical.elevation.toLocaleString()}m</span>
               </a>
             ))}
@@ -270,7 +270,7 @@ function suitsTags(m: typeof mountains[0]): string {
       <p class="mt-2 text-slate-500 mb-8">Compare the heavyweights. Click any row to dive deeper.</p>
       <div class="hidden lg:block overflow-x-auto">
         <table class="w-full text-sm">
-          <thead><tr class="border-b border-slate-200 text-left text-xs text-slate-400 uppercase tracking-wider">
+          <thead><tr class="border-b border-slate-200 text-left text-xs text-slate-600 uppercase tracking-wider">
             <th class="pb-3 font-medium pr-4">Mountain</th>
             <th class="pb-3 font-medium px-2">Elevation</th>
             <th class="pb-3 font-medium px-2">Difficulty</th>
@@ -286,7 +286,7 @@ function suitsTags(m: typeof mountains[0]): string {
                 <td class="py-3 px-2 text-slate-600">{m.physical.elevation.toLocaleString()}m</td>
                 <td class="py-3 px-2"><span class={"text-xs px-2 py-0.5 rounded-full " + diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span></td>
                 <td class="py-3 px-2 text-slate-500 text-xs whitespace-nowrap">{m.tourism.bestSeason.slice(0,2).join(", ")}</td>
-                <td class="py-3 px-2">{m.culture.unescoSite ? <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-700">{m.culture.yearDesignated}</span> : <span class="text-slate-300">-</span>}</td>
+                <td class="py-3 px-2">{m.culture.unescoSite ? <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">{m.culture.yearDesignated}</span> : <span class="text-slate-300">-</span>}</td>
                 <td class="py-3 px-2 text-slate-500 text-xs max-w-[160px] leading-relaxed">{suitsTags(m)}</td>
                 <td class="py-3 px-2 font-semibold text-accent">{m.rating.overall}</td>
               </tr>
@@ -298,8 +298,8 @@ function suitsTags(m: typeof mountains[0]): string {
         {topSix.map(m => (
           <a href={`/mountains/${m.slug}/`} class="flex flex-col bg-white border border-slate-200 rounded-xl p-4 hover:border-accent hover:shadow-sm transition-all no-underline">
             <span class="font-semibold text-slate-900 text-sm">{m.name.en}</span>
-            <span class="text-xs text-slate-400 mt-0.5">{m.physical.elevation.toLocaleString()}m - <span class={diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span></span>
-            {m.culture.unescoSite && <span class="text-xs text-amber-600 mt-1">UNESCO {m.culture.yearDesignated}</span>}
+            <span class="text-xs text-slate-600 mt-0.5">{m.physical.elevation.toLocaleString()}m - <span class={diffColor(m.tourism.difficulty)}>{m.tourism.difficulty}</span></span>
+            {m.culture.unescoSite && <span class="text-xs text-amber-800 mt-1">UNESCO {m.culture.yearDesignated}</span>}
             <span class="text-lg font-bold text-accent mt-2">{m.rating.overall}</span>
           </a>
         ))}
@@ -338,42 +338,42 @@ function suitsTags(m: typeof mountains[0]): string {
       <p class="mt-2 text-slate-500 max-w-[62ch]">Jump straight to the peaks that fit your trip — filtered by heritage status, faith, difficulty, or photography appeal.</p>
       <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mt-8">
         <a href="/explore/?unesco=1" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">UNESCO World Heritage</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">UNESCO World Heritage</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{unescoPeaks.length} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Globally protected landscapes & culture</p>
         </a>
         <a href="/collections/buddhist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Buddhist Sacred Peaks</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Buddhist Sacred Peaks</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{buddhistCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Wutai, Emei, Putuo, Jiuhua & more</p>
         </a>
         <a href="/collections/daoist-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Daoist Sacred Peaks</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Daoist Sacred Peaks</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{daoistCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Wudang, Qingcheng, Laojun, Sanqing</p>
         </a>
         <a href="/collections/five-great-mountains/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">The Five Great Mountains</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">The Five Great Mountains</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">5 peaks</div>
           <p class="mt-1 text-xs text-slate-500">The imperial Wuyue — 4,000 years old</p>
         </a>
         <a href="/explore/?difficulty=extreme" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Extreme Adventures</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Extreme Adventures</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{extremePeaks.length} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Plank walks, glaciers & 8,000m ridges</p>
         </a>
         <a href="/explore/?difficulty=easy" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Family-Friendly</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Family-Friendly</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{easyCount} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Cable cars, paved paths & gentle trails</p>
         </a>
         <a href="/gallery/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">Photography Favorites</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">Photography Favorites</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">View gallery</div>
           <p class="mt-1 text-xs text-slate-500">The most photogenic peaks in China</p>
         </a>
         <a href="/explore/" class="group bg-white rounded-2xl border border-slate-200 p-5 hover:border-accent hover:shadow-md transition-all no-underline">
-          <div class="text-xs uppercase tracking-wider text-slate-400 font-medium">All Mountains</div>
+          <div class="text-xs uppercase tracking-wider text-slate-600 font-medium">All Mountains</div>
           <div class="mt-2 font-bold text-slate-900 text-lg group-hover:text-accent transition-colors">{mountains.length} peaks</div>
           <p class="mt-1 text-xs text-slate-500">Filter by region, difficulty & vibe</p>
         </a>
@@ -401,14 +401,14 @@ function suitsTags(m: typeof mountains[0]): string {
       <div class="bg-white rounded-2xl border border-slate-200 divide-y divide-slate-100 overflow-hidden">
         {topTen.map((m, i) => (
           <a href={`/mountains/${m.slug}/`} class="flex items-center gap-4 sm:gap-6 px-5 sm:px-6 py-4 hover:bg-slate-50 transition-colors no-underline group">
-            <span class={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center text-sm font-bold " + (i < 3 ? "bg-accent text-white" : "bg-slate-100 text-slate-500")}>{i + 1}</span>
+            <span class={"w-8 h-8 sm:w-10 sm:h-10 shrink-0 rounded-full flex items-center justify-center text-sm font-bold " + (i < 3 ? "bg-accent text-white" : "bg-slate-100 text-slate-600")}>{i + 1}</span>
             <div class="min-w-0 flex-1">
-              <h3 class="font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en} <span class="text-xs font-normal text-slate-400">({m.location.province})</span></h3>
+              <h3 class="font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en} <span class="text-xs font-normal text-slate-600">({m.location.province})</span></h3>
               <p class="text-sm text-slate-500 mt-0.5 leading-relaxed truncate sm:whitespace-normal">{m.tagline}</p>
             </div>
             <div class="hidden sm:block text-right shrink-0">
               <div class="text-sm font-bold text-accent">{m.rating.overall}</div>
-              <div class="text-xs text-slate-400">{m.physical.elevation.toLocaleString()}m</div>
+              <div class="text-xs text-slate-600">{m.physical.elevation.toLocaleString()}m</div>
             </div>
           </a>
         ))}
@@ -434,12 +434,12 @@ function suitsTags(m: typeof mountains[0]): string {
             <div class="p-5">
               <div class="flex flex-wrap gap-2 mb-2">
                 {post.tags.slice(0, 2).map((tag) => (
-                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-500">{tag}</span>
+                  <span class="text-xs px-2 py-0.5 rounded-full bg-slate-100 text-slate-600">{tag}</span>
                 ))}
               </div>
               <h3 class="font-semibold text-slate-900 text-base leading-snug group-hover:text-accent transition-colors">{post.title}</h3>
               <p class="text-sm text-slate-500 mt-2 line-clamp-2">{post.excerpt}</p>
-              <div class="flex items-center gap-2 mt-3 text-xs text-slate-400">
+              <div class="flex items-center gap-2 mt-3 text-xs text-slate-600">
                 <span>{post.author}</span>
                 <span>·</span>
                 <time datetime={post.date}>{new Date(post.date).toLocaleDateString("en-US", { year: "numeric", month: "short", day: "numeric" })}</time>
@@ -491,7 +491,7 @@ function suitsTags(m: typeof mountains[0]): string {
         <p class="mt-3 text-slate-500 leading-relaxed">Elevations, ticket prices, trail conditions, and heritage status on this site are checked against the sources below before publishing — and re-verified whenever a mountain page is updated.</p>
         <blockquote class="mt-8 border-l-4 border-accent pl-5 text-slate-600 leading-relaxed">
           <p>&ldquo;Huangshan, known as &lsquo;the loveliest mountain of China&rsquo;, was acclaimed through art and literature during a good part of Chinese history.&rdquo;</p>
-          <cite class="block mt-2 text-sm text-slate-400 not-italic">— <a class="text-accent hover:underline no-underline" href="https://whc.unesco.org/en/list/551/" rel="noopener" target="_blank">UNESCO World Heritage Centre</a>, Mount Huangshan inscription</cite>
+          <cite class="block mt-2 text-sm text-slate-600 not-italic">— <a class="text-accent underline underline-offset-2 hover:no-underline no-underline" href="https://whc.unesco.org/en/list/551/" rel="noopener" target="_blank">UNESCO World Heritage Centre</a>, Mount Huangshan inscription</cite>
         </blockquote>
         <ul class="mt-8 space-y-4 text-slate-600 leading-relaxed">
           <li class="flex items-start gap-2"><span class="text-accent mt-1 shrink-0">&bull;</span><span><cite class="font-medium text-slate-700 not-italic">UNESCO World Heritage Centre</cite> — inscription dossiers and criteria for the {unescoCount} World Heritage sites we cover, including Mount Tai (1987), Huangshan (1990), and Mount Wutai (2009).</span></li>
