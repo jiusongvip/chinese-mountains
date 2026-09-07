@@ -6,7 +6,7 @@ import { thumb } from "../utils/thumb";
 let _L: any = null;
 const CHINA_CENTER: [number, number] = [35.86, 104.19];
 const DEFAULT_ZOOM = 4;
-const TILE_URL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
+const TILE_URL = "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
 
 function popupHTML(m: Mountain): string {
   const img = thumb(m.images[0]?.src, 640);
@@ -69,10 +69,14 @@ export default function InteractiveMap({ className = "" }: Props) {
       const icon = L.divIcon({ className: "mountain-marker", html: '<div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div>', iconSize: [12, 12], iconAnchor: [6, 6] });
 
       mountains.forEach((m) => {
-        L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
+        const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
           .bindPopup(popupHTML(m), { maxWidth: 240, closeButton: false })
           .bindTooltip(m.name.en, { direction: "top", offset: [0, -10] })
           .addTo(map);
+        if (mk._icon) {
+          mk._icon.setAttribute("role", "button");
+          mk._icon.setAttribute("aria-label", "Open guide for " + m.name.en);
+        }
       });
 
       mapRef.current = map;

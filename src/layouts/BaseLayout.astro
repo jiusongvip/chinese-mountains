@@ -48,8 +48,6 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
   <meta name="twitter:image" content={ogImageUrl} />
   </>}
     <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />
-  <link rel="preconnect" href="https://b.basemaps.cartocdn.com" />
-  <link rel="preconnect" href="https://c.basemaps.cartocdn.com" />
   
   <style is:inline>
     /* Geist Sans (variable), self-hosted from geist@1.7.2 */
@@ -58,7 +56,7 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
       src: url("/fonts/Geist-Variable.woff2") format("woff2-variations");
       font-weight: 100 900;
       font-style: normal;
-      font-display: swap;
+      font-display: optional;
     }
   </style>
   <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
