@@ -13,6 +13,7 @@ import SeasonCompare from "../../components/detail/SeasonCompare.astro";
 import VsSection from "../../components/detail/VsSection.astro";
 import PackingChecklist from "../../components/detail/PackingChecklist.tsx";
 import { mountains, getMountain, getMountainsByRegion, getMountainDepth } from "../../data/mountains";
+import { thumb } from "../../utils/thumb";
 
 export function getStaticPaths() {
   return mountains.map((m) => ({ params: { slug: m.slug } }));
@@ -97,7 +98,7 @@ const navSections = depth
                     data-credit={img.credit ?? ""}
                     aria-label={"View photo " + (i + 1)}
                   >
-                    <img src={img.src} alt="" class="w-full h-full object-cover" loading="lazy" />
+                    <img src={thumb(img.src, 160)} alt="" class="w-full h-full object-cover" loading="lazy" />
                   </button>
                 ))}
               </div>
@@ -289,8 +290,7 @@ const navSections = depth
                     zhName={m.name.zh}
                     tagline={m.tagline}
                     imageSrc={m.images[0]?.src ?? "/images/placeholder.jpg"}
-                    imageAlt={m.images[0]?.alt ?? m.name.en}
-                    elevation={m.physical.elevation}
+                    imageAlt={m.images[0]?.alt ?? m.name.en}                    elevation={m.physical.elevation}
                     province={m.location.province}
                     difficulty={m.tourism.difficulty}
                     overall={m.rating.overall}

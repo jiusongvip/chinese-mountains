@@ -1,6 +1,7 @@
 import { useState, useEffect, useRef } from "react";
 import { mountains } from "../data/mountains";
 import type { Mountain } from "../types/mountain";
+import { thumb } from "../utils/thumb";
 
 export default function HeroSearch() {
   const [query, setQuery] = useState("");
@@ -71,7 +72,7 @@ export default function HeroSearch() {
               className={"flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors no-underline " + (i === selected ? "bg-accent-50" : "")}
               onMouseEnter={() => setSelected(i)}
             >
-              <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.name.en} className="w-10 h-10 rounded-lg object-cover shrink-0 bg-slate-100" />
+              <img src={thumb(m.images[0]?.src, 160)} alt={m.name.en} className="w-10 h-10 rounded-lg object-cover shrink-0 bg-slate-100" />
               <div className="min-w-0 flex-1">
                 <div className="font-medium text-sm text-slate-900 truncate">{m.name.en}</div>
                 <div className="text-xs text-slate-400 truncate">{m.name.zh} &middot; {m.location.province} &middot; {m.physical.elevation.toLocaleString()}m</div>

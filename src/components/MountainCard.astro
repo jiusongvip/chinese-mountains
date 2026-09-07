@@ -1,5 +1,7 @@
 ---
-export interface Props {
+import { thumb } from "../utils/thumb";
+
+interface Props {
   name: string;
   zhName: string;
   tagline: string;
@@ -23,7 +25,7 @@ const difficultyColor = {
 
 <a href={`/mountains/${slug}/`} class="group block rounded-xl overflow-hidden bg-white border border-slate-200/80 hover:border-slate-300 hover:shadow-lg transition-all duration-300 no-underline">
   <div class="aspect-[4/3] overflow-hidden bg-slate-100">
-    <img src={imageSrc} alt={imageAlt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+    <img src={thumb(imageSrc, 960)} alt={imageAlt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
   </div>
   <div class="p-4">
     <div class="flex items-start justify-between gap-2 mb-1">

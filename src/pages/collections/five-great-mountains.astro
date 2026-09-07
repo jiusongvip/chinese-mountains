@@ -2,6 +2,7 @@
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MountainCard from "../../components/MountainCard.astro";
 import { mountains } from "../../data/mountains";
+import { thumb } from "../../utils/thumb";
 
 const fiveGreatSlugs = ["taishan", "huashan", "hengshan-hunan", "hengshan-shanxi", "songshan"];
 const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).filter(Boolean);
@@ -18,7 +19,7 @@ const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).fi
 {fiveGreat.map(m => (
 <div class="flex flex-col sm:flex-row gap-6 bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-accent hover:shadow-md transition-all">
 <a href={`/mountains/${m.slug}/`} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
-<img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
+<img src={thumb(m.images[0]?.src, 960)} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
 </a>
 <div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
 <div>

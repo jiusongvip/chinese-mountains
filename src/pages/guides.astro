@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { allGuides } from "../data/guides";
 import { mountains } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 ---
 
 <BaseLayout title="China Mountain Travel Guides" description="Plan your Chinese mountain adventure with seasonal and difficulty-based guides: spring blooms, summer escapes, autumn gold, winter ice, and family peaks.">
@@ -27,7 +28,7 @@ import { mountains } from "../data/mountains";
   return (
     <a href={`/guides/${g.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
       <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-        <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src={thumb(g.image, 640)} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-5">
         <h3 class="font-semibold text-slate-900 text-base">{g.title}</h3>
@@ -56,7 +57,7 @@ import { mountains } from "../data/mountains";
   return (
     <a href={`/guides/${g.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
       <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-        <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+        <img src={thumb(g.image, 640)} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
       </div>
       <div class="p-5">
         <h3 class="font-semibold text-slate-900 text-base">{g.title}</h3>

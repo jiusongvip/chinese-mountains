@@ -51,8 +51,17 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
   <link rel="preconnect" href="https://b.basemaps.cartocdn.com" />
   <link rel="preconnect" href="https://c.basemaps.cartocdn.com" />
   
-  <link href="/fonts/geist.css" rel="stylesheet" />
-  <link rel="stylesheet" href="/leaflet/leaflet.css" />
+  <style is:inline>
+    /* Geist Sans (variable), self-hosted from geist@1.7.2 */
+    @font-face {
+      font-family: "Geist";
+      src: url("/fonts/Geist-Variable.woff2") format("woff2-variations");
+      font-weight: 100 900;
+      font-style: normal;
+      font-display: swap;
+    }
+  </style>
+  <link rel="preload" href="/fonts/Geist-Variable.woff2" as="font" type="font/woff2" crossorigin />
   {!noindex && <link rel="canonical" href={pageUrl} />}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
   <script type="application/ld+json" set:html={JSON.stringify({

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { mountains, allMonths } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 
 const monthSeasons: Record<string, string[]> = {
   January: ["December","January","February"],
@@ -52,7 +53,7 @@ export default function SeasonalCalendar() {
           >
             <div className="aspect-[16/10] overflow-hidden bg-slate-100">
               <img
-                src={m.images[0]?.src}
+                src={thumb(m.images[0]?.src, 640)}
                 alt={m.images[0]?.alt}
                 className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
               />

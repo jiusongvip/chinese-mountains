@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { recommendMountains, mountains } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 
 type Step = "season" | "preference" | "difficulty" | "results";
 
@@ -78,7 +79,7 @@ export default function MountainQuiz() {
             >
               <div className="aspect-[4/3] overflow-hidden bg-slate-100">
                 <img
-                  src={m.images[0]?.src}
+                  src={thumb(m.images[0]?.src, 640)}
                   alt={m.images[0]?.alt}
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />

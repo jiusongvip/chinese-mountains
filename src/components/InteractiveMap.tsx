@@ -1,14 +1,15 @@
 import { useEffect, useRef, useState } from "react";
 import { mountains } from "../data/mountains";
 import type { Mountain } from "../types/mountain";
+import { thumb } from "../utils/thumb";
 
 let _L: any = null;
 const CHINA_CENTER: [number, number] = [35.86, 104.19];
 const DEFAULT_ZOOM = 4;
-const TILE_URL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+const TILE_URL = "https://{s}.basemaps.cartocdn.com/light_all/{z}/{x}/{y}.png";
 
 function popupHTML(m: Mountain): string {
-  const img = m.images[0]?.src ?? "/images/placeholder.jpg";
+  const img = thumb(m.images[0]?.src, 640);
   const alt = m.images[0]?.alt ?? m.name.en;
   const el = m.physical.elevation.toLocaleString();
   return '<div style="font-family:system-ui,sans-serif;min-width:180px">' +
@@ -45,6 +46,13 @@ export default function InteractiveMap({ className = "" }: Props) {
 
     (async () => {
       if (!_L) _L = (await import("leaflet")).default || (await import("leaflet"));
+      if (!document.querySelector("link[data-leaflet]")) {
+        const link = document.createElement("link");
+        link.rel = "stylesheet";
+        link.href = "/leaflet/leaflet.css";
+        link.setAttribute("data-leaflet", "");
+        document.head.appendChild(link);
+      }
       const L = _L;
       if (cancelled || !ref.current) return;
 
@@ -77,7 +85,7 @@ export default function InteractiveMap({ className = "" }: Props) {
     <div ref={ref} className={"relative w-full h-full min-h-[400px] bg-slate-100 rounded-2xl overflow-hidden " + className}>
       {!loaded && (
         <div className="absolute inset-0">
-          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1600} height={900} fetchPriority="high" className="w-full h-full object-cover" />
+          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1280} height={720} fetchPriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
             Interactive map — {mountains.length} peaks

@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { mountains } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 ---
 <BaseLayout title="Compare Chinese Mountains Side by Side (2026)" description="Select and compare Chinese mountains side by side: elevation, difficulty, scenery scores, best season, ticket prices, and ratings in one table.">
 <section class="pt-12 pb-20">
@@ -31,7 +32,7 @@ import { mountains } from "../data/mountains";
 
 <script type="application/json" id="mountains-data" set:html={JSON.stringify(mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => ({
   id: m.id, slug: m.slug, name: m.name.en, zh: m.name.zh,
-  img: m.images[0]?.src ?? '', alt: m.images[0]?.alt ?? m.name.en,
+  img: thumb(m.images[0]?.src, 640), alt: m.images[0]?.alt ?? m.name.en,
   province: m.location.province, elevation: m.physical.elevation,
   diff: m.tourism.difficulty, season: m.tourism.bestSeason.slice(0,3).join(', '),
   unesco: m.culture.unescoSite, scenery: m.rating.scenery,

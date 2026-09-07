@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import { allPosts } from "../../data/blog";
+import { thumb } from "../../utils/thumb";
 
 const sorted = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.date).getTime());
 ---
@@ -14,7 +15,7 @@ const sorted = allPosts.sort((a, b) => new Date(b.date).getTime() - new Date(a.d
         {sorted.map((post) => (
           <a href={`/blog/${post.slug}/`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
             <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-              <img src={post.image} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(post.image, 640)} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-5">
               <div class="flex flex-wrap gap-2 mb-3">

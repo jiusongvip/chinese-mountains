@@ -3,6 +3,7 @@ import { defineGuide, allGuides } from "../../data/guides";
 import BaseLayout from "../../layouts/BaseLayout.astro";
 import MountainCard from "../../components/MountainCard.astro";
 import { mountains } from "../../data/mountains";
+import { thumb } from "../../utils/thumb";
 
 export function getStaticPaths() {
   return allGuides.map((g) => ({ params: { slug: g.slug } }));
@@ -101,7 +102,7 @@ const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
             {otherGuides.map((g) => (
               <a href={`/guides/${g.slug}/`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
                 <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-                  <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+                  <img src={thumb(g.image, 640)} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>
                 <div class="p-4">
                   <h3 class="font-semibold text-slate-900 text-sm">{g.title}</h3>

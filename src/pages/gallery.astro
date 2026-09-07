@@ -1,6 +1,7 @@
 ---
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { mountains } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 
 const unescoCount = mountains.filter(m => m.culture.unescoSite).length;
 const itemListSchema = {
@@ -46,7 +47,7 @@ const itemListSchema = {
     <div class="columns-1 sm:columns-2 lg:columns-3 gap-4 mt-6 space-y-4">
       {mountains.map((m) => (
         <a href={`/mountains/${m.slug}/`} class="block break-inside-avoid rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
-          <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} title={m.name.en + " - " + (m.images[0]?.alt ?? "")} loading="lazy" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
+          <img src={thumb(m.images[0]?.src, 960)} alt={m.images[0]?.alt ?? m.name.en} title={m.name.en + " - " + (m.images[0]?.alt ?? "")} loading="lazy" class="w-full object-cover group-hover:scale-105 transition-transform duration-500" />
           <div class="p-3">
             <h3 class="font-medium text-sm text-slate-900">{m.name.en}</h3>
             <p class="text-xs text-slate-400 mt-0.5">{m.location.province} · {m.physical.elevation.toLocaleString()}m · {m.tourism.difficulty}</p>

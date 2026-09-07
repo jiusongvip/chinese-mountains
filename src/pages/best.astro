@@ -2,6 +2,7 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import MountainCard from "../components/MountainCard.astro";
 import { mountains } from "../data/mountains";
+import { thumb } from "../utils/thumb";
 import type { Mountain } from "../types/mountain";
 
 const ranked = [...mountains].sort((a, b) => b.rating.overall - a.rating.overall);
@@ -93,7 +94,7 @@ const breadcrumbSchema = {
             <div class="flex flex-col md:flex-row">
               <a href={`/mountains/${m.slug}/`} class="md:w-[280px] lg:w-[320px] shrink-0 relative block no-underline group">
                 <img
-                  src={m.images[0]?.src ?? "/images/placeholder.jpg"}
+                  src={thumb(m.images[0]?.src, 960)}
                   alt={m.images[0]?.alt ?? m.name.en}
                   loading={i < 3 ? "eager" : "lazy"}
                   class="w-full h-48 md:h-full object-cover group-hover:scale-105 transition-transform duration-500"

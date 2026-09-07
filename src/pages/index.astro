@@ -8,6 +8,7 @@ import MountainCard from "../components/MountainCard.astro";
 import { mountains, vibeGroups, allRegions } from "../data/mountains";
 import { allPosts } from "../data/blog";
 import { allGuides } from "../data/guides";
+import { thumb } from "../utils/thumb";
 
 const featured = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
 const topSix = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
@@ -110,7 +111,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {galleryMountains.map((m) => (
           <a href={`/mountains/${m.slug}/`} class="group shrink-0 w-[280px] snap-start no-underline">
             <div class="rounded-xl overflow-hidden bg-slate-200 aspect-[4/3]">
-              <img src={m.images[1]?.src ?? m.images[0]?.src} alt={m.images[1]?.alt ?? m.images[0]?.alt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(m.images[1]?.src ?? m.images[0]?.src, 640)} alt={m.images[1]?.alt ?? m.images[0]?.alt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="mt-2 flex items-center justify-between">
               <span class="text-sm font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en}</span>
@@ -243,7 +244,7 @@ function suitsTags(m: typeof mountains[0]): string {
       <p class="mt-2 text-slate-500">Choose your mountain mood, not your province.</p>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-8">
         {vibeGroups.map((vibe) => {
-          const img = mountains.find(m => m.id === vibe.mountainIds[0])?.images[0]?.src;
+          const img = thumb(mountains.find(m => m.id === vibe.mountainIds[0])?.images[0]?.src, 640);
           const count = vibe.mountainIds.length;
           return {
             vibe, img, count
@@ -428,7 +429,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {latestPosts.map((post) => (
           <a href={`/blog/${post.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
             <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-              <img src={post.image} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(post.image, 640)} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-5">
               <div class="flex flex-wrap gap-2 mb-2">
@@ -451,7 +452,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {homeGuides.map((g) => (
           <a href={`/guides/${g.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
             <div class="aspect-[16/8] overflow-hidden bg-slate-100">
-              <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(g.image, 640)} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-4">
               <h3 class="font-semibold text-slate-900 text-sm group-hover:text-accent transition-colors">{g.title}</h3>
