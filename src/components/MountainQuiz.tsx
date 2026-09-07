@@ -1,6 +1,6 @@
 import { useState } from "react";
 import { recommendMountains, mountains } from "../data/mountains";
-import { thumb } from "../utils/thumb";
+import { thumb, thumbSrcset } from "../utils/thumb";
 
 type Step = "season" | "preference" | "difficulty" | "results";
 
@@ -79,8 +79,11 @@ export default function MountainQuiz() {
             >
               <div className="aspect-[4/3] overflow-hidden bg-slate-100">
                 <img
-                  src={thumb(m.images[0]?.src, 640)}
+                  src={thumb(m.images[0]?.src, 320)}
+                  srcSet={thumbSrcset(m.images[0]?.src)}
+                  sizes="(min-width: 1024px) 440px, (min-width: 640px) 46vw, 92vw"
                   alt={m.images[0]?.alt}
+                  loading="lazy"
                   className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500"
                 />
               </div>

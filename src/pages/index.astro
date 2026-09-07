@@ -8,7 +8,7 @@ import MountainCard from "../components/MountainCard.astro";
 import { mountains, vibeGroups, allRegions } from "../data/mountains";
 import { allPosts } from "../data/blog";
 import { allGuides } from "../data/guides";
-import { thumb } from "../utils/thumb";
+import { thumb, thumbSrcset } from "../utils/thumb";
 
 const featured = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
 const topSix = mountains.sort((a, b) => b.rating.overall - a.rating.overall).slice(0, 6);
@@ -92,8 +92,16 @@ function suitsTags(m: typeof mountains[0]): string {
           <span>Free. No bookings, no sales pitches.</span>
         </div>
       </div>
-      <div class="relative lg:h-[600px] h-[400px] shadow-2xl rounded-2xl">
-        <InteractiveMap client:load className="h-full" />
+      <div class="relative lg:h-[600px] h-[400px] shadow-2xl rounded-2xl bg-slate-100 overflow-hidden">
+        <img data-map-placeholder src="/images/hero-map-bg.webp" srcset="/images/hero-map-bg-768.webp 768w, /images/hero-map-bg.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1280} height={720} fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
+        <div data-map-placeholder class="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent"></div>
+        <div data-map-placeholder class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">Interactive map — {mountains.length} peaks</div>
+        <noscript>
+          <div class="absolute inset-0 flex items-center justify-center">
+            <a href="/explore/" class="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">Browse all {mountains.length} mountains instead →</a>
+          </div>
+        </noscript>
+        <InteractiveMap client:only="react" className="h-full" />
       </div>
     </div>
   </section>
@@ -111,7 +119,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {galleryMountains.map((m) => (
           <a href={`/mountains/${m.slug}/`} class="group shrink-0 w-[280px] snap-start no-underline">
             <div class="rounded-xl overflow-hidden bg-slate-200 aspect-[4/3]">
-              <img src={thumb(m.images[1]?.src ?? m.images[0]?.src, 640)} alt={m.images[1]?.alt ?? m.images[0]?.alt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(m.images[1]?.src ?? m.images[0]?.src, 320)} srcset={thumbSrcset(m.images[1]?.src ?? m.images[0]?.src)} sizes="280px" alt={m.images[1]?.alt ?? m.images[0]?.alt} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="mt-2 flex items-center justify-between">
               <span class="text-sm font-semibold text-slate-900 group-hover:text-accent transition-colors">{m.name.en}</span>
@@ -244,14 +252,16 @@ function suitsTags(m: typeof mountains[0]): string {
       <p class="mt-2 text-slate-500">Choose your mountain mood, not your province.</p>
       <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4 mt-8">
         {vibeGroups.map((vibe) => {
-          const img = thumb(mountains.find(m => m.id === vibe.mountainIds[0])?.images[0]?.src, 640);
+          const src = mountains.find(m => m.id === vibe.mountainIds[0])?.images[0]?.src;
+          const img = thumb(src, 320);
+          const srcset = thumbSrcset(src);
           const count = vibe.mountainIds.length;
           return {
             vibe, img, count
           };
-        }).map(({ vibe, img, count }) => (
+        }).map(({ vibe, img, srcset, count }) => (
           <a href={"/explore/?vibe=" + vibe.id} class="group relative rounded-xl overflow-hidden aspect-[3/4] bg-slate-200 no-underline">
-            {img && <img src={img} alt={vibe.label} loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />}
+            {img && <img src={img} srcset={srcset} sizes="(min-width: 1024px) 200px, (min-width: 640px) 30vw, 46vw" alt={vibe.label} loading="lazy" class="absolute inset-0 w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />}
             <div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/20 to-transparent" />
             <div class="absolute top-3 right-3 bg-black/30 backdrop-blur-sm text-white text-xs px-2 py-0.5 rounded-full">{count}</div>
             <div class="absolute bottom-0 left-0 right-0 p-4">
@@ -429,7 +439,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {latestPosts.map((post) => (
           <a href={`/blog/${post.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
             <div class="aspect-[16/10] overflow-hidden bg-slate-100">
-              <img src={thumb(post.image, 640)} alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(post.image, 320)} srcset={thumbSrcset(post.image)} sizes="(min-width: 768px) 420px, 92vw" alt={post.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-5">
               <div class="flex flex-wrap gap-2 mb-2">
@@ -452,7 +462,7 @@ function suitsTags(m: typeof mountains[0]): string {
         {homeGuides.map((g) => (
           <a href={`/guides/${g.slug}/`} class="group rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline">
             <div class="aspect-[16/8] overflow-hidden bg-slate-100">
-              <img src={thumb(g.image, 640)} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
+              <img src={thumb(g.image, 320)} srcset={thumbSrcset(g.image)} sizes="(min-width: 768px) 420px, 92vw" alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
             </div>
             <div class="p-4">
               <h3 class="font-semibold text-slate-900 text-sm group-hover:text-accent transition-colors">{g.title}</h3>

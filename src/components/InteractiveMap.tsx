@@ -1,13 +1,13 @@
 import { useEffect, useRef, useState } from "react";
+import L from "leaflet";
 import { mountains } from "../data/mountains";
 import type { Mountain } from "../types/mountain";
 import { thumb } from "../utils/thumb";
+import "leaflet/dist/leaflet.css";
 
-let _L: any = null;
 const CHINA_CENTER: [number, number] = [35.86, 104.19];
 const DEFAULT_ZOOM = 4;
 const TILE_URL = "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
-
 function popupHTML(m: Mountain): string {
   const img = thumb(m.images[0]?.src, 640);
   const alt = m.images[0]?.alt ?? m.name.en;
@@ -29,85 +29,50 @@ interface Props { className?: string; }
 export default function InteractiveMap({ className = "" }: Props) {
   const ref = useRef<HTMLDivElement>(null);
   const mapRef = useRef<any>(null);
-  const [loaded, setLoaded] = useState(false);
   const [tileError, setTileError] = useState(false);
 
   useEffect(() => {
-    const el = ref.current;
-    if (!el) return;
-    const obs = new IntersectionObserver(([e]) => { if (e.isIntersecting) { setLoaded(true); obs.disconnect(); } }, { rootMargin: "200px" });
-    obs.observe(el);
-    return () => obs.disconnect();
-  }, []);
-
-  useEffect(() => {
-    if (!loaded || !ref.current || mapRef.current) return;
+    if (!ref.current || mapRef.current) return;
     let cancelled = false;
 
-    (async () => {
-      if (!_L) _L = (await import("leaflet")).default || (await import("leaflet"));
-      if (!document.querySelector("link[data-leaflet]")) {
-        const link = document.createElement("link");
-        link.rel = "stylesheet";
-        link.href = "/leaflet/leaflet.css";
-        link.setAttribute("data-leaflet", "");
-        document.head.appendChild(link);
+    if (cancelled || !ref.current) return;
+
+    const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
+    const tiles = L.tileLayer(TILE_URL, { maxZoom: 13, detectRetina: true });
+    tiles.on("tileerror", () => setTileError(true));
+    tiles.on("tileload", (e: any) => {
+      if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
+        e.tile.alt = "Map tile of China with mountain locations";
       }
-      const L = _L;
-      if (cancelled || !ref.current) return;
+    });
+    tiles.addTo(map);
 
-      const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
-      const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
-      tiles.on("tileerror", () => setTileError(true));
-      tiles.on("tileload", (e: any) => {
-        if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
-          e.tile.alt = "Map tile of China with mountain locations";
-        }
-      });
-      tiles.addTo(map);
+    const icon = L.divIcon({
+      className: "mountain-marker",
+      html: '<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer"><div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div></div>',
+      iconSize: [32, 32],
+      iconAnchor: [16, 16],
+    });
 
-      const icon = L.divIcon({
-        className: "mountain-marker",
-        html: '<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer"><div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div></div>',
-        iconSize: [32, 32],
-        iconAnchor: [16, 16],
-      });
+    mountains.forEach((m) => {
+      const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
+        .bindPopup(popupHTML(m), { maxWidth: 240, closeButton: false })
+        .bindTooltip(m.name.en, { direction: "top", offset: [0, -10] })
+        .addTo(map);
+      if ((mk as any)._icon) {
+        (mk as any)._icon.setAttribute("role", "button");
+        (mk as any)._icon.setAttribute("aria-label", "Open guide for " + m.name.en);
+      }
+    });
 
-      mountains.forEach((m) => {
-        const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
-          .bindPopup(popupHTML(m), { maxWidth: 240, closeButton: false })
-          .bindTooltip(m.name.en, { direction: "top", offset: [0, -10] })
-          .addTo(map);
-        if (mk._icon) {
-          mk._icon.setAttribute("role", "button");
-          mk._icon.setAttribute("aria-label", "Open guide for " + m.name.en);
-        }
-      });
-
-      mapRef.current = map;
-    })();
+    mapRef.current = map;
+    document.querySelectorAll("[data-map-placeholder]").forEach((el) => ((el as HTMLElement).style.display = "none"));
 
     return () => { cancelled = true; if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; } };
-  }, [loaded]);
+  }, []);
 
   return (
-    <div ref={ref} className={"relative w-full h-full min-h-[400px] bg-slate-100 rounded-2xl overflow-hidden " + className}>
-      {!loaded && (
-        <div className="absolute inset-0">
-          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1280} height={720} fetchPriority="high" className="w-full h-full object-cover" />
-          <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
-          <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
-            Interactive map — {mountains.length} peaks
-          </div>
-          <noscript>
-            <div className="absolute inset-0 flex items-center justify-center">
-              <a href="/explore/" className="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">
-                Browse all {mountains.length} mountains instead →
-              </a>
-            </div>
-          </noscript>
-        </div>
-      )}
+    <div ref={ref} className={"absolute inset-0 " + className}>
       {tileError && (
         <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
           Map tiles unavailable — <a href="/explore/" className="text-accent font-medium hover:underline">browse the list instead</a>
