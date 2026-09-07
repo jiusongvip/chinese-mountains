@@ -19,7 +19,7 @@ function popupHTML(m: Mountain): string {
     '<span style="font-size:11px;padding:2px 6px;border-radius:999px;background:#f1f5f9;color:#475569">' + el + 'm</span>' +
     '<span style="font-size:11px;padding:2px 6px;border-radius:999px;background:#ecfdf5;color:#059669">' + m.rating.overall + '/5</span>' +
     '</div>' +
-    '<a href="/mountains/' + m.slug + '" style="display:inline-block;margin-top:8px;font-size:12px;color:#059669;text-decoration:none;font-weight:500">View full guide &rarr;</a>' +
+    '<a href="/mountains/' + m.slug + '/" style="display:inline-block;margin-top:8px;font-size:12px;color:#059669;text-decoration:none;font-weight:500">View full guide &rarr;</a>' +
     '</div>';
 }
 
@@ -72,7 +72,7 @@ export default function InteractiveMap({ className = "" }: Props) {
     <div ref={ref} className={"relative w-full h-full min-h-[400px] bg-slate-100 rounded-2xl overflow-hidden " + className}>
       {!loaded && (
         <div className="absolute inset-0">
-          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} className="w-full h-full object-cover" />
+          <img src="/images/hero-map-bg.webp" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1600} height={900} fetchPriority="high" className="w-full h-full object-cover" />
           <div className="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent" />
           <div className="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">
             Interactive map — {mountains.length} peaks

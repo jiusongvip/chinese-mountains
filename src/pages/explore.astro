@@ -16,7 +16,7 @@ const itemListSchema = {
   })),
 };
 ---
-<BaseLayout title="Explore Every Mountain in China" description="Browse all 37 famous Chinese mountains with interactive filters by region, difficulty, and vibe. Compare elevation, UNESCO status, and hiking details to find your perfect peak.">
+<BaseLayout title="Explore Every Mountain in China" description="Browse all 37 famous Chinese mountains with filters by region, difficulty, and vibe. Compare elevation, UNESCO status, and trails to find your peak.">
 <section class="pt-12 pb-20">
 <div class="max-w-[1400px] mx-auto px-6" id="explore-root">
 <nav class="text-xs text-slate-400 mb-4" aria-label="Breadcrumb">
@@ -29,23 +29,28 @@ const itemListSchema = {
 <p class="mt-4 text-sm text-slate-600 leading-relaxed max-w-[70ch] bg-slate-50 border border-slate-200 rounded-xl p-4">China's mountains span {new Set(mountains.map(m => m.location.province)).size} provinces and 7 geographic regions, from the sea-of-clouds granite of Huangshan to the 8,000-meter Himalayan giants. Filter by region, difficulty, or vibe (the homepage quiz groups them by travel mood) — or start with our <a href="/best/" class="text-accent hover:underline no-underline font-medium">ranked Top 10</a>.</p>
 <a href="/explore/" id="clear-filters" class="hidden inline-flex items-center gap-1 mt-4 text-sm text-slate-500 hover:text-slate-700 no-underline">Clear filters</a>
 
-<div class="flex flex-wrap gap-2 mt-8 mb-6" id="region-filters">
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-10">Filter Mountains</h2>
+<p class="mt-2 text-sm text-slate-500">Narrow the list by region, difficulty, or UNESCO status.</p>
+
+<div class="flex flex-wrap gap-2 mt-4 mb-6" id="region-filters">
 {allRegions.map((r) => (
-<a href={"/explore?region="+r} class="region-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-region={r}>{r.charAt(0).toUpperCase() + r.slice(1)}</a>
+<a href={"/explore/?region="+r} class="region-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-region={r}>{r.charAt(0).toUpperCase() + r.slice(1)}</a>
 ))}
 </div>
 
 <div class="flex flex-wrap gap-2 mb-8" id="difficulty-filters">
 {difficultyLevels.map((d) => (
-<a href={"/explore?difficulty="+d} class="diff-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-diff={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</a>
+<a href={"/explore/?difficulty="+d} class="diff-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-diff={d}>{d.charAt(0).toUpperCase() + d.slice(1)}</a>
 ))}
 </div>
 
 <div class="flex flex-wrap gap-2 mb-8" id="unesco-filters">
-<a href="/explore?unesco=1" class="unesco-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-unesco="1">UNESCO World Heritage</a>
+<a href="/explore/?unesco=1" class="unesco-btn text-xs px-3 py-1.5 rounded-full transition-colors no-underline bg-slate-100 text-slate-600 hover:bg-slate-200" data-unesco="1">UNESCO World Heritage</a>
 </div>
 
-<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6" id="mountain-grid">
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mt-12">All Mountains</h2>
+<p class="mt-2 text-sm text-slate-500">Every mountain guide, sorted by overall rating.</p>
+<div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 mt-6" id="mountain-grid">
 {mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => {
   const vibes = vibeGroups.filter(v => v.mountainIds.includes(m.id)).map(v => v.id);
   return (

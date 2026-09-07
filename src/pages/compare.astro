@@ -2,19 +2,21 @@
 import BaseLayout from "../layouts/BaseLayout.astro";
 import { mountains } from "../data/mountains";
 ---
-<BaseLayout title="Compare Mountains" description="Select and compare Chinese mountains side by side. Elevation, difficulty, season, ratings at a glance.">
+<BaseLayout title="Compare Chinese Mountains Side by Side (2026)" description="Select and compare Chinese mountains side by side: elevation, difficulty, scenery scores, best season, ticket prices, and ratings in one table.">
 <section class="pt-12 pb-20">
 <div class="max-w-[1400px] mx-auto px-6">
 <h1 class="text-4xl font-bold tracking-tighter text-slate-900">Compare Mountains</h1>
 <p class="mt-3 text-slate-500 max-w-[55ch]">Select 2 to 4 mountains below to see a side-by-side comparison. Best values in each category are highlighted with green bars.</p>
 
-<div class="flex flex-wrap gap-2 mt-8" id="compare-selector">
+<h2 class="text-xl font-bold tracking-tighter text-slate-900 mt-10">Pick Mountains to Compare</h2>
+<div class="flex flex-wrap gap-2 mt-4" id="compare-selector">
 {mountains.sort((a,b) => b.rating.overall - a.rating.overall).map(m => (
 <button class="compare-chip text-xs px-3 py-1.5 rounded-full transition-colors border cursor-pointer bg-slate-100 text-slate-600 border-slate-200 hover:border-accent" data-id={m.id}>{m.name.en}</button>
 ))}
 </div>
 
 <div id="compare-panel" class="mt-10">
+<h2 class="text-xl font-bold tracking-tighter text-slate-900 mb-6">Comparison Results</h2>
 <div id="compare-empty" class="text-center py-16 text-slate-400">
 <p class="text-lg font-medium">Select mountains above to compare them</p>
 <p class="text-sm mt-2">You can compare up to 4 mountains side by side</p>

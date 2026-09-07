@@ -41,7 +41,7 @@ if (seasonalPicks.length < 3) {
     </div>
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
       {seasonalPicks.map(m => (
-        <a href={"/mountains/" + m.slug} class="group flex gap-4 bg-white rounded-xl border border-accent-100 hover:border-accent hover:shadow-md transition-all no-underline p-4">
+        <a href={`/mountains/${m.slug}/`} class="group flex gap-4 bg-white rounded-xl border border-accent-100 hover:border-accent hover:shadow-md transition-all no-underline p-4">
           <div class="w-24 h-24 rounded-lg overflow-hidden bg-slate-100 shrink-0">
             <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.name.en} class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
           </div>

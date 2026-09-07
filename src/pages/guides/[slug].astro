@@ -29,7 +29,7 @@ const matchedMountains = findMountains(guide.months, guide.difficulty, guide.exc
 const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
 ---
 
-<BaseLayout title={`${guide.title} — Chinese Mountains Travel Guide`} description={guide.description}>
+<BaseLayout title={`${guide.title} — China Mountain Guide`} description={guide.description}>
   <section class="pt-8 pb-20">
     <div class="max-w-[1400px] mx-auto px-6">
       <nav class="flex items-center gap-2 text-sm text-slate-400 mb-8">
@@ -99,7 +99,7 @@ const otherGuides = allGuides.filter((g) => g.slug !== guide.slug);
           <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">More Travel Guides</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4">
             {otherGuides.map((g) => (
-              <a href={`/guides/${g.slug}`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
+              <a href={`/guides/${g.slug}/`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
                 <div class="aspect-[16/10] overflow-hidden bg-slate-100">
                   <img src={g.image} alt={g.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>

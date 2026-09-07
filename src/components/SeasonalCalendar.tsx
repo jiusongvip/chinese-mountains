@@ -47,7 +47,7 @@ export default function SeasonalCalendar() {
         {monthMountains.map((m) => (
           <a
             key={m.id}
-            href={`/mountains/${m.slug}`}
+            href={`/mountains/${m.slug}/`}
             className="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group"
           >
             <div className="aspect-[16/10] overflow-hidden bg-slate-100">

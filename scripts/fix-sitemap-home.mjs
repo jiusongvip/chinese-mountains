@@ -1,5 +1,6 @@
 // 构建后处理：将 sitemap 首页 URL 去掉尾斜杠，与 canonical 保持一致（内页保持尾斜杠）
-import { readFileSync, writeFileSync, readdirSync } from "node:fs";
+// 同时生成 public 侧 sitemap.xml 副本（指向 sitemap-index.xml），避免 /sitemap.xml 404
+import { readFileSync, writeFileSync, readdirSync, existsSync } from "node:fs";
 import { join } from "node:path";
 
 const distDir = "dist";
@@ -23,4 +24,12 @@ for (const file of readdirSync(distDir)) {
 
 if (!changed) {
   console.log("⚠ 未找到需要处理的 sitemap 首页 URL");
+}
+
+// /sitemap.xml → 与 sitemap-index.xml 内容一致，消除 /sitemap.xml 404
+const indexPath = join(distDir, "sitemap-index.xml");
+const aliasPath = join(distDir, "sitemap.xml");
+if (existsSync(indexPath)) {
+  writeFileSync(aliasPath, readFileSync(indexPath, "utf8"));
+  console.log("✓ sitemap.xml 已生成（sitemap-index 副本）");
 }

@@ -50,7 +50,7 @@ if (!post) return Astro.redirect("/404");
           <h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-6">More Articles</h2>
           <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
             {allPosts.filter((p) => p.slug !== post.slug).map((p) => (
-              <a href={`/blog/${p.slug}`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
+              <a href={`/blog/${p.slug}/`} class="block rounded-xl overflow-hidden bg-white border border-slate-200 hover:border-accent hover:shadow-md transition-all no-underline group">
                 <div class="aspect-[16/10] overflow-hidden bg-slate-100">
                   <img src={p.image} alt={p.title} loading="lazy" class="w-full h-full object-cover group-hover:scale-105 transition-transform duration-500" />
                 </div>

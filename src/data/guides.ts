@@ -15,7 +15,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "spring",
     title: "Spring Peaks",
-    description: "Azaleas blooming across mountainsides, fresh green foliage, and comfortable temperatures make spring (March through May) the most enchanting season for mountain travel in China.",
+    description: "Azaleas in bloom, fresh green foliage, and mild temperatures make spring (March-May) enchanting for mountain travel in China — with fewer crowds than autumn.",
     image: "/images/mountains/huangshan.webp",
     months: ["March", "April", "May"],
     difficulty: [],
@@ -33,7 +33,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "summer",
     title: "Summer Escapes",
-    description: "Escape the heat by heading to high-altitude refuges, lush alpine valleys, and wildflower meadows. Summer (June through August) opens up China\"s most remote mountain regions.",
+    description: "Escape the heat at high-altitude refuges, lush alpine valleys, and wildflower meadows. Summer (June-August) opens up China's most remote mountain regions.",
     image: "/images/mountains/tianshan.webp",
     months: ["June", "July", "August"],
     difficulty: [],
@@ -51,7 +51,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "autumn",
     title: "Autumn Gold",
-    description: "Crisp air, golden foliage, and the clearest mountain views of the year. September through November is widely considered the best season for Chinese mountain photography.",
+    description: "Crisp air, golden foliage, and the clearest mountain views of the year. September through November is the best season for Chinese mountain photography.",
     image: "/images/mountains/huangshan.webp",
     months: ["September", "October", "November"],
     difficulty: [],
@@ -69,7 +69,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "winter",
     title: "Winter Wonder",
-    description: "Snow-dusted temples, frozen waterfalls, empty trails, and the surreal beauty of rime ice on pine branches. Winter (December through February) offers a completely different mountain experience.",
+    description: "Snow-dusted temples, frozen waterfalls, empty trails, and rime ice on pines. Winter (December-February) transforms China's mountains into ink paintings.",
     image: "/images/mountains/jade-dragon.webp",
     months: ["December", "January", "February"],
     difficulty: [],
@@ -87,7 +87,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "first-time",
     title: "First-Timer\"s Guide",
-    description: "Never visited a Chinese mountain? Start here. We\"ve selected the most accessible, rewarding peaks for first-time visitors — stunning scenery without extreme exertion.",
+    description: "Never visited a Chinese mountain? Start here. The most accessible, rewarding peaks for first-time visitors — world-class scenery without extreme exertion.",
     image: "/images/mountains/guilin.webp",
     months: [],
     difficulty: ["easy", "moderate"],
@@ -103,7 +103,7 @@ export const allGuides: GuideData[] = [
   {
     slug: "family",
     title: "Family-Friendly Peaks",
-    description: "Cable cars, gentle paths, manageable altitudes, and enough excitement to keep kids engaged. These mountains welcome travelers of all ages.",
+    description: "Cable cars, gentle paths, manageable altitudes, and enough excitement to keep kids engaged. These mountains welcome travelers of all ages and fitness levels.",
     image: "/images/mountains/taishan.webp",
     months: [],
     difficulty: ["easy", "moderate"],

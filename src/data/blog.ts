@@ -12,7 +12,7 @@
 export const allPosts: BlogPost[] = [
   {
     slug: "first-timer-guide-2026",
-    title: "The First-Timer\"s Guide to Chinese Mountains (2026 Edition)",
+    title: "First-Timer Guide to Chinese Mountains",
     author: "Emma Liu",
     date: "2026-07-15",
     excerpt: "Planning your first trip to a Chinese mountain? From permits to packing lists, cable cars to crowds — everything you need to know before you go.",
@@ -36,7 +36,7 @@ export const allPosts: BlogPost[] = [
   },
   {
     slug: "5-great-mountains",
-    title: "The Five Great Mountains of China: Which One Matches Your Travel Style?",
+    title: "The Five Great Mountains of China",
     author: "David Chen",
     date: "2026-06-20",
     excerpt: "Tai, Hua, Heng (x2), and Song — the Five Great Mountains have shaped Chinese civilization for 4000 years. Here\"s how to choose between them.",
@@ -58,7 +58,7 @@ export const allPosts: BlogPost[] = [
   },
   {
     slug: "autumn-golden-season",
-    title: "Why Autumn Is the Golden Season for Chinese Mountain Photography",
+    title: "Why Autumn Is Golden for Mountain Photos",
     author: "Sarah Wang",
     date: "2026-05-10",
     excerpt: "From late September to November, China\"s mountains transform into a photographer\"s paradise. Here\"s where to go and when to catch peak colors.",
@@ -78,10 +78,10 @@ export const allPosts: BlogPost[] = [
 
   {
     slug: 'best-hiking-mountains-2026',
-    title: 'Best Chinese Mountains for Hiking: From Beginner Trails to Extreme Treks (2026 Guide)',
+    title: "Best Chinese Mountains for Hiking: 2026",
     author: 'Alex Zhang',
     date: '2026-08-02',
-    excerpt: 'Whether you want a gentle cable-car stroll or a multi-day alpine expedition, here are the 10 best Chinese mountains for hiking — ranked by difficulty, with honest assessments of what each trail really demands.',
+    excerpt: 'From gentle cable-car strolls to multi-day alpine expeditions — the 10 best Chinese mountains for hiking, ranked by difficulty with honest trail assessments.',
     image: '/images/mountains/siguniang.webp',
     tags: ['hiking', 'ranking', 'beginner', 'advanced'],
     content: [
@@ -116,10 +116,10 @@ export const allPosts: BlogPost[] = [
   },
   {
     slug: 'mountain-photography-guide',
-    title: 'Ultimate China Mountain Photography Guide: Best Locations, Seasons & Techniques',
+    title: "China Mountain Photography Guide",
     author: 'Sarah Wang',
     date: '2026-08-01',
-    excerpt: 'From Huangshan\'s sea of clouds to Zhangye\'s rainbow layers — where to shoot, when to go, what gear to bring, and how to capture the shot that makes people ask if that photo is real.',
+    excerpt: 'From Huangshan\'s sea of clouds to Zhangye\'s rainbow layers — where to shoot, when to go, and the gear that captures China\'s mountains at their best.',
     image: '/images/mountains/meili-snow.webp',
     tags: ['photography', 'guide', 'seasonal', 'gear'],
     content: [

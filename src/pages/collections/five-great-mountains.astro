@@ -6,7 +6,7 @@ import { mountains } from "../../data/mountains";
 const fiveGreatSlugs = ["taishan", "huashan", "hengshan-hunan", "hengshan-shanxi", "songshan"];
 const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).filter(Boolean);
 ---
-<BaseLayout title="The Five Great Mountains of China (Wuyue)" description="The Five Great Mountains (Wuyue) have shaped Chinese civilization for 4000 years. Compare Mount Tai, Hua, Heng (Hunan & Shanxi), and Song with our interactive guides.">
+<BaseLayout title="The Five Great Mountains of China (Wuyue)" description="The Five Great Mountains (Wuyue) have shaped Chinese civilization for 4,000 years. Compare Mount Tai, Hua, Heng (Hunan & Shanxi), and Song.">
 <section class="pt-12 pb-20">
 <div class="max-w-[1400px] mx-auto px-6">
 <h1 class="text-4xl font-bold tracking-tighter text-slate-900">The Five Great Mountains (Wuyue)</h1>
@@ -17,12 +17,12 @@ const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).fi
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
 {fiveGreat.map(m => (
 <div class="flex flex-col sm:flex-row gap-6 bg-white border border-slate-200 rounded-xl overflow-hidden hover:border-accent hover:shadow-md transition-all">
-<a href={"/mountains/" + m.slug} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
+<a href={`/mountains/${m.slug}/`} class="sm:w-48 shrink-0 aspect-[4/3] sm:aspect-auto overflow-hidden bg-slate-100 no-underline">
 <img src={m.images[0]?.src ?? "/images/placeholder.jpg"} alt={m.images[0]?.alt ?? m.name.en} loading="lazy" class="w-full h-full object-cover hover:scale-105 transition-transform duration-500" />
 </a>
 <div class="p-5 sm:p-4 flex flex-col justify-between flex-1">
 <div>
-<a href={"/mountains/" + m.slug} class="no-underline"><h3 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h3></a>
+<a href={`/mountains/${m.slug}/`} class="no-underline"><h3 class="font-semibold text-slate-900 text-lg hover:text-accent transition-colors">{m.name.en}<span class="text-sm text-slate-400 ml-2">{m.name.zh}</span></h3></a>
 <p class="text-sm text-slate-500 mt-2 line-clamp-3">{m.tagline}</p>
 </div>
 <div class="flex flex-wrap items-center gap-2 mt-3">

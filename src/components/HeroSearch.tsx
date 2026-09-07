@@ -67,7 +67,7 @@ export default function HeroSearch() {
           {results.map((m, i) => (
             <a
               key={m.id}
-              href={"/mountains/" + m.slug}
+              href={`/mountains/${m.slug}/`}
               className={"flex items-center gap-3 px-4 py-3 hover:bg-slate-50 transition-colors no-underline " + (i === selected ? "bg-accent-50" : "")}
               onMouseEnter={() => setSelected(i)}
             >
