@@ -51,6 +51,11 @@ export default function InteractiveMap({ className = "" }: Props) {
       const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
       const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
       tiles.on("tileerror", () => setTileError(true));
+      tiles.on("tileload", (e: any) => {
+        if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
+          e.tile.alt = "Map tile of China with mountain locations";
+        }
+      });
       tiles.addTo(map);
 
       const icon = L.divIcon({ className: "mountain-marker", html: '<div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div>', iconSize: [12, 12], iconAnchor: [6, 6] });
