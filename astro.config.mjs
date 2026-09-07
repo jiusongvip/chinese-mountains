@@ -38,6 +38,9 @@ export default defineConfig({
     }),
   ],
   trailingSlash: "always",
+  build: {
+    inlineStylesheets: "always",
+  },
   vite: {
     plugins: [tailwindcss()],
   },

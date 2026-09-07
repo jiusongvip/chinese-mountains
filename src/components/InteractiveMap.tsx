@@ -38,7 +38,7 @@ export default function InteractiveMap({ className = "" }: Props) {
     if (cancelled || !ref.current) return;
 
     const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
-    const tiles = L.tileLayer(TILE_URL, { maxZoom: 13, detectRetina: true });
+    const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
     tiles.on("tileerror", () => setTileError(true));
     tiles.on("tileload", (e: any) => {
       if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
