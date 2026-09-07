@@ -55,6 +55,17 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
   <link rel="stylesheet" href="/leaflet/leaflet.css" />
   {!noindex && <link rel="canonical" href={pageUrl} />}
   <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+  <script type="application/ld+json" set:html={JSON.stringify({
+    "@context": "https://schema.org",
+    "@type": "Organization",
+    "name": "Chinese Mountains",
+    "url": "https://www.chinese-mountains.com",
+    "logo": "https://www.chinese-mountains.com/favicon.svg",
+    "sameAs": [
+      "https://github.com/jiusongvip/chinese-mountains",
+      "https://en.wikipedia.org/wiki/Mountains_of_China"
+    ]
+  })} />
   <slot name="head" />
 </head>
 <body class="min-h-[100dvh] flex flex-col">
