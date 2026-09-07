@@ -24,13 +24,22 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <!-- Google tag (gtag.js) -->
-  <script is:inline async src="https://www.googletagmanager.com/gtag/js?id=G-Q12K3L5SQW"></script>
+  <!-- Google tag (gtag.js), injected after idle so it never competes with LCP -->
   <script is:inline>
     window.dataLayer = window.dataLayer || [];
     function gtag(){dataLayer.push(arguments);}
     gtag('js', new Date());
     gtag('config', 'G-Q12K3L5SQW');
+    (function () {
+      var start = function () {
+        var s = document.createElement('script');
+        s.async = true;
+        s.src = 'https://www.googletagmanager.com/gtag/js?id=G-Q12K3L5SQW';
+        document.head.appendChild(s);
+      };
+      if ('requestIdleCallback' in window) { requestIdleCallback(start, { timeout: 3000 }); }
+      else { setTimeout(start, 2000); }
+    })();
   </script>
   <title>{fullTitle}</title>
   {description && <meta name="description" content={description} />}
@@ -47,8 +56,6 @@ const ogImageUrl = ogImage ?? siteUrl + "/images/og-default.png";
   {description && <meta name="twitter:description" content={description} />}
   <meta name="twitter:image" content={ogImageUrl} />
   </>}
-    <link rel="preconnect" href="https://a.basemaps.cartocdn.com" />
-  
   <style is:inline>
     /* Geist Sans (variable), self-hosted from geist@1.7.2 */
     @font-face {

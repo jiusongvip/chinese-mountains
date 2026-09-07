@@ -1,13 +1,23 @@
 import { useEffect, useRef, useState } from "react";
-import L from "leaflet";
 import { mountains } from "../data/mountains";
 import type { Mountain } from "../types/mountain";
 import { thumb } from "../utils/thumb";
-import "leaflet/dist/leaflet.css";
 
 const CHINA_CENTER: [number, number] = [35.86, 104.19];
 const DEFAULT_ZOOM = 4;
 const TILE_URL = "https://a.basemaps.cartocdn.com/light_all/{z}/{x}/{y}{r}.png";
+
+let leafletPromise: Promise<any> | null = null;
+function loadLeaflet(): Promise<any> {
+  if (!leafletPromise) {
+    leafletPromise = Promise.all([
+      import("leaflet"),
+      import("leaflet/dist/leaflet.css"),
+    ]).then(([mod]) => (mod as any).default ?? mod);
+  }
+  return leafletPromise;
+}
+
 function popupHTML(m: Mountain): string {
   const img = thumb(m.images[0]?.src, 640);
   const alt = m.images[0]?.alt ?? m.name.en;
@@ -35,38 +45,45 @@ export default function InteractiveMap({ className = "" }: Props) {
     if (!ref.current || mapRef.current) return;
     let cancelled = false;
 
-    if (cancelled || !ref.current) return;
+    loadLeaflet().then((L) => {
+      if (cancelled || !ref.current || mapRef.current) return;
 
-    const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
-    const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
-    tiles.on("tileerror", () => setTileError(true));
-    tiles.on("tileload", (e: any) => {
-      if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
-        e.tile.alt = "Map tile of China with mountain locations";
-      }
+      const preconnect = document.createElement("link");
+      preconnect.rel = "preconnect";
+      preconnect.href = "https://a.basemaps.cartocdn.com";
+      document.head.appendChild(preconnect);
+
+      const map = L.map(ref.current, { center: CHINA_CENTER, zoom: DEFAULT_ZOOM, zoomControl: true, scrollWheelZoom: true, attributionControl: false });
+      const tiles = L.tileLayer(TILE_URL, { maxZoom: 13 });
+      tiles.on("tileerror", () => setTileError(true));
+      tiles.on("tileload", (e: any) => {
+        if (e.tile && e.tile instanceof HTMLImageElement && !e.tile.getAttribute("alt")) {
+          e.tile.alt = "Map tile of China with mountain locations";
+        }
+      });
+      tiles.addTo(map);
+
+      const icon = L.divIcon({
+        className: "mountain-marker",
+        html: '<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer"><div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div></div>',
+        iconSize: [32, 32],
+        iconAnchor: [16, 16],
+      });
+
+      mountains.forEach((m) => {
+        const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
+          .bindPopup(popupHTML(m), { maxWidth: 240, closeButton: false })
+          .bindTooltip(m.name.en, { direction: "top", offset: [0, -10] })
+          .addTo(map);
+        if ((mk as any)._icon) {
+          (mk as any)._icon.setAttribute("role", "button");
+          (mk as any)._icon.setAttribute("aria-label", "Open guide for " + m.name.en);
+        }
+      });
+
+      mapRef.current = map;
+      document.querySelectorAll("[data-map-placeholder]").forEach((el) => ((el as HTMLElement).style.display = "none"));
     });
-    tiles.addTo(map);
-
-    const icon = L.divIcon({
-      className: "mountain-marker",
-      html: '<div style="width:32px;height:32px;display:flex;align-items:center;justify-content:center;cursor:pointer"><div class="w-3 h-3 bg-accent rounded-full border-2 border-white shadow-md ring-2 ring-accent/20"></div></div>',
-      iconSize: [32, 32],
-      iconAnchor: [16, 16],
-    });
-
-    mountains.forEach((m) => {
-      const mk = L.marker([m.location.coordinates.lat, m.location.coordinates.lng], { icon })
-        .bindPopup(popupHTML(m), { maxWidth: 240, closeButton: false })
-        .bindTooltip(m.name.en, { direction: "top", offset: [0, -10] })
-        .addTo(map);
-      if ((mk as any)._icon) {
-        (mk as any)._icon.setAttribute("role", "button");
-        (mk as any)._icon.setAttribute("aria-label", "Open guide for " + m.name.en);
-      }
-    });
-
-    mapRef.current = map;
-    document.querySelectorAll("[data-map-placeholder]").forEach((el) => ((el as HTMLElement).style.display = "none"));
 
     return () => { cancelled = true; if (mapRef.current) { mapRef.current.remove(); mapRef.current = null; } };
   }, []);

@@ -70,7 +70,7 @@ function suitsTags(m: typeof mountains[0]): string {
           The only site that helps you <em class="not-italic font-medium text-slate-700">choose</em> a mountain, not just list them. Search by name, explore the map, or answer 3 questions to find your match.
         </p>
         <div class="mt-8">
-          <HeroSearch client:load />
+          <HeroSearch client:idle />
         </div>
         <div class="flex flex-wrap items-center gap-3 mt-6">
           <a href="#quiz" class="inline-flex items-center gap-2 px-5 py-3 bg-accent text-white rounded-lg font-medium text-sm hover:bg-accent-dark transition-colors no-underline shadow-sm">
@@ -95,13 +95,16 @@ function suitsTags(m: typeof mountains[0]): string {
       <div class="relative lg:h-[600px] h-[400px] shadow-2xl rounded-2xl bg-slate-100 overflow-hidden">
         <img data-map-placeholder src="/images/hero-map-bg.webp" srcset="/images/hero-map-bg-768.webp 768w, /images/hero-map-bg.webp 1280w" sizes="(min-width: 1024px) 50vw, 100vw" alt={"Topographic map of China with all " + mountains.length + " mountain locations"} width={1280} height={720} fetchpriority="high" class="absolute inset-0 w-full h-full object-cover" />
         <div data-map-placeholder class="absolute inset-0 bg-gradient-to-t from-slate-900/50 via-transparent to-transparent"></div>
-        <div data-map-placeholder class="absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">Interactive map — {mountains.length} peaks</div>
+        <div data-map-placeholder class="hidden lg:block absolute bottom-3 left-1/2 -translate-x-1/2 bg-white/95 text-slate-600 text-xs px-3 py-1 rounded-full shadow-sm whitespace-nowrap">Interactive map — {mountains.length} peaks</div>
         <noscript>
           <div class="absolute inset-0 flex items-center justify-center">
             <a href="/explore/" class="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">Browse all {mountains.length} mountains instead →</a>
           </div>
         </noscript>
-        <InteractiveMap client:only="react" className="h-full" />
+        <a href="/explore/" class="lg:hidden absolute inset-0 z-10 flex items-end justify-center pb-12" aria-label="Browse all Chinese mountains">
+          <span class="bg-white text-slate-800 text-sm font-medium px-4 py-2 rounded-lg shadow-md">Explore all {mountains.length} mountains →</span>
+        </a>
+        <InteractiveMap client:media="(min-width: 1024px)" className="h-full" />
       </div>
     </div>
   </section>
@@ -241,7 +244,7 @@ function suitsTags(m: typeof mountains[0]): string {
           <h2 class="text-3xl md:text-4xl font-bold tracking-tighter text-slate-900">Which Mountain Is Right for You?</h2>
           <p class="mt-3 text-slate-500 text-base">Answer 3 questions. Get 3 personalized recommendations. No endless lists.</p>
         </div>
-        <MountainQuiz client:load />
+        <MountainQuiz client:visible />
       </div>
     </div>
   </section>
@@ -395,7 +398,7 @@ function suitsTags(m: typeof mountains[0]): string {
     <div class="max-w-[1400px] mx-auto px-6">
       <h2 class="text-3xl font-bold tracking-tighter text-slate-900">Best Time to Visit</h2>
       <p class="mt-2 text-slate-500 mb-8">Each month reveals a different side of the mountains.</p>
-      <SeasonalCalendar client:load />
+      <SeasonalCalendar client:visible />
     </div>
   </section>
 
