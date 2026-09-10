@@ -32,7 +32,7 @@ const related = getMountainsByRegion(mountain.location.region)
 
 const withZh = `${mountain!.name.en} (${mountain!.name.zh}) Guide`;
 const enOnly = `${mountain!.name.en} Guide`;
-const title = withZh.length <= 45 ? withZh : enOnly;
+const title = (mountain as any).customTitle || (withZh.length <= 45 ? withZh : enOnly);
 const desc = mountain!.metaDescription || mountain!.description.slice(0, 160).trimEnd().replace(/\s+\S+$/, '');
 const siteUrl = "https://www.chinese-mountains.com";
 const pageUrl = siteUrl + "/mountains/" + mountain.slug;
