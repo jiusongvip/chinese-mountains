@@ -6,8 +6,95 @@ import { thumb } from "../../utils/thumb";
 
 const fiveGreatSlugs = ["taishan", "huashan", "hengshan-hunan", "hengshan-shanxi", "songshan"];
 const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).filter(Boolean);
+
+const DIRECTIONS: Record<string, string> = {
+  taishan: "East", huashan: "West", "hengshan-hunan": "South", "hengshan-shanxi": "North", songshan: "Center",
+};
+const BEST_FOR: Record<string, string> = {
+  taishan: "History, Sunrise, Culture",
+  huashan: "Adventure, Cliffs, Plank Walk",
+  "hengshan-hunan": "Temples, Serenity, Accessibility",
+  "hengshan-shanxi": "Hanging Temple, Architecture",
+  songshan: "Shaolin Temple, Kung Fu, Zen",
+};
+const DIFF_BADGE: Record<string, string> = {
+  easy: "bg-emerald-100 text-emerald-700",
+  moderate: "bg-amber-100 text-amber-800",
+  hard: "bg-orange-100 text-orange-800",
+  extreme: "bg-red-100 text-red-700",
+};
+const DIFF_ORDER = ["easy", "moderate", "hard", "extreme"];
+
+// Every number on this page is read from mountains-data.json so the tables cannot drift apart.
+const peaks = fiveGreat.map(m => ({
+  slug: m.slug,
+  en: m.name.en,
+  zh: m.name.zh,
+  direction: DIRECTIONS[m.slug],
+  province: m.location.province,
+  elevation: m.physical.elevation,
+  difficulty: m.tourism.difficulty,
+  duration: m.tourism.avgVisitDuration,
+  ticket: m.tourism.ticketPrice,
+  ticketCny: Number((m.tourism.ticketPrice.match(/\d+/) || [0])[0]),
+  season: m.tourism.bestSeason,
+  unesco: m.culture.unescoSite ? m.culture.yearDesignated : null,
+  bestFor: BEST_FOR[m.slug],
+}));
+
+const climbOrder = [...peaks].sort((a, b) => DIFF_ORDER.indexOf(a.difficulty) - DIFF_ORDER.indexOf(b.difficulty));
+const totalTickets = peaks.reduce((s, p) => s + p.ticketCny, 0);
+const dayRange = peaks.reduce(([lo, hi], p) => {
+  const nums = (p.duration.match(/\d+/g) || []).map(Number);
+  return [lo + (nums[0] ?? 0), hi + (nums[nums.length - 1] ?? nums[0] ?? 0)];
+}, [0, 0]);
+const highest = peaks.reduce((a, b) => (b.elevation > a.elevation ? b : a));
+const lowest = peaks.reduce((a, b) => (b.elevation < a.elevation ? b : a));
+const toughest = climbOrder[climbOrder.length - 1];
+const otherFour = climbOrder.filter(p => p.difficulty !== toughest.difficulty);
+
+const daoistSlugs = mountains.filter(m => m.culture.type.includes("Daoist")).map(m => m.slug);
+const buddhistSlugs = mountains.filter(m => m.culture.type.some(t => ["Buddhist", "Tibetan Buddhist"].includes(t))).map(m => m.slug);
+const alsoDaoist = peaks.filter(p => daoistSlugs.includes(p.slug)).map(p => p.en);
+const alsoBuddhist = peaks.filter(p => buddhistSlugs.includes(p.slug)).map(p => p.en);
+
+const ADJECTIVE: Record<string, string> = { East: "eastern", West: "western", South: "southern", North: "northern", Center: "central" };
+const andList = (arr: string[]) => arr.length < 3 ? arr.join(" and ") : arr.slice(0, -1).join(", ") + ", and " + arr[arr.length - 1];
+const provinces = [...new Set(peaks.map(p => p.province))];
+const elevLo = Math.min(...peaks.map(p => p.elevation));
+const elevHi = Math.max(...peaks.map(p => p.elevation));
+const ticketLo = Math.min(...peaks.map(p => p.ticketCny));
+const ticketHi = Math.max(...peaks.map(p => p.ticketCny));
+const pageDesc = `Five Great Mountains (Wuyue) compared: elevations ${elevLo.toLocaleString()}-${elevHi.toLocaleString()}m, entry CNY ${ticketLo}-${ticketHi}, difficulty, days needed, and whether they are the Five Sacred Mountains.`;
+
+const faqs = [
+  {
+    q: "What are the Five Great Mountains of China?",
+    a: `The Wuyue (五岳) are ${andList(peaks.map(p => `the ${ADJECTIVE[p.direction]} ${p.en}`))}. Each one holds a direction in early Chinese cosmology. ${highest.en} is the tallest at ${highest.elevation.toLocaleString()}m; ${lowest.en} the shortest at ${lowest.elevation.toLocaleString()}m.`,
+  },
+  {
+    q: "Are the Five Great Mountains the same as the Five Sacred Mountains?",
+    a: "Yes — both renderings translate the same Chinese name, Wuyue (五岳). It is a separate set from the Buddhist and Daoist sacred mountains, although individual peaks appear on more than one list.",
+  },
+  {
+    q: "Which of the Five Great Mountains is the hardest to climb?",
+    a: `${toughest.en} in ${toughest.province}, rated extreme: sheer granite faces, exposed ridges and the plank walk bolted to a vertical cliff. The other four — ${andList(otherFour.map(p => p.en))} — are all rated moderate, so the real difference between them is what you came to see rather than how hard you have to work.`,
+  },
+  {
+    q: "How many days do you need to visit all five?",
+    a: `Each peak asks for about a day or two on the hill, so all five come to roughly ${dayRange[0]}-${dayRange[1]} days of walking. They sit in ${provinces.length} provinces — ${andList(provinces)} — with long rail or flight hops between them, so most visitors pick two or three.`,
+  },
+  {
+    q: "What do the entry tickets cost for all Five Great Mountains?",
+    a: `Standard entry is ${andList(peaks.map(p => `${p.en} ${p.ticket}`))}, which comes to CNY ${totalTickets} for the set. Every figure is the gate ticket on its own — Taishan, for example, charges its mountain road bus per leg rather than folding it into admission.`,
+  },
+  {
+    q: "Which of the Five Great Mountains are UNESCO World Heritage Sites?",
+    a: `${peaks.filter(p => p.unesco).map(p => `${p.en} (inscribed ${p.unesco})`).join(" and ")} carry World Heritage listing. The other three are not UNESCO sites, though each is a nationally designated scenic area.`,
+  },
+];
 ---
-<BaseLayout title="Five Great Mountains of China: Compare All 5 Sacred Peaks" description="Compare the Five Great Mountains (Wuyue) of China — Mount Tai, Hua, Heng (Hunan), Heng (Shanxi), and Song. Side-by-side comparison of direction, difficulty, highlights, and which one to visit.">
+<BaseLayout title="Five Great Mountains of China: Compare All 5 Sacred Peaks" description={pageDesc}>
 <section class="pt-12 pb-20">
 <div class="max-w-[1400px] mx-auto px-6">
 <h1 class="text-4xl font-bold tracking-tighter text-slate-900">The Five Great Mountains (Wuyue)</h1>
@@ -23,25 +110,60 @@ const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).fi
 <th class="pb-3 font-medium px-2">Province</th>
 <th class="pb-3 font-medium px-2">Elevation</th>
 <th class="pb-3 font-medium px-2">Difficulty</th>
-<th class="pb-3 font-medium px-2">Best For</th>
+<th class="pb-3 font-medium px-2">Typical visit</th>
+<th class="pb-3 font-medium px-2">Entry ticket</th>
 <th class="pb-3 font-medium px-2">UNESCO</th>
 </tr></thead>
 <tbody class="divide-y divide-slate-100">
-<tr><td class="py-3 pr-4 font-medium text-slate-900">Mount Tai (泰山)</td><td class="py-3 px-2 text-slate-600">East</td><td class="py-3 px-2 text-slate-600">Shandong</td><td class="py-3 px-2 text-slate-600">1,545m</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Moderate</span></td><td class="py-3 px-2 text-slate-600 text-xs">History, Sunrise, Culture</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">1987</span></td></tr>
-<tr><td class="py-3 pr-4 font-medium text-slate-900">Mount Hua (华山)</td><td class="py-3 px-2 text-slate-600">West</td><td class="py-3 px-2 text-slate-600">Shaanxi</td><td class="py-3 px-2 text-slate-600">2,154m</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-red-100 text-red-700">Extreme</span></td><td class="py-3 px-2 text-slate-600 text-xs">Adventure, Cliffs, Plank Walk</td><td class="py-3 px-2"><span class="text-slate-300">-</span></td></tr>
-<tr><td class="py-3 pr-4 font-medium text-slate-900">Mount Heng (衡山)</td><td class="py-3 px-2 text-slate-600">South</td><td class="py-3 px-2 text-slate-600">Hunan</td><td class="py-3 px-2 text-slate-600">1,300m</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-emerald-100 text-emerald-700">Easy</span></td><td class="py-3 px-2 text-slate-600 text-xs">Temples, Serenity, Accessibility</td><td class="py-3 px-2"><span class="text-slate-300">-</span></td></tr>
-<tr><td class="py-3 pr-4 font-medium text-slate-900">Mount Heng (恒山)</td><td class="py-3 px-2 text-slate-600">North</td><td class="py-3 px-2 text-slate-600">Shanxi</td><td class="py-3 px-2 text-slate-600">2,016m</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Moderate</span></td><td class="py-3 px-2 text-slate-600 text-xs">Hanging Temple, Architecture</td><td class="py-3 px-2"><span class="text-slate-300">-</span></td></tr>
-<tr><td class="py-3 pr-4 font-medium text-slate-900">Mount Song (嵩山)</td><td class="py-3 px-2 text-slate-600">Center</td><td class="py-3 px-2 text-slate-600">Henan</td><td class="py-3 px-2 text-slate-600">1,491m</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">Moderate</span></td><td class="py-3 px-2 text-slate-600 text-xs">Shaolin Temple, Kung Fu, Zen</td><td class="py-3 px-2"><span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">2010</span></td></tr>
+{peaks.map(p => (
+<tr>
+<td class="py-3 pr-4 font-medium text-slate-900">{p.en} ({p.zh})</td>
+<td class="py-3 px-2 text-slate-600">{p.direction}</td>
+<td class="py-3 px-2 text-slate-600">{p.province}</td>
+<td class="py-3 px-2 text-slate-600">{p.elevation.toLocaleString()}m</td>
+<td class="py-3 px-2"><span class={`text-xs px-2 py-0.5 rounded-full ${DIFF_BADGE[p.difficulty]}`}>{p.difficulty[0].toUpperCase() + p.difficulty.slice(1)}</span></td>
+<td class="py-3 px-2 text-slate-600">{p.duration}</td>
+<td class="py-3 px-2 text-slate-600">{p.ticket}</td>
+<td class="py-3 px-2">{p.unesco ? <span class="text-xs px-2 py-0.5 rounded-full bg-amber-100 text-amber-800">{p.unesco}</span> : <span class="text-slate-300 text-xs px-2">-</span>}</td>
+</tr>
+))}
 </tbody>
 </table>
 </div>
 <div class="grid grid-cols-1 sm:grid-cols-2 lg:hidden gap-3">
-<div class="bg-white border border-slate-200 rounded-xl p-4"><span class="font-semibold text-slate-900 text-sm">Mount Tai 泰山</span><span class="text-xs text-slate-600 mt-1 block">East · Shandong · 1,545m · Moderate</span><span class="text-xs text-slate-500 mt-1">Best for: History, Sunrise</span></div>
-<div class="bg-white border border-slate-200 rounded-xl p-4"><span class="font-semibold text-slate-900 text-sm">Mount Hua 华山</span><span class="text-xs text-slate-600 mt-1 block">West · Shaanxi · 2,154m · Extreme</span><span class="text-xs text-slate-500 mt-1">Best for: Adventure, Plank Walk</span></div>
-<div class="bg-white border border-slate-200 rounded-xl p-4"><span class="font-semibold text-slate-900 text-sm">Mount Heng (Hunan) 衡山</span><span class="text-xs text-slate-600 mt-1 block">South · Hunan · 1,300m · Easy</span><span class="text-xs text-slate-500 mt-1">Best for: Temples, Families</span></div>
-<div class="bg-white border border-slate-200 rounded-xl p-4"><span class="font-semibold text-slate-900 text-sm">Mount Heng (Shanxi) 恒山</span><span class="text-xs text-slate-600 mt-1 block">North · Shanxi · 2,016m · Moderate</span><span class="text-xs text-slate-500 mt-1">Best for: Hanging Temple</span></div>
-<div class="bg-white border border-slate-200 rounded-xl p-4 sm:col-span-2"><span class="font-semibold text-slate-900 text-sm">Mount Song 嵩山</span><span class="text-xs text-slate-600 mt-1 block">Center · Henan · 1,491m · Moderate</span><span class="text-xs text-slate-500 mt-1">Best for: Shaolin, Kung Fu, Zen</span></div>
+{peaks.map(p => (
+<div class="bg-white border border-slate-200 rounded-xl p-4">
+<span class="font-semibold text-slate-900 text-sm">{p.en} {p.zh}</span>
+<span class="text-xs text-slate-600 mt-1 block">{p.direction} · {p.province} · {p.elevation.toLocaleString()}m · {p.difficulty[0].toUpperCase() + p.difficulty.slice(1)}</span>
+<span class="text-xs text-slate-500 mt-1 block">{p.duration} · entry {p.ticket}</span>
+<span class="text-xs text-slate-500">Best for: {p.bestFor}</span>
 </div>
+))}
+</div>
+</div>
+
+<div class="mt-10">
+<h2 class="text-2xl font-bold tracking-tighter text-slate-900 mb-3">Climbing the Five: Which Is the Hardest?</h2>
+<p class="text-sm text-slate-600 mb-6 max-w-[70ch]">Four of the five — {andList(otherFour.map(p => p.en))} — carry the same <strong>moderate</strong> rating. {toughest.en} is the outlier at <strong>extreme</strong>. Grouped by difficulty, easiest first, with the visit length and entry price each guide uses:</p>
+<ol class="space-y-3">
+{climbOrder.map((p, i) => (
+<li class="flex items-start gap-4 bg-white border border-slate-200 rounded-xl p-4">
+<span class="text-lg font-bold text-accent shrink-0 w-6">{i + 1}</span>
+<div class="flex-1 min-w-0">
+<p class="font-semibold text-slate-900 text-sm">
+<a href={`/mountains/${p.slug}/`} class="hover:text-accent no-underline">{p.en}</a>
+<span class="text-xs font-normal text-slate-500 ml-2">{p.direction} · {p.province} · {p.elevation.toLocaleString()}m</span>
+</p>
+<p class="text-xs text-slate-600 mt-1">
+Rated <span class={`px-2 py-0.5 rounded-full ${DIFF_BADGE[p.difficulty]}`}>{p.difficulty}</span>
+· plan {p.duration} · entry {p.ticket}
+· best months {p.season.join(", ")}
+</p>
+</div>
+</li>
+))}
+</ol>
+<p class="text-xs text-slate-500 mt-4">Every elevation, rating, visit length and ticket price here is the same figure that mountain's own guide page uses, so the two can never disagree. Route-by-route climb times are on the individual pages.</p>
 </div>
 
 <div class="mt-10 bg-slate-50 rounded-2xl border border-slate-200 p-6">
@@ -91,18 +213,54 @@ const fiveGreat = fiveGreatSlugs.map(s => mountains.find(m => m.slug === s)!).fi
 <li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">North</span><span><strong class="text-slate-800">Mount Heng (Shanxi)</strong> — Home to the 1,500-year-old Hanging Temple, a monastery literally suspended from a cliff face. A geological oddity with dramatic horizontal rock strata.</span></li>
 <li class="flex items-start gap-3"><span class="text-accent font-bold shrink-0 mt-0.5">Center</span><span><strong class="text-slate-800">Mount Song</strong> — The birthplace of Shaolin kung fu and Zen (Chan) Buddhism. The Shaolin Temple at its base is one of the world's most famous monasteries.</span></li>
 </ul>
-
-<h3 class="text-lg font-semibold text-slate-900 mt-8 mb-3">Which One Should You Visit?</h3>
-<p class="text-slate-600 leading-relaxed">If you want history, choose Tai. If you want adrenaline, choose Hua. If you want serenity, choose Heng (Hunan). If you want architecture, choose Heng (Shanxi). If you want martial arts and Zen, choose Song. Or do what the ancient emperors did: visit all five.</p>
 </div>
+</div>
+
+<div class="mt-16">
+<h2 id="faq" class="scroll-mt-36 text-2xl font-bold tracking-tighter text-slate-900 mb-6">Five Great Mountains: Common Questions</h2>
+<div class="space-y-4">
+  {faqs.map((faq, i) => (
+    <details class="group border border-slate-200 rounded-xl overflow-hidden" open={i === 0}>
+      <summary class="flex items-center justify-between p-4 cursor-pointer hover:bg-slate-50 transition-colors list-none">
+        <span class="font-medium text-slate-900 text-sm">{faq.q}</span>
+        <span class="text-slate-600 group-open:rotate-180 transition-transform text-lg">+</span>
+      </summary>
+      <div class="px-4 pb-4 text-slate-600 text-sm leading-relaxed">{faq.a}</div>
+    </details>
+  ))}
+</div>
+<p class="text-sm text-slate-600 mt-6">Some of these peaks sit on more than one sacred list: {andList(alsoDaoist)} also appear{alsoDaoist.length === 1 ? "s" : ""} among the <a href="/collections/daoist-mountains/" class="text-accent hover:underline no-underline font-medium">Daoist holy mountains</a>, and {andList(alsoBuddhist)} among the <a href="/collections/buddhist-mountains/" class="text-accent hover:underline no-underline font-medium">Buddhist sacred sites</a>.</p>
 </div>
 </div>
 </section>
 
 <script type="application/ld+json" set:html={JSON.stringify({
 "@context": "https://schema.org",
-"@type": "CollectionPage",
-"name": "The Five Great Mountains of China",
-"description": "Comprehensive guide to the Five Great Mountains (Wuyue) of China: Mount Tai, Mount Hua, Mount Heng (Hunan), Mount Heng (Shanxi), and Mount Song."
+"@graph": [
+  {
+    "@type": "CollectionPage",
+    "@id": "https://www.chinese-mountains.com/collections/five-great-mountains/",
+    "url": "https://www.chinese-mountains.com/collections/five-great-mountains/",
+    "name": "The Five Great Mountains of China",
+    "description": "Comprehensive guide to the Five Great Mountains (Wuyue) of China: Mount Tai, Mount Hua, Mount Heng (Hunan), Mount Heng (Shanxi), and Mount Song.",
+    "mainEntity": {
+      "@type": "ItemList",
+      "itemListElement": peaks.map((p, i) => ({
+        "@type": "ListItem",
+        "position": i + 1,
+        "url": `https://www.chinese-mountains.com/mountains/${p.slug}/`,
+        "name": p.en
+      }))
+    }
+  },
+  {
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(f => ({
+      "@type": "Question",
+      "name": f.q,
+      "acceptedAnswer": { "@type": "Answer", "text": f.a }
+    }))
+  }
+]
 })} />
 </BaseLayout>
